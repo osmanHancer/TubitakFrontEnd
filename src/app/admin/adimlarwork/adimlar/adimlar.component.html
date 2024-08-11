@@ -1,0 +1,37 @@
+<div style="margin-top: 1%;margin-left: 25px;margin-right: 25px;">
+    <mat-form-field >
+        <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+    </mat-form-field>
+    <div style="width: 100%; overflow-x: auto">
+        <mat-table [dataSource]="dataSource" style="min-width: 800px">
+            <ng-container matColumnDef="saha_ismi">
+                <mat-header-cell *matHeaderCellDef> Saha İsmi</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.sahacalismasiadi }} </mat-cell>
+            </ng-container>
+    
+          
+    
+    
+      
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-mini-fab routerLink="../adım/-1" style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; ">
+                    <button mat-mini-fab routerLink="../adım/{{ row.sahacalismasiadi }}"
+                        style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>edit</mat-icon></button>
+                     
+                </mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="['saha_ismi','action']"></mat-header-row>
+            <mat-row *matRowDef="
+              let row;
+              columns: ['saha_ismi','action']
+            "></mat-row>
+        </mat-table>
+    </div>
+    </div>

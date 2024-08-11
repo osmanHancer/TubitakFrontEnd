@@ -1,0 +1,62 @@
+    <mat-toolbar >
+      <mat-toolbar-row>
+        
+        <button style="color: white;" mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
+        <button style="color: white;" mat-button><mat-icon>home</mat-icon>Home</button>
+        <button style="color: white;" mat-button routerLink="./mapbox2" >
+          <mat-icon>map</mat-icon>
+          Mapbox
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <mat-sidenav-container >
+      <mat-sidenav [opened]="opened" mode="side">
+        <div  style="display: flex;flex-direction: column;margin-top: 10%;align-items: flex-start;"> <button mat-button style="color: white;" mat-button routerLink="./point" >
+          <mat-icon> place</mat-icon>
+         Nokta Düzenle
+        </button>
+        <button mat-button style="color: white;" mat-button routerLink="./lokasyon" >
+          <mat-icon>location_on</mat-icon>
+           Lokasyon Düzenle
+        </button>
+        <button mat-button style="color: white;" mat-button routerLink="./seyyah" >
+          <mat-icon>person</mat-icon>
+         Seyyah Düzenle
+        </button>
+        <button mat-button style="color: white;" mat-button routerLink="./seyahatname" >
+          <mat-icon>person</mat-icon>
+         Seyahat Düzenle
+        </button>
+   
+        <button mat-button style="color: white;" mat-button routerLink="./saha" >
+          <mat-icon>person</mat-icon>
+         Saha Çalışması
+        </button>
+        <!-- <button mat-button style="color: white;" mat-button routerLink="./yapılar" >
+          <mat-icon>location_city</mat-icon>
+          Yapı Düzenle
+        </button> -->
+        <button mat-button style="color: white;" mat-button routerLink="./editor" >
+          <mat-icon>edit</mat-icon>
+          Editör
+        </button>
+        <button mat-button style="color: white;" mat-button routerLink="./fileupload" >
+          <mat-icon>insert_drive_file</mat-icon>
+          Dosya Yükle
+        </button>
+        <button mat-button style="color: white;" mat-button routerLink="./adım" >
+          <mat-icon>arrow_forward</mat-icon>
+          Seyehat Adımları
+        </button>
+        <button mat-button style="color: white;" mat-button routerLink="./makale" >
+          <mat-icon>arrow_forward</mat-icon>
+          Makale
+        </button>
+        </div>
+       
+      </mat-sidenav>
+   
+      <mat-sidenav-content >
+        <router-outlet></router-outlet>
+      </mat-sidenav-content>
+    </mat-sidenav-container>

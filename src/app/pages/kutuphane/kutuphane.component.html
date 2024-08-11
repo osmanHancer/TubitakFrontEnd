@@ -1,0 +1,132 @@
+
+
+<section class="content-holder">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="page-title">Kütüphane</h1>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-12 col-xl-10">
+          <p>Kütüphane bölümü proje kapsamında taranan kaynaklardan elde edilen verilerin paylaşıldığı bölümdür. Bu bölümde 2 ana kategori yer almaktadır. Bu kategoriler şöyledir: Seyahat Yapıları (Han ve Kervansaraylar listesi) ve Seyyahlar ve Seyahatnameleri. Kategori başlıkları altında ilgili içerikler listelenmektedir. Ayrıca ileri araştırmalar için aşağıdaki arama kutusundan kütüphane içeriklerişnde arama yapabilirsiniz.</p>
+          </div>
+            <div class="col-12 col-xl-6">
+            <form class="search-form my-5">
+              <div class="form-group">
+                <input type="text" class="form-control" id="kutuphane-search" aria-describedby="kutuphaneSearch" placeholder="Aramak istediğiniz terimi giriniz">
+              </div>
+              <button type="submit" class="flying"><i class="bi bi-search"></i></button>
+            </form>
+          </div>
+            <div class="col-12 col-xl-10">
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"> Seyahat Yapıları <span class="number">({{yapisize}})</span></button>
+              </h2>
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let item of editItemListYapi"><a [href]="'../home/monografi/'+item.yapi_ismi" >{{item.baslik}}</a></li>
+                    <!-- <li><a href="#">Alarahan Kervansarayı</a></li>
+                    <li><a href="#">Altınapa Han</a></li>
+                    <li><a href="#">Dokuzun Han</a></li>
+                    <li><a href="#">Evdir Han</a></li>
+                    <li><a href="#">Hasan Paşa Hanı</a></li>
+                    <li><a href="#">Horozlu Han</a></li>
+                    <li><a href="#">Karatay Han</a></li>
+                    <li><a href="#">Kargı Han</a></li>
+                    <li><a href="#">Keyhüsrev Kervansarayı</a></li>
+                    <li><a href="#">Kuruçeşme Kervansarayı</a></li>
+                    <li><a href="#">Kırkgöz Han</a></li>
+                    <li><a href="#">Kızlarağası Han</a></li>
+                    <li><a href="#">Kızılören Kervansarayı</a></li>
+                    <li><a href="#">Mirkelam Han</a></li>
+                    <li><a href="#">Musevit Han</a></li>
+                    <li><a href="#">Obruk Han</a></li>
+                    <li><a href="#">Pilavoğlu Han</a></li>
+                    <li><a href="#">Sultan Han</a></li>
+                    <li><a href="#">Suluhan (Ankara)</a></li>
+                    <li><a href="#">Susuz Han</a></li>
+                    <li><a href="#">Tahtoba Han</a></li>
+                    <li><a href="#">yazım şablonu</a></li>
+                    <li><a href="#">Zazadin Han</a></li>
+                    <li><a href="#">Çakallı Taşhan</a></li>
+                    <li><a href="#">Çakaloğlu Han</a></li>
+                    <li><a href="#">Çardak Han</a></li>
+                    <li><a href="#">Çukur Han</a></li>
+                    <li><a href="#">Öküz Mehmet Paşa Kervansarayı(1)</a></li>
+                    <li><a href="#">Öküz Mehmet Paşa Kervansarayı</a></li>
+                    <li><a href="#">İncir Han</a></li>
+                    <li><a href="#">Şarapsa Han</a></li>
+                    <li><a href="#">Şerafettin Ejder Han</a></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo"> Seyyahlar ve Seyahatnameleri <span class="number">({{seyyahsize}})</span></button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                  <ul>
+                    <li *ngFor="let item of editItemListSeyyah"><a [href]="'../home/makale/'+item.kodu">{{item.seyahatnameadi}}</a></li>
+                    <!-- <li><a href="#"> Ibn-i Sait</a></li>
+                    <li><a href="#"> Ibn-Battuta</a></li>
+                    <li><a href="#"> Bertrandon de la Broquere</a></li>
+                    <li><a href="#"> Han Dernschwam</a></li>
+                    <li><a href="#"> Pierre Belon</a></li>
+                    <li><a href="#"> Ogier Ghislain de Busbecq</a></li>
+                    <li><a href="#"> Kütbiddin Mekki (Nehrevali)</a></li>
+                    <li><a href="#"> Stephan Gerlach</a></li>
+                    <li><a href="#"> Simeon</a></li>
+                    <li><a href="#"> Tavernier</a></li>
+                    <li><a href="#"> B. Le Gouz</a></li>
+                    <li><a href="#"> Evliya Çelebi</a></li>
+                    <li><a href="#"> Thevonet</a></li>
+                    <li><a href="#"> Macarius</a></li>
+                    <li><a href="#"> Cornelius de Brun</a></li>
+                    <li><a href="#"> Gemelli Careri</a></li>
+                    <li><a href="#"> Paul Lucas</a></li>
+                    <li><a href="#"> Joseph De Tournefort</a></li>
+                    <li><a href="#"> Richard Pococke</a></li>
+                    <li><a href="#"> Jean Otter</a></li>
+                    <li><a href="#"> Domenico Sestini</a></li>
+                    <li><a href="#"> William George Browne</a></li>
+                    <li><a href="#"> William Martin Leake</a></li>
+                    <li><a href="#"> Ulrich Jasper Seetzen</a></li>
+                    <li><a href="#"> John Macdonald Kinneir</a></li>
+                    <li><a href="#"> James Morier</a></li>
+                    <li><a href="#"> Charles Leonard Irby and James Mangles</a></li>
+                    <li><a href="#"> Robert Ker Porter</a></li>
+                    <li><a href="#"> Marcellus </a></li>
+                    <li><a href="#"> Bernard Eugene Antoine Rottiers</a></li>
+                    <li><a href="#"> Leon De Laborde</a></li>
+                    <li><a href="#"> W. J. Hamilton</a></li>
+                    <li><a href="#"> Anton von Prokesch-Osten</a></li>
+                    <li><a href="#"> Helmuth Karl Bernhard von Moltke</a></li>
+                    <li><a href="#"> Charles Texier</a></li>
+                    <li><a href="#"> William Francis Ainsworth</a></li>
+                    <li><a href="#"> Pierre-Amadee Jaubert</a></li>
+                    <li><a href="#"> Andreas David Mordtmann</a></li>
+                    <li><a href="#"> Hommaire de Hell</a></li>
+                    <li><a href="#"> Alfred  De Moustier</a></li>
+                    <li><a href="#"> Henry J. Van Lennep</a></li>
+                    <li><a href="#"> Auguste Choisy</a></li>
+                    <li><a href="#"> John Murray</a></li>
+                    <li><a href="#"> Henry C. Barkley</a></li>
+                    <li><a href="#"> Colmar Von der Goltz</a></li>
+                    <li><a href="#"> Vital Cuinet</a></li>
+                    <li><a href="#"> Friedrich Sarre</a></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

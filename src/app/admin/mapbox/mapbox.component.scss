@@ -1,0 +1,63 @@
+.match-parent {
+    position: absolute; top: 0; bottom: 0; width: 100%;
+    
+
+  }
+  .mapboxgl-canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+#fit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 30%;
+    max-height:  200px;
+    font-size: 30px;
+    color: #fff;
+    z-index: 0;
+    }
+#fit_2 {
+    margin-top: 20px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    min-height:  50px;
+    font-size: 30px;
+    color: #fff;
+    z-index: 0;
+    max-height: 700px; /* Örnek olarak, maksimum yükseklik 400 piksel olarak ayarlanmıştır, ihtiyaca göre değiştirilebilir */
+    overflow-y:scroll
+    }
+ 
+
+    .mapboxgl-popup-content {
+        background: #9f3333 !important;
+        border-radius: 3px;
+        box-shadow: 0 1px 2px rgba(0,0,0,.1);
+        padding: 10px 10px 15px;
+        pointer-events: auto;
+        position: relative;
+    }
+    .mapboxgl-popup {
+        max-width: 400px;
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif !important;
+        }
+
+        .example-viewport {
+          height: 200px;
+          width: 200px;
+          border: 1px solid black;
+        }
+        
+        .example-item {
+          height: 50px;
+        }
+        

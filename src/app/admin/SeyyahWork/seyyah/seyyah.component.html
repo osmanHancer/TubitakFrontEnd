@@ -1,0 +1,45 @@
+<div style="margin-top: 1%;margin-left: 25px;margin-right: 25px;">
+    <mat-form-field >
+        <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+    </mat-form-field>
+    <div style="width: 100%; overflow-x: auto">
+        <mat-table [dataSource]="dataSource" style="min-width: 800px">
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> ID</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="ozet">
+                <mat-header-cell *matHeaderCellDef> Özet </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.ozet }} </mat-cell>
+            </ng-container>
+    
+    
+      
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-mini-fab routerLink="../seyyah/-1" style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index">
+                    <button mat-mini-fab routerLink="../seyyah/{{ row.id }}"
+                        style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>edit</mat-icon></button>
+                     
+                </mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="['id', 'name','ozet','action']"></mat-header-row>
+            <mat-row *matRowDef="
+              let row;
+              columns: ['id', 'name','ozet','action']
+            "></mat-row>
+        </mat-table>
+    </div>
+    </div>

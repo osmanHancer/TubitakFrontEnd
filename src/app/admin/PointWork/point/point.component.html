@@ -1,0 +1,119 @@
+<div style="margin-top: 1%;margin-left: 25px;margin-right: 25px;">
+    <mat-form-field appearance="fill" style="width: 250px">
+        <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+    </mat-form-field>
+    <div style="width: 100%; overflow-x: auto">
+        <mat-table [dataSource]="dataSource" style="min-width: 800px">
+
+
+            <ng-container matColumnDef="anlatida_gecen_mekan_adi">
+                <mat-header-cell *matHeaderCellDef> Mekan Adı </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.anlatida_gecen_mekan_adi }} </mat-cell>
+            </ng-container>
+
+            <!-- <ng-container matColumnDef="bolum_chapter_mektupnumarasi">
+                <mat-header-cell *matHeaderCellDef> Bolum No </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.bolum_chapter_mektupnumarasi }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="boylam">
+                <mat-header-cell *matHeaderCellDef> boylam </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.boylam }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="color">
+                <mat-header-cell *matHeaderCellDef> Renk</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.color }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="deniz_yoluyla_ulasim">
+                <mat-header-cell *matHeaderCellDef>deniz Ulaşımı</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.deniz_yoluyla_ulasim }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="enlem">
+                <mat-header-cell *matHeaderCellDef> enlem </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.enlem }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="konaklanma_durumu">
+                <mat-header-cell *matHeaderCellDef> konaklama durumu </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.konaklanma_durumu }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="mekan_tipi">
+                <mat-header-cell *matHeaderCellDef> mekan_tipi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.mekan_tipi }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="mekanin_gunumuzdeki_adi">
+                ">
+                <mat-header-cell *matHeaderCellDef> mekanin g. adı
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.mekanin_gunumuzdeki_adi
+                    }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="notlar">
+                <mat-header-cell *matHeaderCellDef> notlar </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.notlar }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="rota_notlari">
+                <mat-header-cell *matHeaderCellDef> rota_notlari </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.rota_notlari }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="sayfa_numarasi">
+                <mat-header-cell *matHeaderCellDef> sayfa_numarasi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.sayfa_numarasi }} </mat-cell>
+            </ng-container> -->
+
+            <ng-container matColumnDef="seyahat_adimi">
+                <mat-header-cell *matHeaderCellDef> seyahat_adimi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.seyahat_adimi }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="seyahatname_adi">
+                <mat-header-cell *matHeaderCellDef> seyahatname_adi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.seyahatname_adi }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="seyahname_kodu">
+                <mat-header-cell *matHeaderCellDef> seyahname_kodu </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.seyahname_kodu }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tespit_edilen_konum_olcegi">
+                <mat-header-cell *matHeaderCellDef> Konum Ölçeği </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.tespit_edilen_konum_olcegi }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="yapi_envanter_kodu">
+                <mat-header-cell *matHeaderCellDef> yapi_envanter_kodu </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yapi_envanter_kodu }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="yazar">
+                <mat-header-cell *matHeaderCellDef> yazar </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yazar }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="yuzyil">
+                <mat-header-cell *matHeaderCellDef> yuzyil </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yuzyil }} </mat-cell>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-mini-fab routerLink="../editpoint/-1/-1"
+                        style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index">
+                    <button mat-mini-fab routerLink="../editpoint/{{row.seyahname_kodu}}/{{ row.id }}"
+                        style="background-color: rgb(117, 107, 93); color: coral" button>
+                        <mat-icon>edit</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row
+                *matHeaderRowDef="[ 'anlatida_gecen_mekan_adi', 'boylam','deniz_yoluyla_ulasim','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi','rota_notlari', 'seyahat_adimi','seyahatname_adi','seyahname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']">
+            </mat-header-row>
+            <mat-row *matRowDef="
+              let row;
+              columns: [ 'anlatida_gecen_mekan_adi', 'boylam','deniz_yoluyla_ulasim','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi','rota_notlari', 'seyahat_adimi','seyahatname_adi','seyahname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']
+            "></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

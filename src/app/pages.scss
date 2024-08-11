@@ -1,0 +1,737 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body {
+    margin: 0;
+    padding: 0;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.index-top-holder {
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+}
+
+header {
+	box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+}
+
+.logo img {
+	max-width: 200px;
+}
+
+
+@media (min-width: 992px) { 
+.logo img {
+	max-width: 350px;
+}
+}
+
+
+.main-nav {
+	font-weight: 700;
+	font-size: 1.125rem;
+}
+
+.main-nav a {
+    color: #FFF; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+a.nav-link.taba {
+    color: #FFF; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color: #000; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link.show {
+	color: #000;
+}
+
+@media (min-width: 1200px) {
+	.index-top-holder .main-nav a {
+    color: #fff; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.main-nav a {
+    color: #666; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+a.nav-link.taba {
+    color: #aa6f3a; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.main-nav a:hover {
+    color: #000; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.index-top-holder .main-nav a:hover {
+    color: #aa6f3a; /* Adjust text color as needed */
+    text-decoration: none;
+}
+
+.navbar-nav .nav-link.show {
+	color: #aa6f3a;
+}
+}
+
+.navbar-toggler {
+	background-color: #aa6f3a;
+	color: #FFF;
+}
+
+.navbar-toggler-icon {
+	background: none;
+	color:#FFF;
+}
+
+.navbar-collapse.collapse.show, .navbar-collapse.collapsing {
+	background-color: #aa6f3a;
+	padding:10px 30px;
+	border-radius: 15px;
+}
+
+.navbar-collapse.collapse ul, .navbar-collapse.collapsing ul {
+	margin-bottom:0;
+}
+
+.navbar-nav .dropdown-menu {
+    background-color: #FFF;
+    border: none;
+    box-shadow: 0px 5px 10px rgba(0,0,0,0.7);
+}
+.navbar-nav .dropdown-menu li a {
+	color: #aa6f3a;
+}
+
+.dropdown-item {
+	padding: 10px;
+}
+
+.free-cards-holder {
+	padding: 170px 0;
+}
+
+.sy-card {
+	max-width: 415px;
+	border-radius: 30px;
+	box-shadow: 0 12px 70px rgba(0,0,0,0.35);
+	margin: 0 auto 30px auto;
+}
+
+.sy-card-title {
+	font-size: 24px;
+	font-weight: bold;
+	color:#FFF;
+	padding: 30px;
+	border-radius: 30px 30px 0 0;
+}
+
+.sy-card.olive .sy-card-title {
+	background-color: #6f9689;
+}
+
+.sy-card.taba .sy-card-title {
+	background-color: #aa6f3a;
+}
+
+.sy-card-body {
+	padding: 35px 30px;
+	color:#666;
+	line-height: 2.2em;
+}
+
+.sy-card-body .btn {
+	margin:0 10px;
+	display: inline-block;
+}
+
+.sy-btn {
+	font-weight: bold;
+	border-radius: 15px;
+	padding: 20px 35px;
+	color:#FFF;
+	letter-spacing: 0.13em;
+}
+
+.btn-olive {
+	background-color: #6f9689;
+}
+
+.btn-taba {
+	background-color: #aa6f3a;
+}
+
+.btn-olive:hover {
+	background-color: #4E786A;
+	box-shadow: 0 0 25px rgba(0,0,0,0.25);
+	color:#FFF;
+}
+
+.btn-taba:hover {
+	background-color: #8C582A;
+	box-shadow: 0 0 25px rgba(0,0,0,0.25);
+	color:#FFF;
+}
+
+// .home-purpose {
+// 	padding: 75px 0;
+// 	background-image: url("../img/pattern-back-01.png");
+// 	color:#666;
+// 	line-height: 2.2em;	
+// }
+
+h2 {
+	font-weight: bold;
+	font-size: 48px;
+	color: #aa6f3a;
+}
+
+h2.taba {
+	color: #aa6f3a;
+}
+
+h2.olive {
+	color: #6f9689;
+}
+
+.home-articles {
+	padding: 75px 0;
+}
+
+.home-articles .sy-card-title {
+	font-size: 16px;
+	line-height: 1.5em;
+}
+
+.foot-head-line {
+	background-color: #e2b892;
+	height: 22px;
+}
+
+.foot-menu-holder {
+	padding:75px 0;
+	background-color: #aa6f3a;
+}
+
+.foot-logo {
+	-webkit-filter: drop-shadow(0 6px 25px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 6px 25px rgba(0, 0, 0, 0.25));
+	margin: 0 auto 30px auto;
+	display: block;
+}
+
+ul.foot-nav {
+	font-weight: 700;
+	font-size: 18px;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+@media (min-width: 1200px) {
+	ul.foot-nav {
+	text-align: left;
+	}
+}
+
+ul.foot-nav li{
+	list-style: none outside;
+}
+
+ul.foot-nav a {
+    color: #fff; /* Adjust text color as needed */
+    text-decoration: none;
+	display: block;
+	padding: 7px 10px;transition: all .3s;
+}
+
+ul.foot-nav a.black {
+    color: #583C22; 
+}
+
+ul.foot-nav a:hover, a.black:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.foot-credit-holder {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+/*******************************/
+
+h1.page-title {
+	font-size:32px;
+	font-weight: 700;
+	color: #aa6f3a;
+	position: relative;
+	margin-bottom: 60px;
+	text-align: center;
+	display: block;
+}
+
+@media (min-width: 992px) { 
+h1.page-title {
+	font-size:48px;
+	font-weight: 700;
+	color: #aa6f3a;
+	position: relative;
+	text-align: left;
+	display: inline-block;
+}
+}
+
+@media (min-width: 1200px) { 
+h1.page-title {
+	font-size:54px;
+}
+}
+
+.content-holder {
+	padding: 100px 0;
+	color:#666;
+	text-align: justify;
+}
+
+.content-holder a {
+	 color: #aa6f3a;
+	text-decoration: none;
+}
+
+.content-holder a:hover {
+	 color: #aa6f3a;
+	text-decoration: underline;
+}
+
+/************************************/
+
+.member-holder {
+	margin-bottom:60px;
+}
+
+.member-photo {
+	max-width: 200px;
+	display: block;
+	margin: 0 auto 15px auto;
+}
+
+.member-name {
+	font-size: 1.5rem;
+	color:#6f9689;
+	margin-bottom: 0;
+	font-weight: 700;
+}
+
+.member-title {
+	color:#666;
+	margin-bottom: 0;
+}
+
+/******************************/
+
+.img-text {
+	font-size: 0.75rem;
+	text-align: center;
+}
+
+/****************************/
+
+.makale-tema {
+	border-radius: 30px;
+	box-shadow: 0 6px 25px rgba(0,0,0,0.2);
+	position: absolute;
+	background-color: #FFF;
+	width:100vw;
+	left:-100vw;
+	transition: 0.3s all;
+	text-align: left;
+}
+
+@media (min-width: 992px) { 
+	.makale-tema {
+		position: static;
+		width: auto;
+}
+	}
+
+.makale-tema-head {
+	padding: 20px;
+	background-color:#e1e1e1;
+	color:#000;
+	border-radius: 30px 30px 0 0;
+	font-size: 1.125rem;
+	font-weight: 700;
+	position: relative;
+}
+
+@media (min-width: 1200px) { 
+	.makale-tema-head {
+	padding: 20px 40px;
+}
+
+	}
+
+.makale-tema-closer {
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+	background-color: #aa6f3a;
+	padding: 3px 6px;
+	position: absolute;
+	right: 10px;
+	margin-top: -35px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	color:#FFF;
+}
+
+@media (min-width: 992px) {
+	.makale-tema-closer {
+		display:none;
+	}
+}
+
+.makale-tema-body {
+	padding: 20px 0;
+}
+
+.makale-tema-opener {
+	position:absolute;
+	z-index: 100;
+	width: 30px;
+	height: 30px;
+	border-radius: 0 30px 30px 0;
+	background-color: #aa6f3a;
+	padding: 3px 6px;
+	left: 0;
+	margin-top:-50px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	color:#FFF;
+	transition: 0.3s all;
+	}
+
+@media (min-width: 992px) {
+	.makale-tema-opener {
+		display:none;
+	}
+}
+
+.makale-tema-element {
+	display: block;
+	padding: 5px 10px 5px 35px;
+	margin-bottom: 5px;
+	position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.makale-tema-element input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  height: 20px;
+  width: 20px;
+  background-color: #FFF;
+	border:2px solid rgba(0,0,0,1);
+	border-radius: 3px;
+}
+
+/* On mouse-over, add a grey background color */
+.makale-tema-element:hover input ~ .checkmark, .makale-tema-element:hover input:checked ~ .checkmark  {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.makale-tema-element input:checked ~ .checkmark {
+  background-color: #eee;
+	
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.makale-tema-element input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.makale-tema-element .checkmark:after {
+  left: 6px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid #000;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.tema-element-name {
+	padding: 5px;
+	display: block;
+	border-radius: 5px;
+	color:#000;
+}
+
+label.makale-tema-01 .tema-element-name {
+	background-color: #7F99EB;
+}
+
+label.makale-tema-02 .tema-element-name {
+	background-color: #D48755;
+}
+
+label.makale-tema-03 .tema-element-name {
+	background-color: #FAEE64;
+}
+
+label.makale-tema-04 .tema-element-name {
+	background-color: #ED69AC;
+}
+
+label.makale-tema-05 .tema-element-name {
+	background-color: #76D67C;
+}
+
+.makale-tema-color-01 {
+	background-color: #7F99EB;
+	color:#000;
+}
+
+.makale-tema-color-02 {
+	background-color: #D48755;
+	color:#000;
+}
+
+.makale-tema-color-03 {
+	background-color: #FAEE64;
+	color:#000;
+}
+
+.makale-tema-color-04 {
+	background-color: #ED69AC;
+	color:#000;
+}
+
+.makale-tema-color-05 {
+	background-color: #76D67C;
+	color:#000;
+}
+
+.makale-tema-text {
+	transition: all .3s;
+}
+
+/**********************************/
+
+.search-form {
+	position:relative;
+}
+
+.search-form input {
+	border:none;
+	border-bottom:2px solid #aa6f3a;
+	border-radius: 0;
+	outline:none;
+	color:#000;
+	font-weight: bold;
+}
+
+.search-form input::placeholder {
+	font-weight: normal;
+}
+
+
+.search-form input:focus {
+	outline:none;
+	box-shadow: none;
+	border-bottom:2px solid #000;
+}
+
+
+.search-form button.flying {
+	position:absolute;
+	border:none;
+	outline: none;
+	background: transparent none;
+	font-weight: bold;
+	right:0;
+	margin-top: -30px;
+}
+
+.accordion-item {
+	border:none;
+}
+
+.accordion-button, .accordion-button.collapsed, .accordion-button:not(.collapsed) {
+	font-size: 1.3rem;
+	font-weight: 600;
+	color:#666;
+	box-shadow: none;
+	background-color: transparent;
+	border-bottom: 1px solid rgba(204,204,204,0);
+}
+
+.accordion-button:hover {
+	border-bottom: 1px solid rgba(204,204,204,1);
+}
+
+.accordion-button span.number {
+	font-weight: normal;
+	font-style: italic;
+	font-size: 1.15rem;
+	padding-left: 10px;
+}
+
+.accordion-body ul {
+	margin: 0;
+	padding: 0;
+}
+
+.accordion-body ul li{
+	list-style-position: outside;
+	list-style: none;
+}
+
+.accordion-body ul li a{
+	display: block;
+	color: #6f9689;
+	font-weight: bold;
+	padding: 5px 0 10px 0;
+	margin-bottom: 5px;
+	text-decoration: none;
+	border-bottom: 2px solid #eae4de;
+	transition: all .3s;
+}
+
+.accordion-body ul li a:hover{
+	text-decoration: none;
+	border-bottom: 2px solid #aa6f3a;
+}
+
+/**************************************************/
+
+.form-select {
+	border: none;
+    border-bottom: 2px solid #aa6f3a;
+    border-radius: 0;
+}
+
+.form-select::placeholder {
+	color:#666;
+}
+
+.form-select:focus {
+	box-shadow: none;
+	outline:none;
+	border-bottom: 2px solid #aa6f3a;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: auto;
+}
+
+.bootstrap-select, .form-group .bootstrap-select, .form-horizontal .bootstrap-select, .form-inline .bootstrap-select {
+    margin-bottom: 0;
+    display: block;
+	width: auto;
+}
+
+.bootstrap-select .btn-light, .bootstrap-select .btn-light:focus, .bootstrap-select .btn-light:active, .bootstrap-select .btn-light:hover {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+	outline:none;
+	border-bottom: 2px solid #aa6f3a;
+	border-radius: 0;
+	color:#000;
+}
+
+.filter-option-inner-inner {
+	color:#666;
+}
+
+.bootstrap-select .dropdown-toggle:focus, .bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
+	outline: 0;
+}
+
+/***************************************/
+
+.olive {
+	color: #6f9689;
+}
+
+.taba {
+    color: #aa6f3a;
+}
+
+.taba-h3 {
+	font-weight: bold;
+	color: #aa6f3a;
+}
+
+textarea#mesaj {
+	border: 2px solid #aa6f3a;
+	display: block;
+	width: 100%;
+}
+
+/***************************************/
+
+h1 small {
+	    font-size: 1.3rem;
+    font-style: italic;
+    font-weight: normal;
+    display: block;
+	color:#666;
+}
+
+.gallery-item {
+	margin-bottom: 24px;
+}
+
+/***************************************/
+
+.map-search-magnifier {
+	background-color: #FFF;
+	color: #a7703c;
+	height: 40px;
+	width: 40px;
+	border-radius: 15px;
+	margin-left: 15px;
+	padding: 10px 12px;
+}

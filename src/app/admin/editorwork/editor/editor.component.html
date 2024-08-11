@@ -1,0 +1,49 @@
+<div style="margin-top: 1%;margin-left: 25px;margin-right: 25px;">
+    <mat-form-field >
+        <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+    </mat-form-field>
+    <div style="width: 100%; overflow-x: auto">
+        <mat-table [dataSource]="dataSource" style="min-width: 800px">
+            <ng-container matColumnDef="yapi_ismi">
+                <mat-header-cell *matHeaderCellDef> Yapı İsmi</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yapi_ismi }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="baslik">
+                <mat-header-cell *matHeaderCellDef> Başlık </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.baslik }} </mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="boylam">
+                <mat-header-cell *matHeaderCellDef> Boylam </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.boylam }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="enlem">
+                <mat-header-cell *matHeaderCellDef> Enlem </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.enlem }} </mat-cell>
+            </ng-container>
+    
+    
+      
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-mini-fab routerLink="../editor/-1" style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index">
+                    <button mat-mini-fab routerLink="../editor/{{ row.yapi_ismi }}"
+                        style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>edit</mat-icon></button>
+                     
+                </mat-cell>
+            </ng-container>
+    
+            <mat-header-row *matHeaderRowDef="['yapi_ismi', 'baslik','boylam','enlem','action']"></mat-header-row>
+            <mat-row *matRowDef="
+              let row;
+              columns: ['yapi_ismi', 'baslik','boylam','enlem','action']
+            "></mat-row>
+        </mat-table>
+    </div>
+    </div>

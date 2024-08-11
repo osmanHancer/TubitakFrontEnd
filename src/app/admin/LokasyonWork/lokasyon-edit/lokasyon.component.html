@@ -1,0 +1,69 @@
+<div style="display: flex;flex-direction: column;margin-top: 2%;">
+    <div style="display: flex;flex-direction: row;justify-content: space-around;">
+
+        <mat-form-field style="width: 40%;">
+            <mat-label>Enlem</mat-label>
+            <input  required matInput placeholder="Enlem" [(ngModel)]="editItem.Enlem" />
+            
+        </mat-form-field>
+        <mat-form-field style="width: 40%;">
+            <mat-label>Boylam </mat-label>
+    <input  [(ngModel)]="editItem.Boylam" matInput placeholder="Boylam"   class="form-control">
+            
+            <!-- <input required matInput placeholder="Boylam" [(ngModel)]="editItem.Boylam" /> -->
+        </mat-form-field>
+    </div>
+    <div style="display: flex;flex-direction: row;justify-content: space-around;">
+        <mat-form-field style="width: 40%;">
+            <mat-label>Günümüzdeki Adı</mat-label>
+            <input required matInput placeholder="Günümüzdeki Adı" [(ngModel)]="editItem.Mekanin_Gunumuzdeki_Adi" />
+        </mat-form-field>
+        <mat-form-field style="width: 40%;">
+            <mat-label>Tespit Edilen Konum Ölçeği</mat-label>
+            <mat-select [(ngModel)]="editItem.Olcek">
+              <mat-option value="YAKLAŞIK KONUM">YAKLAŞIK KONUM</mat-option>
+              <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
+              <mat-option value="YAPI">YAPI</mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <div style="display: flex;flex-direction: row;justify-content: space-around;">
+        <mat-form-field style="width: 40%;">
+            <mat-label>Envanter Kodu </mat-label>
+            <input required matInput placeholder="Envanter Kodu" [(ngModel)]="editItem.mekan_adi" />
+        </mat-form-field>
+        <mat-form-field style="width: 40%;">
+            <mat-label>Envanter Kodu </mat-label>
+            <input required matInput placeholder="Envanter Kodu" [(ngModel)]="editItem.Envanter_Kodu" />
+        </mat-form-field>
+    </div>
+    <div style="display: flex;flex-direction: row;">
+        <mat-form-field style="width: 40%;margin-left: 5%;">
+            <mat-label>Lokasyon Adı </mat-label>
+            <input required matInput placeholder="Envanter Kodu" [(ngModel)]="editItem.Lokasyon_Adi" />
+        </mat-form-field>
+     
+    </div>
+
+
+   
+    <div style="display: flex;justify-content: space-around;margin-right: 70%;">
+  
+
+
+        <div style="display: flex; flex-direction: row-reverse; width: auto;">
+            <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px" color="coral"
+                routerLink="../../lokasyon">
+                İptal<mat-icon>cancel</mat-icon>
+            </button>
+            <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px" color="coral"
+                routerLink="../../lokasyon" (click)="submitForm('delete')">
+                Sil<mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px" color="coral"
+                (click)="submitForm('update')">
+                Kaydet<mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

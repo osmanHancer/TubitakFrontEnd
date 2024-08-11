@@ -1,0 +1,29 @@
+<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 70%">
+    <div style="display: flex;justify-content: space-around;">
+
+        <mat-form-field style="width: 40%;">
+            <mat-label>Name </mat-label>
+            <input required matInput placeholder="Name" [(ngModel)]="editItem.name" />
+        </mat-form-field>
+        <mat-form-field style="width: 40%;">
+            <mat-label>Özet </mat-label>
+            <input required matInput placeholder="Name" [(ngModel)]="editItem.ozet" />
+        </mat-form-field>
+    </div>
+        <div  style="display: flex;justify-content: space-around;width: 60%;padding-left: 3%;">
+            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
+                (click)="submitForm('update')">
+                Kaydet<mat-icon>add</mat-icon>
+            </button>
+
+            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
+                routerLink="../../seyyah" (click)="submitForm('delete')">
+                Sil<mat-icon>delete</mat-icon>
+            </button>
+            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
+                routerLink="../../seyyah">
+                İptal<mat-icon>cancel</mat-icon>
+            </button>
+
+        </div>
+</div>

@@ -1,0 +1,112 @@
+<div style="margin-top: 1%;">
+    <mat-form-field appearance="fill" style="width: 250px">
+        <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+    </mat-form-field>
+    <div style="width: 100%; overflow-x: auto">
+        <mat-table [dataSource]="dataSource" style="min-width: 800px">
+
+
+            <ng-container matColumnDef="anlatida_gecen_mekan_adi">
+                <mat-header-cell *matHeaderCellDef> Ana güzergah</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.ana_guzergah }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="bolum_chapter_mektupnumarasi">
+                <mat-header-cell *matHeaderCellDef> güzergah kesimio </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.guzergah_kesimi }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="boylam">
+                <mat-header-cell *matHeaderCellDef> boylam </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.boylam }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="color">
+                <mat-header-cell *matHeaderCellDef> Renk</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.color }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="deniz_yoluyla_ulasim">
+                <mat-header-cell *matHeaderCellDef>Bulunduğu Şehir</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.bulundugu_sehir }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="enlem">
+                <mat-header-cell *matHeaderCellDef> enlem </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.enlem }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="konaklanma_durumu">
+                <mat-header-cell *matHeaderCellDef> Yapının Adi</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yapinin_adi }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="mekan_tipi">
+                <mat-header-cell *matHeaderCellDef> mekan_tipi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.mekan_tipi }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="mekanin_gunumuzdeki_adi">
+                ">
+                <mat-header-cell *matHeaderCellDef> Yapı Dönemi
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yapinin_donemi
+                    }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="notlar">
+                <mat-header-cell *matHeaderCellDef> notlar </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.notlar }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="rota_notlari">
+                <mat-header-cell *matHeaderCellDef> Envanter Kodu </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.envanter_kodu }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="sayfa_numarasi">
+                <mat-header-cell *matHeaderCellDef> sayfa_numarasi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.sayfa_numarasi }} </mat-cell>
+            </ng-container> -->
+
+            <ng-container matColumnDef="seyahat_adimi">
+                <mat-header-cell *matHeaderCellDef> Kesinlik </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.kesinlik }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="seyahatname_adi">
+                <mat-header-cell *matHeaderCellDef> Kaynak </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.online_kaynak }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="seyahname_kodu">
+                <mat-header-cell *matHeaderCellDef> Çizimler </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.cizimler }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tespit_edilen_konum_olcegi">
+                <mat-header-cell *matHeaderCellDef> Literatür Taraması </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.literatur_taramasi }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="yapi_envanter_kodu">
+                <mat-header-cell *matHeaderCellDef> Arşiv Ekibi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.arsiv_ekibi }} </mat-cell>
+            </ng-container>
+         
+
+
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-mini-fab routerLink="../edit/-1"
+                        style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index">
+                    <button mat-mini-fab routerLink="../editpoint/{{row.seyahname_kodu}}/{{ row.id }}"
+                        style="background-color: rgb(117, 107, 93); color: coral" button>
+                        <mat-icon>edit</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row
+                *matHeaderRowDef="[ 'anlatida_gecen_mekan_adi', 'bolum_chapter_mektupnumarasi', 'boylam','deniz_yoluyla_ulasim','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi','rota_notlari', 'seyahat_adimi','seyahatname_adi','seyahname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','action']">
+            </mat-header-row>
+            <mat-row *matRowDef="
+              let row;
+              columns: [ 'anlatida_gecen_mekan_adi', 'bolum_chapter_mektupnumarasi', 'boylam','deniz_yoluyla_ulasim','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi','rota_notlari', 'seyahat_adimi','seyahatname_adi','seyahname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','action']
+            "></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div style="margin-top: 1%;margin-left: 25px;margin-right: 25px;">
+
+<div>
+    <h1>Lokasyon Listele</h1>
+</div>
+
+<mat-form-field appearance="fill" style="width: 250px" >
+    <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+</mat-form-field>
+
+
+<div style="width: 100%; overflow-x: auto">
+    <mat-table [dataSource]="dataSource" style="min-width: 800px">
+        <ng-container matColumnDef="Id">
+            <mat-header-cell *matHeaderCellDef> İd</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.Id }} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="enlem">
+            <mat-header-cell *matHeaderCellDef> Enlem</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.Enlem }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="boylam">
+            <mat-header-cell *matHeaderCellDef> Boylam </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.Boylam }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Lokasyon_Adi">
+            <mat-header-cell *matHeaderCellDef>Lokasyon Adı </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.Lokasyon_Adi}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Olcek">
+            <mat-header-cell *matHeaderCellDef> Ölçek </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.Olcek }} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Mekan_Tipi">
+            <mat-header-cell *matHeaderCellDef> Günümüzdeki Adı </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.Mekanin_Gunumuzdeki_Adi }} </mat-cell>
+        </ng-container>
+
+  
+        <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef>
+                <button mat-mini-fab routerLink="../lokasyonedit/-1" style="background-color: rgb(117, 107, 93); color: coral">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i = index">
+                <button mat-mini-fab routerLink="../lokasyonedit/{{ row.Id }}"
+                    style="background-color: rgb(117, 107, 93); color: coral">
+                    <mat-icon>edit</mat-icon></button>
+                 
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="['Id','enlem', 'boylam', 'Lokasyon_Adi', 'Olcek','Mekan_Tipi', 'action']"></mat-header-row>
+        <mat-row *matRowDef="
+          let row;
+          columns: ['Id','enlem', 'boylam', 'Lokasyon_Adi', 'Olcek','Mekan_Tipi', 'action']
+        "></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons
+    aria-label="Select page of periodic elements">
+</mat-paginator>
+</div>
+</div>

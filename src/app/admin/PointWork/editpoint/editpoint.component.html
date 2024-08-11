@@ -1,0 +1,128 @@
+<div style="display: flex;flex-direction: column;margin-top: 2%;">
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Yüzyıl</mat-label>
+      <input required matInput placeholder="Yüzyıl" [(ngModel)]="editItem.yuzyil" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Seyahname Kodu </mat-label>
+      <input required matInput placeholder="Seyahname Kodu " [(ngModel)]="editItem.seyahname_kodu" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Yazar </mat-label>
+      <input required matInput placeholder="Yazar" [(ngModel)]="editItem.yazar" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Seyahatname Adı </mat-label>
+      <input required matInput placeholder="Seyahatname Adı" [(ngModel)]="editItem.seyahatname_adi" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Bölüm/Chapter/Mektup Numarası </mat-label>
+      <input required matInput placeholder="Bölüm/Chapter/Mektup Numarası"
+        [(ngModel)]="editItem.bolum_chapter_mektupnumarasi" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Sayfa Numarası </mat-label>
+      <input type="number" required matInput placeholder="Sayfa Numarası" [(ngModel)]="editItem.sayfa_numarasi" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Seyahat Adımı </mat-label>
+      <input type="number" required matInput placeholder="Seyahat Adımı" [(ngModel)]="editItem.seyahat_adimi" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Anlatıda Geçen Mekan Adı </mat-label>
+      <input required matInput placeholder="Anlatıda Geçen Mekan Adı" [(ngModel)]="editItem.anlatida_gecen_mekan_adi" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Mekanın Günümüzdeki Adı </mat-label>
+      <input required matInput placeholder="Mekanın Günümüzdeki Adı" [(ngModel)]="editItem.mekanin_gunumuzdeki_adi" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Enlem</mat-label>
+      <input required matInput placeholder="Enlem" [(ngModel)]="editItem.enlem" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Boylam </mat-label>
+      <input required matInput placeholder="Boylam " [(ngModel)]="editItem.boylam" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Tespit Edilen Konum Ölçeği (Şehir/Köy/Yapı)</mat-label>
+      <mat-select [(ngModel)]="editItem.tespit_edilen_konum_olcegi">
+        <mat-option value="Şehir">Şehir</mat-option>
+        <mat-option value="Köy">Köy</mat-option>
+        <mat-option value="Kasaba">Kasaba</mat-option>
+        <mat-option value="İlçe">İlçe</mat-option>
+        <mat-option value="Ada">Ada</mat-option>
+        <mat-option value="Yerleşim Dışı Alan">Yerleşim Dışı Alan</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Mekan Tipi </mat-label>
+      <input required matInput placeholder="Mekan Tipi" [(ngModel)]="editItem.mekan_tipi" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>Konaklanma Durumu (Evet/Hayır) </mat-label>
+      <mat-select [(ngModel)]="editItem.konaklanma_durumu">
+        <mat-option value="EVET">Evet</mat-option>
+        <mat-option value="HAYIR">Hayır</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Yapı Envanter Kodu (Varsa) </mat-label>
+      <input required matInput placeholder="Yapı Envanter Kodu (Varsa)" [(ngModel)]="editItem.yapi_envanter_kodu" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>ALINTILAR </mat-label>
+      <input required matInput placeholder="ALINTILAR" [(ngModel)]="editItem.alintilar" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>NOTLAR </mat-label>
+      <input required matInput placeholder="NOTLAR" [(ngModel)]="editItem.notlar" />
+    </mat-form-field>
+    <mat-form-field style="width: 40%;">
+      <mat-label>ROTA NOTLARI </mat-label>
+      <input required matInput placeholder="ROTA NOTLARI" [(ngModel)]="editItem.rota_notlari" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;justify-content: space-around;">
+    <mat-form-field style="width: 40%;">
+      <mat-label>Deniz Yoluyla Ulaşım </mat-label>
+      <mat-select [(ngModel)]="editItem.deniz_yoluyla_ulasim">
+        <mat-option value="EVET">Evet</mat-option>
+        <mat-option value="HAYIR">Hayır</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div style="width: 40%;">
+      <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px;" color="coral"
+        (click)="submitForm('update')">
+        Kaydet<mat-icon>add</mat-icon>
+      </button>
+      <button [hidden]="gizle" mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral"
+        routerLink="../../../point" (click)="submitForm('delete')">
+        Sil<mat-icon>delete</mat-icon>
+      </button>
+      <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral" routerLink="../../../point">
+        İptal<mat-icon>cancel</mat-icon>
+      </button>
+
+    </div>
+  </div>
+</div>
