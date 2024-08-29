@@ -35,7 +35,7 @@
     <mat-form-field style="width: 60%;">
         <mat-label>Lokasyon </mat-label>
         <mat-select [(ngModel)]="editItem.lokasyonId">
-          <mat-option *ngFor="let item of dataSource" value={{item.Id}}>{{item.Lokasyon_Adi}}  enlem: {{item.Enlem}} boylam: {{item.Boylam}}</mat-option>
+          <mat-option *ngFor="let item of dataSource" value={{item.Id}}>{{item.Id}}  enlem: {{item.Enlem}} boylam: {{item.Boylam}}</mat-option>
        
         </mat-select>
       </mat-form-field>

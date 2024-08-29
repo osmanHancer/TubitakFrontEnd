@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { MapboxComponent } from './admin/mapbox/mapbox.component';
 import { EditpointComponent } from './admin/PointWork/editpoint/editpoint.component';
 import { Mapbox2Component } from './admin/mapbox-2/mapbox-2.component';
 import { LokasyonEditComponent } from './admin/LokasyonWork/lokasyon/lokasyon-edit.component';
@@ -25,6 +24,7 @@ import { KutuphaneComponent } from './pages/kutuphane/kutuphane.component';
 import { DenemeComponent } from './admin/deneme/deneme.component';
 import { SeyehatnameComponent } from './admin/seyahatname-work/seyehatname/seyehatname.component';
 import { SeyehatnameEditComponent } from './admin/seyahatname-work/seyehatname-edit/seyehatname-edit.component';
+import { MapboxComponent } from './pages/mapbox/mapbox.component';
 
 export const routes: Routes = [
 
@@ -35,10 +35,7 @@ export const routes: Routes = [
         component: LayoutAdminComponent,
         children: [
 
-            {
-                path: "mapbox",
-                component: MapboxComponent
-            },
+      
 
 
             {
@@ -139,6 +136,10 @@ export const routes: Routes = [
             {
                 path: "kütüphane",
                 component: KutuphaneComponent
+            },
+            {
+                path: "mapbox",
+                component: MapboxComponent
             },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
         ],

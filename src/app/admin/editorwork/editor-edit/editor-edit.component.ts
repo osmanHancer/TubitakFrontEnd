@@ -18,14 +18,20 @@ export class EditorEditComponent {
 
   }
   yapi_ismi:any
-  editItemList: html = {yuzyil:'', yapi_ismi:'',baslik:'',alt_baslik:'',enlem:'',boylam:'',yapi_html_1: '', img_1: '', yapi_html_2: '', img_2: '', yapi_html_3: '', img_3: '', yapi_html_4: '', img_4: '', yapi_html_5: '', img_5: '', yapi_html_6: '', img_6: '' };
+  editItemList: html = {
+    yuzyil: '', yapi_ismi: '', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '', lokasyonId: '',
+    yapi_html_2: '',
+    yapi_html_3: '',
+    yapi_html_4: '',
+    yapi_html_5: '',
+    yapi_html_6: ''
+  };
 
 
   public items: string[] = [];
   LokasyonSource: any;
   ImgSource: any;
-  lokasyon_1: any
-  img_1: any
+  lokasyon: any
 
 
   async ngOnInit() {
@@ -91,44 +97,43 @@ export class EditorEditComponent {
     fd.append('yapi_html_4', this.editItemList.yapi_html_4);
     fd.append('yapi_html_5', this.editItemList.yapi_html_5);
     fd.append('yapi_html_6', this.editItemList.yapi_html_6);
-    fd.append('img_1', this.editItemList.img_1);
-    fd.append('img_2', this.editItemList.img_2);
-    fd.append('img_3', this.editItemList.img_3);
-    fd.append('img_4', this.editItemList.img_4);
-    fd.append('img_5', this.editItemList.img_5);
-    fd.append('img_6', this.editItemList.img_6);
+    fd.append('lokasyonId', this.editItemList.lokasyonId);
     fd.append('yuzyil', this.editItemList.yuzyil);
     QW.jsonPost("/yapimonografisi", fd);
     console.log(this.editItemList)
   }
 
-  async changeLokasyon(id: string) {
-    const json = await QW.json("/galeri/filter/" + id);
-    this.ImgSource = json.images;
-  }
+
 
 }
 
 interface html {
 
   yapi_ismi: string
+
   baslik: string
+
   alt_baslik: string
+
   enlem: string
+
   boylam: string
+  
   yapi_html_1: string
-  img_1: string
+ 
   yapi_html_2: string
-  img_2: string
+ 
   yapi_html_3: string
-  img_3: string
+  
   yapi_html_4: string
-  img_4: string
+
   yapi_html_5: string
-  img_5: string
+ 
   yapi_html_6: string
-  img_6: string
+ 
   yuzyil:string
+
+  lokasyonId:string
 
 
 }

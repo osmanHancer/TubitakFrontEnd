@@ -10,50 +10,49 @@
 				<p><i class="bi bi-calendar2-event-fill"></i> {{editItemList.yuzyil}}. yy.</p>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_1"></div>
-					<div style="display: flex;justify-content: center;">
-						<img class="text-center"  [src]="'http://localhost:3000/file/' + editItemList.img_1"  alt="" />
-					</div>
-					<p class="text-center">Hanın Dıştan Görünümü<br>
+					
+					<!-- <p class="text-center">Hanın Dıştan Görünümü<br>
 						<small>Hakkı Acun, “Konya Kızılören Han”, T.C. Kültür ve Turizm Bakanlığı Yayınları, 1992,
 							89-101.</small>
-					</p>
+					</p> -->
 				</div>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_2"></div>
-					<div style="display: flex;justify-content: center;">
-						<img class="image" [src]="'http://localhost:3000/file/' + editItemList.img_2"  alt="" />
-					</div>
+				
 				
 				</div>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_3"></div>
-					<div style="display: flex;justify-content: center;">
-						<img class="image" [src]="'http://localhost:3000/file/' + editItemList.img_3"  alt="" />
-					</div>
+				
 				
 				</div>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_4"></div>
-					<div style="display: flex;justify-content: center;">
-						<img class="image" [src]="'http://localhost:3000/file/' + editItemList.img_4"  alt="" />
-					</div>
+					
 				
 				</div>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_5"></div>
-					<div style="display: flex;justify-content: center;">
-						<img class="image" [src]="'http://localhost:3000/file/' + editItemList.img_5"  alt="" />
-					</div>
+					
 					
 				</div>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_6"></div>
-					<div style="display: flex;justify-content: center;">
-						<img class="image" [src]="'http://localhost:3000/file/' + editItemList.img_6"  alt="" />
-					</div>
+					
 					
 				</div>
 			</div>
+			<div style="text-align: -webkit-center">
+      
+				<div style="width: 1000px; height: 700px;">
+					<ng-image-slider #nav
+					  [images]="images"	
+					  [infinite]="false"
+					  [autoSlide]="12"
+					  [imageSize]="{width: '30%', height: 300}"
+					  slideImage="1"></ng-image-slider>
+				  </div>
+				</div>
 		</div>
 
 	</div>

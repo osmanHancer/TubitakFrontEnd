@@ -9,10 +9,7 @@
                 <mat-cell *matCellDef="let row"> {{ row.kodu }} </mat-cell>
             </ng-container>
     
-            <ng-container matColumnDef="metin">
-                <mat-header-cell *matHeaderCellDef> Metin </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.metin }} </mat-cell>
-            </ng-container>
+          
     
             <ng-container matColumnDef="seyahatnameadi">
                 <mat-header-cell *matHeaderCellDef> Seyahatnameadi </mat-header-cell>
@@ -40,10 +37,10 @@
                 </mat-cell>
             </ng-container>
     
-            <mat-header-row *matHeaderRowDef="['kodu', 'metin','seyahatnameadi','yuzyil','action']"></mat-header-row>
+            <mat-header-row *matHeaderRowDef="['kodu','seyahatnameadi','yuzyil','action']"></mat-header-row>
             <mat-row *matRowDef="
               let row;
-              columns: ['kodu', 'metin','seyahatnameadi','yuzyil','action']
+              columns: ['kodu','seyahatnameadi','yuzyil','action']
             "></mat-row>
         </mat-table>
     </div>

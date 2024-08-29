@@ -6,11 +6,15 @@
   height: 100%;
 
 }
-
+.gallery-item img {
+  height: 200px;
+  object-fit: cover;
+  width: 100%; /* Görselin genişliği, bulunduğu container'a sığacak şekilde ayarlanır */
+}
 .middle-modal {
   background-color: white;
   width: 70%;
-  height: 70%;
+  max-height: 70%;
   z-index: 2;
   border-radius: 15px;
   position: relative;
@@ -125,6 +129,11 @@
   box-sizing: content-box;
 }
 
+.gallery{
+  display: flex;
+  flex-direction: row;
+}
+
 #fit_2 {
   margin-top: 20px;
   display: inline-flex;
@@ -132,11 +141,11 @@
   justify-content: space-between;
   position: relative;
   width: 100%;
-  min-height: 50px;
+  min-height: 20px;
   font-size: 30px;
   color: #fff;
   z-index: 0;
-  max-height: 600px;
+  max-height: 150px;
   /* Örnek olarak, maksimum yükseklik 400 piksel olarak ayarlanmıştır, ihtiyaca göre değiştirilebilir */
   overflow-y: scroll;
   scrollbar-width: none;

@@ -30,7 +30,6 @@ export class KutuphaneComponent {
     this.editItemListSeyyah=jsonSeyyahlarveSeyahatnameleri.makale;
     this.seyyahsize=this.editItemListSeyyah.length
 
-    console.log(this.editItemListSeyyah)
 
 
   }

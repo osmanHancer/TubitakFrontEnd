@@ -2,96 +2,81 @@
 
   <div class="map" id="map" class="match-parent"></div>
 
-  <div style="display: flex;flex-direction: row;justify-content: space-between">
 
-    <mat-accordion style="position: absolute;">
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Filtreleme Paneli
-          </mat-panel-title>
-          <mat-panel-description>
+  <mat-accordion style="position: absolute; top: 10px; left: 10px;" [multi]="false">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Yüzyıllara Göre filtrele </mat-panel-title>
+        <mat-panel-description>
 
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div id="fit_2">
-          <div *ngFor="let fet of maps_data">
-            <div style="display: flex;flex-direction: row;">
-              <mat-checkbox (change)="updateAllComplete(fet.name)">
-                <p>
-                  {{fet.name}}</p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-accordion [multi]="false">
 
-              </mat-checkbox>
-              <div style="width: 20px;height: 10px;margin-top: 10px;margin-left: 20px;"
-                [ngStyle]="{'background-color': fet.features[0].properties.color}">
+
+        @for (item of yuzyillar; track $index) {
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{item}}. Yüzyıl
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- Açıklama ekleyebilirsiniz -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div id="fit_2">
+            <div *ngFor="let fet of maps_data ; let i = index">
+              <div style="display: flex; flex-direction: row;" *ngIf="item===fet.crs.properties.yuzyil">
+                <mat-checkbox (change)="updateAllComplete(fet.name)">
+                  <p style=" margin-top: 20px">{{fet.name}}</p>
+                </mat-checkbox>
+                <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"
+                  [ngStyle]="{'background-color': fet.features[0].properties.color}">
+                </div>
+                <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                  <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(i)">
+                    <mat-icon>play_circle_filled</mat-icon>
+                  </button>
+                </div>
+                <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                  <button mat-button style="color: rgb(198, 21, 21);" (click)="stopAnimation()">
+                    <mat-icon>stop</mat-icon>
+                  </button>
+                </div>
+                <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                  <button mat-button style="color: rgb(198, 21, 21);" (click)="Heatmap(fet.name)">
+                    <mat-icon> layers</mat-icon>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </mat-expansion-panel>
+        }
+      </mat-accordion>
 
-      </mat-expansion-panel>
-    </mat-accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
 
-  </div>
+
+
 
 </div>
 <div [hidden]="gizle" class="middle-modal">
   <div class="modal-close-button"><a (click)="CloseModal()"><mat-icon>close</mat-icon></a></div>
   <div class="middle-modal-title">{{point_info_dialog.Yapi_Adi}}</div>
   <div class="middle-modal-body">
-    <div style="text-align: center">
-      <lightgallery [settings]="settings" [onBeforeSlide]="onBeforeSlide">
-        <div class="row">
-          <div class="col-lg-3">
-            <a data-lg-size="480-475-480, 800-791-800, 1406-1390" class="gallery-item"
-              data-src="http://localhost:3000/file/1_ERTE_IGD_SEL_SER_HVF_4.jpeg.JPG"
-              data-responsive="http://localhost:3000/file/1_ERTE_IGD_SEL_SER_HVF_4.jpeg.JPG"
-              data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@entrycube' >Diego Guzmán </a></h4> <p> Location - <a href='https://unsplash.com/s/photos/fushimi-inari-taisha-shrine-senbontorii%2C-68%E7%95%AA%E5%9C%B0-fukakusa-yabunouchicho%2C-fushimi-ward%2C-kyoto%2C-japan'>Fushimi Ward, Kyoto, Japan</a></p>">
-              <img class="img-fluid" src="http://localhost:3000/file/01_ERTE_IGD_SEL_SER_HVF_3.jpeg" />
-            </a>
-          </div>
-          <div class="col-lg-3">
-            <a data-lg-size="480-480-480, 800-800-800, 1400-1400" data-pinterest-text="Shinimamiya, Osaka, Japan"
-              data-tweet-text="Shinimamiya, Osaka, Japan" class="gallery-item"
-              data-src="https://images.unsplash.com/photo-1544550285-f813152fb2fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
-              data-responsive="https://images.unsplash.com/photo-1544550285-f813152fb2fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1544550285-f813152fb2fd?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800"
-              data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@asoshiation' >Shah </a></h4><p> Location - <a href='https://unsplash.com/s/photos/shinimamiya%2C-osaka%2C-japan'>Shinimamiya, Osaka, Japan</a></p>">
-              <img class="img-fluid" src="http://localhost:3000/file/01_ERTE_IGD_SEL_SER_HVF_5.jpeg" />
-            </a>
-          </div>
-          <div class="col-lg-3">
-            <a data-lg-size="480-480-480, 800-800-800, 1400-1400" data-pinterest-text="Pin it3"
-              data-tweet-text="share on twitter 4" class="gallery-item"
-              data-src="https://images.unsplash.com/photo-1584592740039-cddf0671f3d4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
-              data-responsive="https://images.unsplash.com/photo-1584592740039-cddf0671f3d4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1584592740039-cddf0671f3d4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800"
-              data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@katherine_xx11' >Katherine Gu </a></h4><p> For all those years we were alone and helpless.</p>">
-              <img class="img-fluid" src="http://localhost:3000/file/01_ERTE_IGD_SEL_SER_HVF_4.jpeg" />
-            </a>
-          </div>
-          <div class="col-lg-3">
-            <a data-lg-size="480-480-480, 800-800-800, 1400-1400" data-pinterest-text="Pin it3"
-              data-tweet-text="share on twitter 4" class="gallery-item"
-              data-src="https://images.unsplash.com/photo-1584592740039-cddf0671f3d4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80"
-              data-responsive="https://images.unsplash.com/photo-1584592740039-cddf0671f3d4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=480&q=80 480, https://images.unsplash.com/photo-1584592740039-cddf0671f3d4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80 800"
-              data-sub-html="<h4>Photo by - <a href='https://unsplash.com/@katherine_xx11' >Katherine Gu </a></h4><p> For all those years we were alone and helpless.</p>">
-              <img class="img-fluid" src="http://localhost:3000/file/01_ERTE_IGD_SEL_SER_HVF_6.jpeg" />
-            </a>
-          </div>
-        </div>
-      </lightgallery>
+
+    <div style="text-align: -webkit-center">
+
+      <div style="width: 1000px;">
+        <ng-image-slider #nav [images]="gizle ? [] :imagesslide" [infinite]="false" [autoSlide]="4"
+          [imageSize]="{width: '30%', height: 300}" slideImage="1"></ng-image-slider>
+      </div>
+
     </div>
-    <!-- <div style="display: flex;flex-direction: row;"> <mat-icon>
-        calendar_month
-      </mat-icon>
-      <p>{{point_info_dialog.Donemi}}</p>
-    </div>
-    <div style="display: flex;flex-direction: row;"> <mat-icon>
-        location_pin
-      </mat-icon>
-      <p>{{point_info_dialog.Enlem}},</p>
-      <p>{{point_info_dialog.Boylam}}</p>
-    </div>
-    <p>{{point_info_dialog.Mimari_Ozellikler}}</p> -->
+
     <table class="table">
 
       <tbody>
@@ -105,14 +90,19 @@
         </tr>
         <tr>
           <th scope="row">Enlem</th>
-          <td>{{this.point_info_dialog.Enlem}}</td>
+
+          <td><mat-icon>
+              location_pin
+            </mat-icon>  {{this.point_info_dialog.Enlem}}</td>
         </tr>
         <tr>
           <th scope="row">Boylam</th>
-          <td>{{this.point_info_dialog.Boylam}}</td>
+          <td><mat-icon>
+              location_pin
+            </mat-icon>  {{this.point_info_dialog.Boylam}}</td>
         </tr>
         <tr>
-          <th scope="row">Güzergah/th>
+          <th scope="row">Güzergah>
           <td>{{this.point_info_dialog.Guzergah}}</td>
         </tr>
         <tr>
@@ -133,7 +123,7 @@
         </tr>
         <tr>
           <th scope="row">Seyahatnamelerdeki Anlatımı</th>
-          <td>{{this.point_info_dialog.Seyahatnamelerdeki_Anlatimi}}</td>
+          <td [innerHTML]="this.point_info_dialog.Seyahatnamelerdeki_Anlatimi"></td>
         </tr>
         <tr>
           <th scope="row">Durumu</th>
@@ -153,7 +143,7 @@
         </tr>
         <tr>
           <th scope="row">Kaynakça</th>
-          <td>{{this.point_info_dialog.Kaynakca}}</td>
+          <td [innerHTML]="this.point_info_dialog.Kaynakca"></td>
         </tr>
         <tr>
           <th scope="row">Çalışma Tarihi</th>

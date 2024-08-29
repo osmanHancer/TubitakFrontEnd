@@ -27,7 +27,7 @@
             </mat-form-field> -->
             <mat-form-field style="width: 30%;">
                 <mat-select [(ngModel)]="item.LokasyonId">
-                   <input style="color: black;" matInput placeholder="filter.." #filterplc>
+                   <input type="text"   placeholder="filter.." #filterplc>
                    <div  *ngFor="let opt of dataSource ">
                    <mat-option *ngIf="opt.Lokasyon_Adi.includes(filterplc.value)"
                                [value]="opt.Id" value={{opt.Id}}>{{opt.Lokasyon_Adi}}  enlem: {{opt.Enlem}} boylam: {{opt.Boylam}}
@@ -36,6 +36,7 @@
                      </div>
                  </mat-select>
                </mat-form-field>
+               
 
             <mat-form-field style="width: 30%;">
                 <mat-label>Not Gir</mat-label>

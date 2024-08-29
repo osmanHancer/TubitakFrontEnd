@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PageMakaleComponent {
 html: any;
+name:any
 
 
 constructor(private route: ActivatedRoute) {
@@ -21,7 +22,7 @@ async ngOnInit() {
   let makale= this.route.snapshot.paramMap.get('makale') 
   let html= await QW.json("/makale/"+makale);
   this.html=html.makale.metin;
-  console.log(html.makale)
+  this.name=html.makale.seyahatnameadi
 
 
 }
