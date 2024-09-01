@@ -33,5 +33,10 @@ export class KutuphaneComponent {
 
 
   }
+
+  filter(){
+    
+    console.log("osman");
+  }
 }
 

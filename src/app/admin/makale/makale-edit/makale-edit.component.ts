@@ -65,30 +65,25 @@ Delete() {
       {
         name: "Konaklama bilgisi / mimari mekansal birimler",
         class: "makale-tema-text makale-tema-01",
-        tag:"span"
       },
       {
         name: 'Deneyim-Aktivite / Olay örgüsü/Çatışmalar/Riskler',
         class: 'makale-tema-text makale-tema-02',
-        tag:"span"
 
       },
       {
         name: "Seyahat Kültürü",
         class: "makale-tema-text makale-tema-03",
-        tag:"span"
 
       },
       {
         name: "Seyahatnamelerin aktörleri",
         class: "makale-tema-text makale-tema-04",
-        tag:"span"
 
       },
       {
         name: "Diğer seyyahlar",
         class: "makale-tema-text makale-tema-05",
-        tag:"span"
 
       },
 

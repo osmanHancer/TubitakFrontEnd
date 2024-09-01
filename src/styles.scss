@@ -1,9 +1,8 @@
 
 
 body {
-  // height: 100%;
-  // width: 100%;
-  position:absolute;
+
+  //position:relative;
   right: 0px;
   left: 0px;
   bottom: 0px;
@@ -24,30 +23,5 @@ body {
   width: 30% !important;
 }
  
-// .mat-mdc-table{
-//   background-color:#797272 !important ;
-//    }
 
-//    .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-//     background-color: rgb(255, 255, 255) !important;
-//     color: #000 !important;
-//    }
-//    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
-//     caret-color:white !important;
-//    }
-
-//    .mat-drawer-container{
-
-//     color: black !important;
-//    }
-
-//    .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input{
-//     color: #000 !important;
-//     caret-color: black !important;
-//    }
-//    .ng-container ::placeholder {
-//     color: #000 !important;
-//    }
-
-/* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

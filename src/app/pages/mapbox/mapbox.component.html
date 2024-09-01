@@ -1,5 +1,159 @@
-<div style="height: 100%;">
+<mat-accordion style="position: absolute; top: 150px; left: 10px;z-index: 999;" [multi]="false">
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Yüzyıllara Göre filtrele </mat-panel-title>
+      <mat-panel-description>
 
-    <div class="map" id="map" class="match-parent"></div>
-    
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-accordion [multi]="false">
+
+
+      @for (item of yuzyillar; track $index) {
+
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item}}. Yüzyıl
+          </mat-panel-title>
+          <mat-panel-description>
+            <!-- Açıklama ekleyebilirsiniz -->
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div id="fit_2">
+          <div *ngFor="let fet of maps_data ; let i = index">
+            <div style="display: flex; flex-direction: row;" *ngIf="item===fet.crs.properties.yuzyil">
+              <mat-checkbox (change)="updateAllComplete(fet.name)">
+                <p style=" margin-top: 20px">{{fet.name}}</p>
+              </mat-checkbox>
+              <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"
+                [ngStyle]="{'background-color': fet.features[0].properties.color}">
+              </div>
+              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(i)">
+                  <mat-icon>play_circle_filled</mat-icon>
+                </button>
+              </div>
+              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                <button mat-button style="color: rgb(198, 21, 21);" (click)="stopAnimation()">
+                  <mat-icon>stop</mat-icon>
+                </button>
+              </div>
+              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                <button mat-button style="color: rgb(198, 21, 21);" (click)="Heatmap(fet.name)">
+                  <mat-icon> layers</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-expansion-panel>
+      }
+    </mat-accordion>
+
+  </mat-expansion-panel>
+</mat-accordion>
+
+<div class="map" id="map" class="match-parent"></div>
+
+
+
+<div [hidden]="gizle" style="position: absolute;top: 150px;z-index: 999;" class="middle-modal">
+  <div class="modal-close-button"><a (click)="CloseModal()"><mat-icon>close</mat-icon></a></div>
+  <div class="middle-modal-title">{{point_info_dialog.Yapi_Adi}}</div>
+  <div class="middle-modal-body">
+
+    <div style="text-align: -webkit-center">
+
+      <div style="width: 1000px;">
+        <ng-image-slider #nav [images]="gizle ? [] :imagesslide" [infinite]="false" [autoSlide]="4"
+          [imageSize]="{width: '30%', height: 300}" slideImage="1"></ng-image-slider>
+      </div>
+
+    </div>
+
+    <table class="table">
+
+      <tbody>
+        <tr>
+          <th scope="row">Envanter Kodu</th>
+          <td>{{this.point_info_dialog.Envanter_Kodu}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Yapı Adı</th>
+          <td>{{this.point_info_dialog.Yapi_Adi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Enlem</th>
+
+          <td><mat-icon>
+              location_pin
+            </mat-icon> {{this.point_info_dialog.Enlem}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Boylam</th>
+          <td><mat-icon>
+              location_pin
+            </mat-icon> {{this.point_info_dialog.Boylam}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Güzergah>
+          <td>{{this.point_info_dialog.Guzergah}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Alternatif Adı</th>
+          <td>{{this.point_info_dialog.Alternatif_Adi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Dönemi</th>
+          <td>{{this.point_info_dialog.Donemi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Kitabesi</th>
+          <td>{{this.point_info_dialog.Kitabesi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Banisi</th>
+          <td>{{this.point_info_dialog.Banisi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Seyahatnamelerdeki Anlatımı</th>
+          <td [innerHTML]="this.point_info_dialog.Seyahatnamelerdeki_Anlatimi"></td>
+        </tr>
+        <tr>
+          <th scope="row">Durumu</th>
+          <td>{{this.point_info_dialog.Durumu}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Bugunki Kullanımı</th>
+          <td>{{this.point_info_dialog.Bugunki_Kullanimi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Yapım Tekniği</th>
+          <td>{{this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Arşiv Kaynakları Notlar</th>
+          <td>{{this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Kaynakça</th>
+          <td [innerHTML]="this.point_info_dialog.Kaynakca"></td>
+        </tr>
+        <tr>
+          <th scope="row">Çalışma Tarihi</th>
+          <td>{{this.point_info_dialog.Arazi_Calismasi_Tarihi}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Arazi Ekibi</th>
+          <td>{{this.point_info_dialog.Arazi_Calismasi_Ekibi}}</td>
+        </tr>
+
+
+      </tbody>
+    </table>
   </div>
+
+
+
+</div>

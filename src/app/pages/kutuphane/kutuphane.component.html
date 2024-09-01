@@ -65,6 +65,16 @@
                 </div>
               </div>
             </div>
+            <div class="row justify-content-center">
+              <div class="col-12 col-xl-10">
+                </div>
+                  <div class="col-12 col-xl-6">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="kutuphane-search" aria-describedby="kutuphaneSearch" placeholder="Aramak istediğiniz terimi giriniz" >
+                    </div>
+                    <button  (click)="filter()" class="flying"><i class="bi bi-search"></i></button>
+                </div>
+                </div>
             <div class="accordion-item">
               <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo"> Seyyahlar ve Seyahatnameleri <span class="number">({{seyyahsize}})</span></button>

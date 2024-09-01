@@ -1,37 +1,12 @@
-<div style="width: 100%;height: 100%;">
-  <div class="map" id="map" class="match-parent"></div>
-
-  <div style="display: flex;flex-direction: row-reverse;justify-content: space-between">
-
-
-
-    <!-- <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Filtreleme Paneli
-          </mat-panel-title>
-          <mat-panel-description>
-
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div id="fit_2">
-          <div *ngFor="let fet of maps_data">
-            <div style="display: flex;flex-direction: row;">
-              <mat-checkbox (change)="updateAllComplete(fet.name)">
-                <p>
-                  {{fet.name}}</p>
-
-              </mat-checkbox>
-              <div style="width: 20px;height: 10px;margin-top: 10px;margin-left: 20px;"
-                [ngStyle]="{'background-color': fet.features[0].properties.color}">
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </mat-expansion-panel>
-    </mat-accordion> -->
-
+<div class="container">
+  <header class="header">
+    <h1>AngularEditor</h1>
+    <p>Native WYSIWYG editor for Angular 6+ and 13+</p>    
+  </header>
+    <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+  <h5 class="html-header">HTML Output</h5>
+  <div class="html">
+    {{ htmlContent }}
   </div>
+  <p>
 </div>
