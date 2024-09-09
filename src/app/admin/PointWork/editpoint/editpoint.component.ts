@@ -32,7 +32,6 @@ export class EditpointComponent {
     fd.append('notlar', this.editItem.notlar);
     fd.append('rota_notlari', this.editItem.rota_notlari);
     fd.append('deniz_yoluyla_ulasim', this.editItem.deniz_yoluyla_ulasim);
-    fd.append('color', this.editItem.color);
     fd.append('tespit_edilen_konum_olcegi', this.editItem.tespit_edilen_konum_olcegi);
     QW.jsonPost("/users",fd);
 

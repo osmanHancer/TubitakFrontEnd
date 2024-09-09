@@ -1,10 +1,11 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { environment } from '../../../environments/environment';
-import points from '../../../assets/19_james_morier_smooth_2.json';
+import allpoints from '../../../assets/19_james_morier_smooth_2.json';
+import S29 from '../../../assets/S29-RP-DescEast.json';
 import { MySharedModules } from '../../_com/myshared.module';
 import { QW } from '../../_lib/qw.helper';
 import { LayoutAdminComponent } from "../../_layoutadmin/layoutadmin.component";
@@ -16,8 +17,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { NgImageSliderModule } from 'ng-image-slider';
-import { elementAt } from 'rxjs';
-import { identifierName } from '@angular/compiler';
 declare var turf: any;
 
 @Component({
@@ -31,16 +30,19 @@ export class Mapbox2Component implements OnInit {
   CloseModal() {
     this.gizle = true;
   }
+
   public dialog = inject(MatDialog);
   map!: mapboxgl.Map;
   imagesslide: img[] = [];
+  clickseyyahkod: any
   panelOpenState = false;
   visible = true;
   point_info_dialog: any = [];
   yuzyillar: any = [13, 14, 15, 16, 17, 18, 19];
   featureCollection: any = [];
   points: any[] = [];
-  maps_data = points;
+  alintilar: any[] = [];
+  maps_data: any;
   all_dialog_info: any[] = [];
   dialog_info_index: any;
   router: any;
@@ -82,6 +84,8 @@ export class Mapbox2Component implements OnInit {
   async ngOnInit() {
 
 
+
+    this.maps_data = allpoints;
     this.gizle = true;
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
@@ -172,22 +176,6 @@ export class Mapbox2Component implements OnInit {
           filter: ['==', 'tür', 'deniz'],
         });
 
-        // this.map.addLayer({
-        //   id: element.name + "dasharray",
-        //   type: 'line',
-        //   source: element.name,
-        //   layout: {
-        //     visibility: 'none',
-        //     'line-join': 'round',
-        //     'line-cap': 'round',
-        //   },
-        //   paint: {
-        //     'line-color': "yellow",
-        //     'line-width': 2,
-        //     'line-dasharray': [4, 3],
-        //   },
-
-        // });
       });
     });
   }
@@ -199,9 +187,7 @@ export class Mapbox2Component implements OnInit {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'atlama', 'visibility', 'visible');
-      // this.map.setLayoutProperty(data+"dasharray", 'visibility', 'visible');
-      this.line_animation_kod = data;
-      // this.animateDashArray(0);
+
     } else {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'none');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'none');
@@ -209,23 +195,72 @@ export class Mapbox2Component implements OnInit {
       this.map.setLayoutProperty(data + 'heatmap', 'visibility', 'none');
 
       // this.map.setLayoutProperty(data+"dasharray", 'visibility', 'none');
-      this.map.removeLayer(data + 'YAPI');
-      this.map.removeLayer(data + 'YERLEŞİM YERİ');
-      this.map.removeLayer(data + 'YAKLAŞIK KONUM');
+      var location = [
+        { point_type: 'YAPI', icon: 'castle_1', size: 2 },
+        { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
+        { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+      ];
+      location.forEach((c) => {
+        this.map.removeLayer(data + c.point_type);
+        this.map.off('click', data + c.point_type, this.onClickHandler);
+
+      });
       this.map.removeLayer(data + 'heatmap');
+      this.map.removeLayer(data + 'clusters');
+      this.map.removeLayer(data + 'clusterstext');
       this.map.removeSource(data + 'point');
+      this.map.removeSource(data + 'cluster');
     }
   }
-  Heatmap(id:any){
+  Heatmap(id: any) {
+
+    var location = [
+      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+    ];
     if (this.map.getLayoutProperty(id + 'heatmap', 'visibility') == 'none') {
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'none');
+
+      });
       this.map.setLayoutProperty(id + 'heatmap', 'visibility', 'visible');
     }
     else {
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'visible');
+
+      });
       this.map.setLayoutProperty(id + 'heatmap', 'visibility', 'none');
     }
-  
-  }
 
+  }
+  Clustermap(id: any) {
+    var location = [
+      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+    ];
+    if (this.map.getLayoutProperty(id + 'clusters', 'visibility') == 'none') {
+
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'none');
+
+      });
+      this.map.setLayoutProperty(id + 'clusters', 'visibility', 'visible');
+      this.map.setLayoutProperty(id + 'clusterstext', 'visibility', 'visible');
+
+    }
+    else {
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'visible');
+
+      });
+      this.map.setLayoutProperty(id + 'clusters', 'visibility', 'none');
+      this.map.setLayoutProperty(id + 'clusterstext', 'visibility', 'none');
+    }
+
+  }
   async DrawPoint(SeyyahnameKod: string) {
     let user_2 = await QW.json('/users/' + SeyyahnameKod);
     this.points.push(user_2.data);
@@ -237,6 +272,18 @@ export class Mapbox2Component implements OnInit {
         type: 'FeatureCollection',
         features: this.featureCollection,
       },
+    });
+    this.map.addSource(SeyyahnameKod + 'cluster', {
+      type: 'geojson',
+      // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+      // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+      data: {
+        type: 'FeatureCollection',
+        features: this.featureCollection,
+      },
+      cluster: true,
+      clusterMaxZoom: 14, // Max zoom to cluster points on
+      clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
     });
     var location = [
       { point_type: 'YAPI', icon: 'castle_1', size: 2 },
@@ -256,6 +303,47 @@ export class Mapbox2Component implements OnInit {
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
       });
 
+    });
+    this.map.addLayer({
+      id: SeyyahnameKod + 'clusters',
+      type: 'circle',
+      source: SeyyahnameKod + 'cluster',
+      filter: ['has', 'point_count'],
+      layout: { visibility: 'none' },
+      paint: {
+
+        'circle-color': [
+          'step',
+          ['get', 'point_count'],
+          '#51bbd6',
+          100,
+          '#f1f075',
+          750,
+          '#f28cb1'
+        ],
+        'circle-radius': [
+          'step',
+          ['get', 'point_count'],
+          20,
+          100,
+          30,
+          750,
+          40
+        ]
+      }
+    });
+
+    this.map.addLayer({
+      id: SeyyahnameKod + 'clusterstext',
+      type: 'symbol',
+      source: SeyyahnameKod + 'cluster',
+      filter: ['has', 'point_count'],
+      layout: {
+        visibility: 'none',
+        'text-field': ['get', 'point_count_abbreviated'],
+        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+        'text-size': 12
+      }
     });
 
     this.map.addLayer({
@@ -294,9 +382,6 @@ export class Mapbox2Component implements OnInit {
       },
 
     });
-
-
-
     this.points = [];
     this.featureCollection = [];
 
@@ -309,45 +394,8 @@ export class Mapbox2Component implements OnInit {
         this.map.getCanvas().style.cursor = '';
       });
 
-      this.map.on('click', SeyyahnameKod + c.point_type, async (e: any) => {
-
-
-
-        this.imagesslide = [];
-
-        const description = e.features[0].properties;
-        let id = description.Point_id.split(',')[1];
-        let point = await QW.json('/users/' + SeyyahnameKod + '/' + id);
-
-        this.point_info_dialog = await QW.json('/arazicalismasi/' + point.data[0]['yapi_envanter_kodu']);
-
-
-
-        let lokasyonId = await QW.json('/lokasyon/getId/' + point.data[0]['yapi_envanter_kodu']);
-        this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-        this.dialogImgs = this.dialogImgs.images;
-        this.dialogImgs.forEach((element: any) => {
-
-          const newImage: img = {
-            image: 'http://localhost:3000/file/' + element.imgname,
-            thumbImage: 'http://localhost:3000/file/' + element.imgname,
-            title: element.metin
-          };
-
-          this.imagesslide.push(newImage);
-
-
-        });
-        let filter = (element: any) => element.yapi_envanter_kodu == point.data[0]['yapi_envanter_kodu'];
-
-        var allpoint = await QW.json('/users/' + SeyyahnameKod);
-        this.all_dialog_info = allpoint.data;
-
-        this.dialog_info_index = this.all_dialog_info.findIndex(filter);
-        this.openDialog();
-
-        this.map.flyTo({ center: [parseFloat(this.point_info_dialog.Boylam), parseFloat(this.point_info_dialog.Enlem)], zoom: 11, speed: 0.6 });
-      });
+      this.clickseyyahkod = SeyyahnameKod;
+      this.map.on('click', SeyyahnameKod + c.point_type, this.onClickHandler);
     });
   }
 
@@ -365,6 +413,7 @@ export class Mapbox2Component implements OnInit {
             properties: {
               Point_id: point.seyahname_kodu + ',' + point.id,
               tespit_edilen_konum_olcegi: point.tespit_edilen_konum_olcegi,
+              seyahname_kodu: point.seyahname_kodu
             },
           });
         }
@@ -381,28 +430,7 @@ export class Mapbox2Component implements OnInit {
       position: {
         right: '30px',
       },
-      data: {
-        Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
-        Yapi_Adi: this.point_info_dialog.Yapi_Adi,
-        Enlem: this.point_info_dialog.Enlem,
-        Boylam: this.point_info_dialog.Boylam,
-        Guzergah: this.point_info_dialog.Guzergah,
-        Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
-        Donemi: this.point_info_dialog.Donemi,
-        Kitabesi: this.point_info_dialog.Kitabesi,
-        Banisi: this.point_info_dialog.Banisi,
-        Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
-        Durumu: this.point_info_dialog.Durumu,
-        Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
-        Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
-        Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
-        Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
-        Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
-        Kaynakca: this.point_info_dialog.Kaynakca,
-        Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
-        Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
-        DialogImgs: this.imagesslide[0].image,
-      },
+      data: this.getDialogData()
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -413,105 +441,91 @@ export class Mapbox2Component implements OnInit {
 
     });
 
-
     dialogRef.keydownEvents().subscribe(async (event: { shiftKey: any; key: string }) => {
+
       if (event.key === 'ArrowRight') {
         this.imagesslide = [];
+        this.alintilar=[];
 
+        if (this.dialog_info_index != this.all_dialog_info.length - 1 ){
+          this.dialog_info_index = this.dialog_info_index + 1;
+        if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
+          this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+          let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+          this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+          this.dialogImgs = this.dialogImgs.images;
+          this.dialogImgs.forEach((element: any) => {
 
-        this.dialog_info_index = this.dialog_info_index + 1;
-        this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-        let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-        this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-        this.dialogImgs = this.dialogImgs.images;
-        this.dialogImgs.forEach((element: any) => {
+            const newImage: img = {
+              image: 'http://localhost:3000/file/' + element.imgname,
+              thumbImage: 'http://localhost:3000/file/' + element.imgname,
+              title: element.metin
+            };
 
-          const newImage: img = {
-            image: 'http://localhost:3000/file/' + element.imgname,
-            thumbImage: 'http://localhost:3000/file/' + element.imgname,
-            title: element.metin
-          };
+            this.imagesslide.push(newImage);
 
-          this.imagesslide.push(newImage);
-          dialogRef.componentInstance.data = {
-            Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
-            Yapi_Adi: this.point_info_dialog.Yapi_Adi,
-            Enlem: this.point_info_dialog.Enlem,
-            Boylam: this.point_info_dialog.Boylam,
-            Guzergah: this.point_info_dialog.Guzergah,
-            Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
-            Donemi: this.point_info_dialog.Donemi,
-            Kitabesi: this.point_info_dialog.Kitabesi,
-            Banisi: this.point_info_dialog.Banisi,
-            Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
-            Durumu: this.point_info_dialog.Durumu,
-            Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
-            Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
-            Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
-            Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
-            Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
-            Kaynakca: this.point_info_dialog.Kaynakca,
-            Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
-            Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
-            DialogImgs: this.imagesslide[0].image,
-          };
+          });
+        }
+        let alintilar = await QW.json('/users/location/' + this.all_dialog_info[this.dialog_info_index].enlem + "/" + this.all_dialog_info[this.dialog_info_index].boylam)
 
+        alintilar.Id.forEach((element: any) => {
+
+          this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
 
         });
 
-        this.map.flyTo({ center: [parseFloat(this.point_info_dialog.Boylam), parseFloat(this.point_info_dialog.Enlem)], zoom: 11, speed: 0.6 });
+        this.point_info_dialog.alintilar = this.alintilar
+
+        dialogRef.componentInstance.data = this.getDialogData()
+        this.map.flyTo({ center: [parseFloat(this.all_dialog_info[this.dialog_info_index].boylam), parseFloat(this.all_dialog_info[this.dialog_info_index].enlem)], zoom: 11, speed: 0.6 });
+      }
       }
       if (event.key === 'ArrowLeft') {
-
         this.imagesslide = [];
+        this.alintilar=[];
+
+        if (this.dialog_info_index != -1){
+          this.dialog_info_index = this.dialog_info_index - 1;
+
+          console.log(this.all_dialog_info[this.dialog_info_index])
+          console.log(this.all_dialog_info)
+        if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
+          this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+
+          let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+          this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+          this.dialogImgs = this.dialogImgs.images;
+          this.dialogImgs.forEach((element: any) => {
+
+            const newImage: img = {
+              image: 'http://localhost:3000/file/' + element.imgname,
+              thumbImage: 'http://localhost:3000/file/' + element.imgname,
+              title: element.metin
+            };
+
+            this.imagesslide.push(newImage);
 
 
-        this.dialog_info_index = this.dialog_info_index - 1;
 
-        this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+          });
+        }
+        let alintilar = await QW.json('/users/location/' + this.all_dialog_info[this.dialog_info_index].enlem + "/" + this.all_dialog_info[this.dialog_info_index].boylam)
 
-        let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-        this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-        this.dialogImgs = this.dialogImgs.images;
-        this.dialogImgs.forEach((element: any) => {
+        alintilar.Id.forEach((element: any) => {
 
-          const newImage: img = {
-            image: 'http://localhost:3000/file/' + element.imgname,
-            thumbImage: 'http://localhost:3000/file/' + element.imgname,
-            title: element.metin
-          };
-
-          this.imagesslide.push(newImage);
-
-          dialogRef.componentInstance.data = {
-            Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
-            Yapi_Adi: this.point_info_dialog.Yapi_Adi,
-            Enlem: this.point_info_dialog.Enlem,
-            Boylam: this.point_info_dialog.Boylam,
-            Guzergah: this.point_info_dialog.Guzergah,
-            Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
-            Donemi: this.point_info_dialog.Donemi,
-            Kitabesi: this.point_info_dialog.Kitabesi,
-            Banisi: this.point_info_dialog.Banisi,
-            Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
-            Durumu: this.point_info_dialog.Durumu,
-            Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
-            Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
-            Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
-            Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
-            Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
-            Kaynakca: this.point_info_dialog.Kaynakca,
-            Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
-            Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
-            DialogImgs: this.imagesslide[0].image,
-          };
+          this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
 
         });
+        this.point_info_dialog.alintilar = this.alintilar
 
-        this.map.flyTo({ center: [parseFloat(this.point_info_dialog.Boylam), parseFloat(this.point_info_dialog.Enlem)], zoom: 11, speed: 0.6 });
+
+        dialogRef.componentInstance.data = this.getDialogData()
+        this.map.flyTo({ center: [parseFloat(this.all_dialog_info[this.dialog_info_index].boylam), parseFloat(this.all_dialog_info[this.dialog_info_index].enlem)], zoom: 11, speed: 0.6 });
+      }
       }
     });
   }
+
   animateDashArray(timestamp: number): void {
     const newStep = Math.floor((timestamp / 50) % this.dashArraySequence.length);
 
@@ -523,15 +537,61 @@ export class Mapbox2Component implements OnInit {
 
     requestAnimationFrame(this.animateDashArray.bind(this));
   }
-  WatchLine(data: any) {
+  onClickHandler = async (e: any) => {
 
-    const animationDuration = 40000;
-    const cameraAltitude = 80000;
-    const routeDistance = turf.lineDistance(turf.lineString(this.getTargetRoute(data)));
-    const cameraRouteDistance = turf.lineDistance(turf.lineString(this.getCameraRoute(data)));
+    this.imagesslide = [];
+    this.alintilar = [];
+    this.point_info_dialog = [];
+
+    console.log(e.features[0])
+    const description = e.features[0].properties;
+    let id = description.Point_id.split(',')[1];
+    let point = await QW.json('/users/' + description.seyahname_kodu + '/' + id);
+    if (point.data[0]["yapi_envanter_kodu"] != "-") {
+      this.point_info_dialog = await QW.json('/arazicalismasi/' + point.data[0]['yapi_envanter_kodu']);
+      let lokasyonId = await QW.json('/lokasyon/getId/' + point.data[0]['yapi_envanter_kodu']);
+      this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+      this.dialogImgs = this.dialogImgs.images;
+      this.dialogImgs.forEach((element: any) => {
+        const newImage: img = {
+          image: 'http://localhost:3000/file/' + element.imgname,
+          thumbImage: 'http://localhost:3000/file/' + element.imgname,
+          title: element.metin
+        };
+        this.imagesslide.push(newImage);
+      });
+
+      this.map.flyTo({ center: [parseFloat(this.point_info_dialog.boylam), parseFloat(this.point_info_dialog.enlem)], zoom: 11, speed: 0.6 });
+    }
+    let filter = (element: any) => element.id == point.data[0]['id'];
+    var allpoint = await QW.json('/users/' + description.seyahname_kodu);
+    this.all_dialog_info = allpoint.data;
+    this.dialog_info_index = this.all_dialog_info.findIndex(filter);
+    let alintilar = await QW.json('/users/location/' + point.data[0]['enlem'] + "/" + point.data[0]['boylam'])
+     this.point_info_dialog =  alintilar.Id[0];
+     console.log(this.point_info_dialog);
+
+    alintilar.Id.forEach((element: any) => {
+
+      this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
+
+    });
+
+    this.point_info_dialog.alintilar = this.alintilar
+    this.openDialog();
+
+
+  }
+  async WatchLine(data: any) {
+
+    const animationDuration = 80000;
+    const cameraAltitude = 200000;
+    const routeDistance = turf.lineDistance(turf.lineString(await this.getTargetRoute(data)));
+    const cameraRouteDistance = turf.lineDistance(turf.lineString(await this.getCameraRoute(data)));
 
     let start: number;
-
+    let route = await this.getTargetRoute(data)
+    let cameraroute = await this.getCameraRoute(data)
     const frame = (time: number) => {
       if (!start) start = time;
       const phase = (time - start) / animationDuration;
@@ -543,12 +603,12 @@ export class Mapbox2Component implements OnInit {
       }
 
       const alongRoute = turf.along(
-        turf.lineString(this.getTargetRoute(data)),
+        turf.lineString(route),
         routeDistance * phase
       ).geometry.coordinates;
 
       const alongCamera = turf.along(
-        turf.lineString(this.getCameraRoute(data)),
+        turf.lineString(cameraroute),
         cameraRouteDistance * phase
       ).geometry.coordinates;
 
@@ -574,20 +634,15 @@ export class Mapbox2Component implements OnInit {
 
     this.animationFrameId = window.requestAnimationFrame(frame); // Start the animation
   }
-  private getTargetRoute(id: any) {
+  private async getTargetRoute(id: any) {
 
-    return this.maps_data[id].allcordinats
-
-
+    return await QW.json('/allcordinats/1');
 
   }
 
-  private getCameraRoute(id: any) {
+  private async getCameraRoute(id: any) {
 
-
-
-    return this.maps_data[id].allcordinats
-
+    return await QW.json('/allcordinats/1');
 
   }
   stopAnimation() {
@@ -597,8 +652,36 @@ export class Mapbox2Component implements OnInit {
       this.map.flyTo({ center: [27.422222, 38.630554], zoom: 6, speed: 1 });
     }
   }
-}
+  getDialogData() {
+    return {
+      Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
+      Yapi_Adi: this.point_info_dialog.Yapi_Adi,
+      Enlem: this.point_info_dialog.enlem,
+      Boylam: this.point_info_dialog.boylam,
+      Guzergah: this.point_info_dialog.Guzergah,
+      Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
+      Donemi: this.point_info_dialog.Donemi,
+      Kitabesi: this.point_info_dialog.Kitabesi,
+      Banisi: this.point_info_dialog.Banisi,
+      Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
+      Durumu: this.point_info_dialog.Durumu,
+      Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
+      Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
+      Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
+      Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
+      Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
+      Kaynakca: this.point_info_dialog.Kaynakca,
+      Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
+      Seyahat_Name_Adi: this.point_info_dialog.seyahatname_adi,
+      Alintilar: this.point_info_dialog.alintilar,
+      Mekan_Adi: this.point_info_dialog.anlatida_gecen_mekan_adi,
+      Yuzyil: this.point_info_dialog.yuzyil,
+      DialogImgs: this.imagesslide[0]?.image
+    };
+  }
 
+
+}
 @Component({
   selector: 'dialog-content-example-dialog',
   templateUrl: 'dialog-content-example-dialog.html',
@@ -627,8 +710,6 @@ export class DialogContentExampleDialog {
     this.cdr.detectChanges();
   }
 }
-
-
 interface img {
 
   image: string
@@ -636,7 +717,5 @@ interface img {
   thumbImage: string
 
   title: string
-
-
 
 }

@@ -52,8 +52,9 @@ export class EditorEditComponent {
 
   config: AngularEditorConfig = {
     editable: true,
-    spellcheck: true,
-    height: '15rem',
+    spellcheck: false,
+    height: '25rem',
+    sanitize: false,
     minHeight: '5rem',
     placeholder: 'Enter text here...',
     translate: 'no',
@@ -64,17 +65,28 @@ export class EditorEditComponent {
     ],
     customClasses: [
       {
-        name: "quote",
-        class: "quote",
+        name: "Konaklama bilgisi / mimari mekansal birimler",
+        class: "makale-tema-text makale-tema-01",
       },
       {
-        name: 'redText',
-        class: 'redText'
+        name: 'Deneyim-Aktivite / Olay örgüsü/Çatışmalar/Riskler',
+        class: 'makale-tema-text makale-tema-02',
+
       },
       {
-        name: "titleText",
-        class: "titleText",
-        tag: "h1",
+        name: "Seyahat Kültürü",
+        class: "makale-tema-text makale-tema-03",
+
+      },
+      {
+        name: "Seyahatnamelerin aktörleri",
+        class: "makale-tema-text makale-tema-04",
+
+      },
+      {
+        name: "Diğer seyyahlar",
+        class: "makale-tema-text makale-tema-05",
+
       },
 
     ],

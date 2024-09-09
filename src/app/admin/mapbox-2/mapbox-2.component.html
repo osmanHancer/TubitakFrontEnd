@@ -49,6 +49,11 @@
                     <mat-icon> layers</mat-icon>
                   </button>
                 </div>
+                <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                  <button mat-button style="color: rgb(198, 21, 21);" (click)="Clustermap(fet.name)">
+                    <mat-icon> category</mat-icon>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -79,7 +84,7 @@
 
     <table class="table">
 
-      <tbody>
+      <tbody [hidden]="this.point_info_dialog.Envanter_Kodu == undefined ? true :false">
         <tr>
           <th scope="row">Envanter Kodu</th>
           <td>{{this.point_info_dialog.Envanter_Kodu}}</td>
@@ -93,13 +98,13 @@
 
           <td><mat-icon>
               location_pin
-            </mat-icon>  {{this.point_info_dialog.Enlem}}</td>
+            </mat-icon> {{this.point_info_dialog.Enlem}}</td>
         </tr>
         <tr>
           <th scope="row">Boylam</th>
           <td><mat-icon>
               location_pin
-            </mat-icon>  {{this.point_info_dialog.Boylam}}</td>
+            </mat-icon> {{this.point_info_dialog.Boylam}}</td>
         </tr>
         <tr>
           <th scope="row">Güzergah>
@@ -152,6 +157,32 @@
         <tr>
           <th scope="row">Arazi Ekibi</th>
           <td>{{this.point_info_dialog.Arazi_Calismasi_Ekibi}}</td>
+        </tr>
+        <tr>
+      </tbody>
+
+      <tbody>
+        <tr>
+          <th scope="row">Alıntılar</th>
+
+          <td>
+            @for (item of this.point_info_dialog.alintilar; track $index) {
+            <div>
+              Yüzyıl : {{item[3]}}
+            </div> <br>
+            <div>
+              Yazar : {{item[2]}}
+            </div> <br>
+            <div>
+              Seyahatname İsmi : {{item[1]}}
+            </div> <br>
+            <div>
+              Alıntı : {{item[0]}}
+            </div><br>
+            }
+
+          </td>
+
         </tr>
 
 

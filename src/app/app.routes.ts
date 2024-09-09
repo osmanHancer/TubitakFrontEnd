@@ -25,6 +25,9 @@ import { DenemeComponent } from './admin/deneme/deneme.component';
 import { SeyehatnameComponent } from './admin/seyahatname-work/seyehatname/seyehatname.component';
 import { SeyehatnameEditComponent } from './admin/seyahatname-work/seyehatname-edit/seyehatname-edit.component';
 import { MapboxComponent } from './pages/mapbox/mapbox.component';
+import { ProjectteamComponent } from './pages/projectteam/projectteam.component';
+import { HakkindaComponent } from './pages/hakkinda/hakkinda.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 export const routes: Routes = [
 
@@ -136,6 +139,18 @@ export const routes: Routes = [
             {
                 path: "kütüphane",
                 component: KutuphaneComponent
+            },
+            {
+                path: "proje-ekibi",
+                component: ProjectteamComponent
+            },
+            {
+                path: "proje-hakkinda",
+                component: HakkindaComponent
+            },
+            {
+                path: "iletisim",
+                component: ContactComponent
             },
             {
                 path: "mapbox",

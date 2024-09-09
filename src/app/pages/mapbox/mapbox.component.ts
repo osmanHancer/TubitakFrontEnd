@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
+import {  ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { environment } from '../../../environments/environment';
-import points from '../../../assets/19_james_morier_smooth_2.json';
+import allpoints from '../../../assets/19_james_morier_smooth_2.json';
 import { MySharedModules } from '../../_com/myshared.module';
 import { QW } from '../../_lib/qw.helper';
 import { LayoutAdminComponent } from "../../_layoutadmin/layoutadmin.component";
@@ -16,31 +16,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { NgImageSliderModule } from 'ng-image-slider';
-import { elementAt } from 'rxjs';
-import { identifierName } from '@angular/compiler';
 declare var turf: any;
-@Component({
-  selector: 'app-mapbox',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, MySharedModules, LayoutAdminComponent, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
-  templateUrl: './mapbox.component.html',
-  styleUrl: './mapbox.component.scss'
-})
-export class MapboxComponent {
 
+@Component({
+  selector: 'app-mapbox-2',
+  standalone: true,
+  templateUrl: './mapbox.component.html',
+  styleUrls: ['./mapbox.component.scss'],
+  imports: [CommonModule, RouterOutlet, MySharedModules, LayoutAdminComponent, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
+})
+export class MapboxComponent implements OnInit {
   CloseModal() {
     this.gizle = true;
   }
+
   public dialog = inject(MatDialog);
   map!: mapboxgl.Map;
   imagesslide: img[] = [];
+  clickseyyahkod: any
   panelOpenState = false;
   visible = true;
   point_info_dialog: any = [];
   yuzyillar: any = [13, 14, 15, 16, 17, 18, 19];
   featureCollection: any = [];
   points: any[] = [];
-  maps_data = points;
+  maps_data:any;
   all_dialog_info: any[] = [];
   dialog_info_index: any;
   router: any;
@@ -81,7 +81,7 @@ export class MapboxComponent {
 
   async ngOnInit() {
 
-
+    this.maps_data = allpoints;
     this.gizle = true;
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
@@ -172,22 +172,6 @@ export class MapboxComponent {
           filter: ['==', 'tür', 'deniz'],
         });
 
-        // this.map.addLayer({
-        //   id: element.name + "dasharray",
-        //   type: 'line',
-        //   source: element.name,
-        //   layout: {
-        //     visibility: 'none',
-        //     'line-join': 'round',
-        //     'line-cap': 'round',
-        //   },
-        //   paint: {
-        //     'line-color': "yellow",
-        //     'line-width': 2,
-        //     'line-dasharray': [4, 3],
-        //   },
-
-        // });
       });
     });
   }
@@ -199,9 +183,7 @@ export class MapboxComponent {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'atlama', 'visibility', 'visible');
-      // this.map.setLayoutProperty(data+"dasharray", 'visibility', 'visible');
-      this.line_animation_kod = data;
-      // this.animateDashArray(0);
+ 
     } else {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'none');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'none');
@@ -209,25 +191,75 @@ export class MapboxComponent {
       this.map.setLayoutProperty(data + 'heatmap', 'visibility', 'none');
 
       // this.map.setLayoutProperty(data+"dasharray", 'visibility', 'none');
-      this.map.removeLayer(data + 'YAPI');
-      this.map.removeLayer(data + 'YERLEŞİM YERİ');
-      this.map.removeLayer(data + 'YAKLAŞIK KONUM');
+      var location = [
+        { point_type: 'YAPI', icon: 'castle_1', size: 2 },
+        { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
+        { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+      ];
+      location.forEach((c) => {
+        this.map.removeLayer(data + c.point_type);
+        this.map.off('click', data + c.point_type, this.onClickHandler);
+
+      });
       this.map.removeLayer(data + 'heatmap');
+      this.map.removeLayer(data + 'clusters');
+      this.map.removeLayer(data + 'clusterstext');
       this.map.removeSource(data + 'point');
+      this.map.removeSource(data + 'cluster');
     }
   }
-  Heatmap(id:any){
+  Heatmap(id: any) {
+
+    var location = [
+      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+    ];
     if (this.map.getLayoutProperty(id + 'heatmap', 'visibility') == 'none') {
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'none');
+
+      });
       this.map.setLayoutProperty(id + 'heatmap', 'visibility', 'visible');
     }
     else {
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'visible');
+
+      });
       this.map.setLayoutProperty(id + 'heatmap', 'visibility', 'none');
     }
-  
-  }
 
+  }
+  Clustermap(id: any) {
+    var location = [
+      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+    ];
+    if (this.map.getLayoutProperty(id + 'clusters', 'visibility') == 'none') {
+
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'none');
+
+      });
+      this.map.setLayoutProperty(id + 'clusters', 'visibility', 'visible');
+      this.map.setLayoutProperty(id + 'clusterstext', 'visibility', 'visible');
+
+    }
+    else {
+      location.forEach((c) => {
+        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'visible');
+
+      });
+      this.map.setLayoutProperty(id + 'clusters', 'visibility', 'none');
+      this.map.setLayoutProperty(id + 'clusterstext', 'visibility', 'none');
+    }
+
+  }
   async DrawPoint(SeyyahnameKod: string) {
     let user_2 = await QW.json('/users/' + SeyyahnameKod);
+    console.log(user_2);
     this.points.push(user_2.data);
 
     this.pushFeatureCollectionPoint(this.featureCollection);
@@ -237,6 +269,18 @@ export class MapboxComponent {
         type: 'FeatureCollection',
         features: this.featureCollection,
       },
+    });
+    this.map.addSource(SeyyahnameKod + 'cluster', {
+      type: 'geojson',
+      // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+      // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
+      data: {
+        type: 'FeatureCollection',
+        features: this.featureCollection,
+      },
+      cluster: true,
+      clusterMaxZoom: 14, // Max zoom to cluster points on
+      clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
     });
     var location = [
       { point_type: 'YAPI', icon: 'castle_1', size: 2 },
@@ -256,6 +300,47 @@ export class MapboxComponent {
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
       });
 
+    });
+    this.map.addLayer({
+      id: SeyyahnameKod + 'clusters',
+      type: 'circle',
+      source: SeyyahnameKod + 'cluster',
+      filter: ['has', 'point_count'],
+      layout: { visibility: 'none' },
+      paint: {
+
+        'circle-color': [
+          'step',
+          ['get', 'point_count'],
+          '#51bbd6',
+          100,
+          '#f1f075',
+          750,
+          '#f28cb1'
+        ],
+        'circle-radius': [
+          'step',
+          ['get', 'point_count'],
+          20,
+          100,
+          30,
+          750,
+          40
+        ]
+      }
+    });
+
+    this.map.addLayer({
+      id: SeyyahnameKod + 'clusterstext',
+      type: 'symbol',
+      source: SeyyahnameKod + 'cluster',
+      filter: ['has', 'point_count'],
+      layout: {
+        visibility: 'none',
+        'text-field': ['get', 'point_count_abbreviated'],
+        'text-font': ['DIN Offc Pro Medium', 'Arial Unicode MS Bold'],
+        'text-size': 12
+      }
     });
 
     this.map.addLayer({
@@ -294,9 +379,6 @@ export class MapboxComponent {
       },
 
     });
-
-
-
     this.points = [];
     this.featureCollection = [];
 
@@ -309,45 +391,8 @@ export class MapboxComponent {
         this.map.getCanvas().style.cursor = '';
       });
 
-      this.map.on('click', SeyyahnameKod + c.point_type, async (e: any) => {
-
-
-
-        this.imagesslide = [];
-
-        const description = e.features[0].properties;
-        let id = description.Point_id.split(',')[1];
-        let point = await QW.json('/users/' + SeyyahnameKod + '/' + id);
-
-        this.point_info_dialog = await QW.json('/arazicalismasi/' + point.data[0]['yapi_envanter_kodu']);
-
-
-
-        let lokasyonId = await QW.json('/lokasyon/getId/' + point.data[0]['yapi_envanter_kodu']);
-        this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-        this.dialogImgs = this.dialogImgs.images;
-        this.dialogImgs.forEach((element: any) => {
-
-          const newImage: img = {
-            image: 'http://localhost:3000/file/' + element.imgname,
-            thumbImage: 'http://localhost:3000/file/' + element.imgname,
-            title: element.metin
-          };
-
-          this.imagesslide.push(newImage);
-
-
-        });
-        let filter = (element: any) => element.yapi_envanter_kodu == point.data[0]['yapi_envanter_kodu'];
-
-        var allpoint = await QW.json('/users/' + SeyyahnameKod);
-        this.all_dialog_info = allpoint.data;
-
-        this.dialog_info_index = this.all_dialog_info.findIndex(filter);
-        this.openDialog();
-
-        this.map.flyTo({ center: [parseFloat(this.point_info_dialog.Boylam), parseFloat(this.point_info_dialog.Enlem)], zoom: 11, speed: 0.6 });
-      });
+      this.clickseyyahkod = SeyyahnameKod;
+      this.map.on('click', SeyyahnameKod + c.point_type, this.onClickHandler);
     });
   }
 
@@ -365,6 +410,7 @@ export class MapboxComponent {
             properties: {
               Point_id: point.seyahname_kodu + ',' + point.id,
               tespit_edilen_konum_olcegi: point.tespit_edilen_konum_olcegi,
+              seyahname_kodu:point.seyahname_kodu
             },
           });
         }
@@ -381,28 +427,7 @@ export class MapboxComponent {
       position: {
         right: '30px',
       },
-      data: {
-        Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
-        Yapi_Adi: this.point_info_dialog.Yapi_Adi,
-        Enlem: this.point_info_dialog.Enlem,
-        Boylam: this.point_info_dialog.Boylam,
-        Guzergah: this.point_info_dialog.Guzergah,
-        Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
-        Donemi: this.point_info_dialog.Donemi,
-        Kitabesi: this.point_info_dialog.Kitabesi,
-        Banisi: this.point_info_dialog.Banisi,
-        Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
-        Durumu: this.point_info_dialog.Durumu,
-        Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
-        Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
-        Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
-        Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
-        Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
-        Kaynakca: this.point_info_dialog.Kaynakca,
-        Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
-        Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
-        DialogImgs: this.imagesslide[0].image,
-      },
+      data: this.getDialogData()
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -413,13 +438,14 @@ export class MapboxComponent {
 
     });
 
-
     dialogRef.keydownEvents().subscribe(async (event: { shiftKey: any; key: string }) => {
+      
       if (event.key === 'ArrowRight') {
         this.imagesslide = [];
 
-
+        if(this.all_dialog_info.length!=this.dialog_info_index)
         this.dialog_info_index = this.dialog_info_index + 1;
+      
         this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
         let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
         this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
@@ -433,29 +459,7 @@ export class MapboxComponent {
           };
 
           this.imagesslide.push(newImage);
-          dialogRef.componentInstance.data = {
-            Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
-            Yapi_Adi: this.point_info_dialog.Yapi_Adi,
-            Enlem: this.point_info_dialog.Enlem,
-            Boylam: this.point_info_dialog.Boylam,
-            Guzergah: this.point_info_dialog.Guzergah,
-            Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
-            Donemi: this.point_info_dialog.Donemi,
-            Kitabesi: this.point_info_dialog.Kitabesi,
-            Banisi: this.point_info_dialog.Banisi,
-            Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
-            Durumu: this.point_info_dialog.Durumu,
-            Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
-            Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
-            Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
-            Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
-            Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
-            Kaynakca: this.point_info_dialog.Kaynakca,
-            Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
-            Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
-            DialogImgs: this.imagesslide[0].image,
-          };
-
+          dialogRef.componentInstance.data = this.getDialogData()
 
         });
 
@@ -465,7 +469,7 @@ export class MapboxComponent {
 
         this.imagesslide = [];
 
-
+        if(this.all_dialog_info.length!=0)
         this.dialog_info_index = this.dialog_info_index - 1;
 
         this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
@@ -483,35 +487,14 @@ export class MapboxComponent {
 
           this.imagesslide.push(newImage);
 
-          dialogRef.componentInstance.data = {
-            Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
-            Yapi_Adi: this.point_info_dialog.Yapi_Adi,
-            Enlem: this.point_info_dialog.Enlem,
-            Boylam: this.point_info_dialog.Boylam,
-            Guzergah: this.point_info_dialog.Guzergah,
-            Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
-            Donemi: this.point_info_dialog.Donemi,
-            Kitabesi: this.point_info_dialog.Kitabesi,
-            Banisi: this.point_info_dialog.Banisi,
-            Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
-            Durumu: this.point_info_dialog.Durumu,
-            Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
-            Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
-            Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
-            Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
-            Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
-            Kaynakca: this.point_info_dialog.Kaynakca,
-            Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
-            Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
-            DialogImgs: this.imagesslide[0].image,
-          };
-
+          dialogRef.componentInstance.data = this.getDialogData()
         });
 
         this.map.flyTo({ center: [parseFloat(this.point_info_dialog.Boylam), parseFloat(this.point_info_dialog.Enlem)], zoom: 11, speed: 0.6 });
       }
     });
   }
+  
   animateDashArray(timestamp: number): void {
     const newStep = Math.floor((timestamp / 50) % this.dashArraySequence.length);
 
@@ -523,10 +506,43 @@ export class MapboxComponent {
 
     requestAnimationFrame(this.animateDashArray.bind(this));
   }
+  onClickHandler = async (e: any) => {
+
+    this.imagesslide = [];
+
+    const description = e.features[0].properties;
+    let id = description.Point_id.split(',')[1];
+    let point = await QW.json('/users/' + description.seyahname_kodu + '/' + id);
+
+    this.point_info_dialog = await QW.json('/arazicalismasi/' + point.data[0]['yapi_envanter_kodu']);
+
+    let lokasyonId = await QW.json('/lokasyon/getId/' + point.data[0]['yapi_envanter_kodu']);
+    this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+    this.dialogImgs = this.dialogImgs.images;
+    this.dialogImgs.forEach((element: any) => {
+      const newImage: img = {
+        image: 'http://localhost:3000/file/' + element.imgname,
+        thumbImage: 'http://localhost:3000/file/' + element.imgname,
+        title: element.metin
+      };
+
+      this.imagesslide.push(newImage);
+    });
+
+    let filter = (element: any) => element.yapi_envanter_kodu == point.data[0]['yapi_envanter_kodu'];
+
+    var allpoint = await QW.json('/users/' + description.seyahname_kodu);
+    this.all_dialog_info = allpoint.data;
+
+    this.dialog_info_index = this.all_dialog_info.findIndex(filter);
+    this.openDialog();
+
+    this.map.flyTo({ center: [parseFloat(this.point_info_dialog.Boylam), parseFloat(this.point_info_dialog.Enlem)], zoom: 11, speed: 0.6 });
+  };
   WatchLine(data: any) {
 
     const animationDuration = 40000;
-    const cameraAltitude = 80000;
+    const cameraAltitude = 100000;
     const routeDistance = turf.lineDistance(turf.lineString(this.getTargetRoute(data)));
     const cameraRouteDistance = turf.lineDistance(turf.lineString(this.getCameraRoute(data)));
 
@@ -578,16 +594,11 @@ export class MapboxComponent {
 
     return this.maps_data[id].allcordinats
 
-
-
   }
 
   private getCameraRoute(id: any) {
 
-
-
     return this.maps_data[id].allcordinats
-
 
   }
   stopAnimation() {
@@ -597,6 +608,32 @@ export class MapboxComponent {
       this.map.flyTo({ center: [27.422222, 38.630554], zoom: 6, speed: 1 });
     }
   }
+   getDialogData() {
+    return {
+      Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
+      Yapi_Adi: this.point_info_dialog.Yapi_Adi,
+      Enlem: this.point_info_dialog.Enlem,
+      Boylam: this.point_info_dialog.Boylam,
+      Guzergah: this.point_info_dialog.Guzergah,
+      Alternatif_Adi: this.point_info_dialog.Alternatif_Adi,
+      Donemi: this.point_info_dialog.Donemi,
+      Kitabesi: this.point_info_dialog.Kitabesi,
+      Banisi: this.point_info_dialog.Banisi,
+      Seyahatnamelerdeki_Anlatimi: this.point_info_dialog.Seyahatnamelerdeki_Anlatimi,
+      Durumu: this.point_info_dialog.Durumu,
+      Bugunki_Kullanimi: this.point_info_dialog.Bugunki_Kullanimi,
+      Mimari_Ozellikler: this.point_info_dialog.Mimari_Ozellikler,
+      Yasama_Ve_Eski_Kullanima_Dair_İzler: this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_İzler,
+      Yapim_Teknigi_Ve_Malzeme: this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme,
+      Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar,
+      Kaynakca: this.point_info_dialog.Kaynakca,
+      Arazi_Calismasi_Tarihi: this.point_info_dialog.Arazi_Calismasi_Tarihi,
+      Arazi_Calismasi_Ekibi: this.point_info_dialog.Arazi_Calismasi_Ekibi,
+      DialogImgs: this.imagesslide[0]?.image
+    };
+  }
+
+
 }
 
 @Component({

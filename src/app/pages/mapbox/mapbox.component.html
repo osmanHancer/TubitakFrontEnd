@@ -22,9 +22,9 @@
         </mat-expansion-panel-header>
         <div id="fit_2">
           <div *ngFor="let fet of maps_data ; let i = index">
-            <div style="display: flex; flex-direction: row;" *ngIf="item===fet.crs.properties.yuzyil">
-              <mat-checkbox (change)="updateAllComplete(fet.name)">
-                <p style=" margin-top: 20px">{{fet.name}}</p>
+            <div style="display: flex; flex-direction: row;width: 450px;" *ngIf="item===fet.crs.properties.yuzyil">
+              <mat-checkbox  style="max-width: 200px;" (change)="updateAllComplete(fet.name)">
+                <p style=" margin-top: 20px;;">{{fet.name_tr}}</p>
               </mat-checkbox>
               <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"
                 [ngStyle]="{'background-color': fet.features[0].properties.color}">
@@ -42,6 +42,11 @@
               <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
                 <button mat-button style="color: rgb(198, 21, 21);" (click)="Heatmap(fet.name)">
                   <mat-icon> layers</mat-icon>
+                </button>
+              </div>
+              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+                <button mat-button style="color: rgb(198, 21, 21);" (click)="Clustermap(fet.name)">
+                  <mat-icon>  category</mat-icon>
                 </button>
               </div>
             </div>
