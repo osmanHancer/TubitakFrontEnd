@@ -1,12 +1,23 @@
 <div style="display: flex;flex-direction: column;margin-top: 2%;">
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+  
+    <mat-form-field  style="width: 40%;">
       <mat-label>Yüzyıl</mat-label>
-      <input required matInput placeholder="Yüzyıl" [(ngModel)]="editItem.yuzyil" />
+      <mat-select matSort [(ngModel)]="editItem.yuzyil">
+        <mat-option value="11.yy">11.yy</mat-option>
+        <mat-option value="12.yy">12.yy</mat-option>
+        <mat-option value="13.yy">13.yy</mat-option>
+        <mat-option value="14.yy">14.yy</mat-option>
+        <mat-option value="15.yy">15.yy</mat-option>
+        <mat-option value="16.yy">16.yy</mat-option>
+        <mat-option value="17.yy">17.yy</mat-option>
+        <mat-option value="18.yy">18.yy</mat-option>
+        <mat-option value="19.yy">19.yy</mat-option>
+      </mat-select>
     </mat-form-field>
     <mat-form-field style="width: 40%;">
       <mat-label>Seyahname Kodu </mat-label>
-      <input required matInput placeholder="Seyahname Kodu " [(ngModel)]="editItem.seyahname_kodu" />
+      <input  required matInput placeholder="Seyahname Kodu " [(ngModel)]="editItem.seyahname_kodu" />
     </mat-form-field>
   </div>
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
@@ -33,7 +44,7 @@
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
     <mat-form-field style="width: 40%;">
       <mat-label>Seyahat Adımı </mat-label>
-      <input type="number" required matInput placeholder="Seyahat Adımı" [(ngModel)]="editItem.seyahat_adimi" />
+      <input  required matInput placeholder="Seyahat Adımı" [(ngModel)]="editItem.seyahat_adimi" />
     </mat-form-field>
     <mat-form-field style="width: 40%;">
       <mat-label>Anlatıda Geçen Mekan Adı </mat-label>
@@ -111,11 +122,11 @@
 
 
     <div style="width: 40%;">
-      <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px;" color="coral"
+      <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px;" color="coral" routerLink="../../../point"
         (click)="submitForm('update')">
         Kaydet<mat-icon>add</mat-icon>
       </button>
-      <button [hidden]="gizle" mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral"
+      <button [hidden]="gizle" mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral" routerLink="../../../point"
         routerLink="../../../point" (click)="submitForm('delete')">
         Sil<mat-icon>delete</mat-icon>
       </button>

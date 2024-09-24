@@ -1,29 +1,49 @@
-<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 70%">
-    <div style="display: flex;justify-content: space-around;">
-
-        <mat-form-field style="width: 40%;">
-            <mat-label>Name </mat-label>
-            <input required matInput placeholder="Name" [(ngModel)]="editItem.name" />
-        </mat-form-field>
-        <mat-form-field style="width: 40%;">
-            <mat-label>Özet </mat-label>
-            <input required matInput placeholder="Name" [(ngModel)]="editItem.ozet" />
-        </mat-form-field>
-    </div>
-        <div  style="display: flex;justify-content: space-around;width: 60%;padding-left: 3%;">
-            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
-                (click)="submitForm('update')">
-                Kaydet<mat-icon>add</mat-icon>
-            </button>
-
-            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
-                routerLink="../../seyyah" (click)="submitForm('delete')">
-                Sil<mat-icon>delete</mat-icon>
-            </button>
-            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
-                routerLink="../../seyyah">
-                İptal<mat-icon>cancel</mat-icon>
-            </button>
-
+<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 50%">
+    <div style="display: flex;flex-direction: column;">
+        <div>
+            <mat-form-field style="width: 40%;">
+                <mat-label>Yüzyıl </mat-label>
+                <input required matInput placeholder="Yuzyil" [(ngModel)]="editItem.yuzyil" />
+            </mat-form-field>
+            <mat-form-field style="width: 40%;">
+                <mat-label>Adı </mat-label>
+                <input required matInput placeholder="Name" [(ngModel)]="editItem.name" />
+            </mat-form-field>
         </div>
+        <div>
+            <mat-form-field style="width: 40%;">
+                <mat-label>Tarih </mat-label>
+
+                <input required matInput placeholder="Tarih" [(ngModel)]="editItem.tarih" />
+            </mat-form-field>
+            <mat-form-field style="width: 40%;">
+                <mat-label>Anadil </mat-label>
+                <input required matInput placeholder="Anadil" [(ngModel)]="editItem.anadil" />
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field style="width: 40%;">
+                <mat-label>Çeviri </mat-label>
+                <input required matInput placeholder="Çeviri" [(ngModel)]="editItem.ceviri" />
+            </mat-form-field>
+            <mat-form-field style="width: 50%;">
+                <mat-label>Notlar</mat-label>
+                <input required matInput placeholder="Notlar" [(ngModel)]="editItem.notlar" />
+            </mat-form-field>
+        </div>
+    </div>
+    <div style="display: flex;justify-content: space-around;width: 40%;padding-left: 3%;">
+        <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"  routerLink="../../seyyah" (click)="submitForm('update')">
+            Kaydet<mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-button style="background-color: rgb(124, 45, 74);" color="coral" routerLink="../../seyyah"
+            (click)="submitForm('delete')">
+            Sil<mat-icon>delete</mat-icon>
+        </button>
+        <button mat-button style="background-color: rgb(124, 45, 74);" color="coral" routerLink="../../seyyah">
+            İptal<mat-icon>cancel</mat-icon>
+        </button>
+
+    </div>
 </div>

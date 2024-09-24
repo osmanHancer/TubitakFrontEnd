@@ -14,9 +14,21 @@
                 <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
             </ng-container>
     
-            <ng-container matColumnDef="ozet">
-                <mat-header-cell *matHeaderCellDef> Özet </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.ozet }} </mat-cell>
+            <ng-container matColumnDef="tarih">
+                <mat-header-cell *matHeaderCellDef> Tarih </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.tarih }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="anadil">
+                <mat-header-cell *matHeaderCellDef> Anadil </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.anadil }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="ceviri">
+                <mat-header-cell *matHeaderCellDef> Çeviri </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.ceviri }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="notlar">
+                <mat-header-cell *matHeaderCellDef> Notlar </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.notlar }} </mat-cell>
             </ng-container>
     
     
@@ -35,10 +47,10 @@
                 </mat-cell>
             </ng-container>
     
-            <mat-header-row *matHeaderRowDef="['id', 'name','ozet','action']"></mat-header-row>
+            <mat-header-row *matHeaderRowDef="['id', 'name','tarih','anadil','ceviri','notlar','action']"></mat-header-row>
             <mat-row *matRowDef="
               let row;
-              columns: ['id', 'name','ozet','action']
+              columns: ['id', 'name','tarih','anadil','ceviri','notlar','action']
             "></mat-row>
         </mat-table>
     </div>

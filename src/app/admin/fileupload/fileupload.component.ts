@@ -30,14 +30,14 @@ export class FileuploadComponent {
 
         if (droppedFile.fileEntry.isFile) {
           const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-          fileEntry.file((file: File) => {
+          fileEntry.file(async (file: File) => {
 
             this.imgname = droppedFile.relativePath.toString();
 
             const formData = new FormData()
             formData.append('file', file, droppedFile.relativePath)
 
-            QW.jsonPost("/file/upload", formData);
+          await  QW.jsonPost("/file/upload", formData);
 
           });
         } else {
@@ -61,13 +61,13 @@ export class FileuploadComponent {
     console.log(event);
   }
 
-public kaydet(){
+public async kaydet(){
 
   const formData_2 = new URLSearchParams();
   formData_2.append('imgname', this.imgname)
   formData_2.append('metin', this.editItem.metin)
   formData_2.append('lokasyonId', this.editItem.lokasyonId.toString())
-  QW.jsonPost("/galeri", formData_2);
+  await QW.jsonPost("/galeri", formData_2);
 }
 
 }

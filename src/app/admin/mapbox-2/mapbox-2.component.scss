@@ -128,7 +128,9 @@
   z-index: 0;
   box-sizing: content-box;
 }
-
+.example-full-width {
+  width: 100%;
+}
 .gallery{
   display: flex;
   flex-direction: row;
@@ -145,7 +147,7 @@
   font-size: 30px;
   color: #fff;
   z-index: 0;
-  max-height: 150px;
+  max-height: 90px;
   /* Örnek olarak, maksimum yükseklik 400 piksel olarak ayarlanmıştır, ihtiyaca göre değiştirilebilir */
   overflow-y: scroll;
   scrollbar-width: none;

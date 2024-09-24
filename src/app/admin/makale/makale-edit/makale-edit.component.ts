@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 import { MySharedModules } from '../../../_com/myshared.module';
 import { QW } from '../../../_lib/qw.helper';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-makale-edit',
   standalone: true,
@@ -13,35 +13,41 @@ import { ActivatedRoute } from '@angular/router';
 export class MakaleEditComponent {
 
 
-Delete() {
+  Delete() {
 
-  QW.json("/makale/delete/"+this.seyahatnameKodu);
-  console.log("girdi")
-}
+    QW.json("/makale/delete/" + this.seyahatnameKodu);
+  }
   seyahatnameKodu: any
-  editItem: tematik = { seyahatnameadi: "", kodu: "", yuzyil: NaN, metin: "" };
+  seyyahlar: any
+  editItem: tematik = { seyahatnameadi: "", kodu: "", yuzyil: "", metin: "", seyyah: "" };
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
   }
 
   async ngOnInit() {
     this.seyahatnameKodu = this.route.snapshot.paramMap.get('id')
     if (this.seyahatnameKodu != '-1') {
-      let data= await QW.json("/makale/"+this.seyahatnameKodu);
-    this.editItem=data.makale
+      let data = await QW.json("/makale/" + this.seyahatnameKodu);
+      let seyyah = await QW.json("/seyyahs");
+      this.seyyahlar = seyyah.users;
+      this.editItem = data.makale
 
     }
 
   }
 
-  Save() {
+  async Save() {
     const fd = new URLSearchParams();
     fd.append('kodu', this.editItem.kodu);
     fd.append('metin', this.editItem.metin);
     fd.append('seyahatnameadi', this.editItem.seyahatnameadi);
-    fd.append('yuzyil', this.editItem.yuzyil.toString());
+    fd.append('seyyah', this.editItem.seyyah);
+    fd.append('yuzyil', this.editItem.yuzyil);
 
-    QW.jsonPost("/makale", fd);
+
+
+    await QW.jsonPost("/makale", fd);
+
   }
 
 
@@ -103,7 +109,8 @@ interface tematik {
 
   seyahatnameadi: string;
   kodu: string
-  yuzyil: number
+  yuzyil: string
   metin: string
+  seyyah: string
 
 }

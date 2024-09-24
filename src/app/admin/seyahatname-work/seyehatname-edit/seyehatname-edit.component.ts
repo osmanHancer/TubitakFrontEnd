@@ -13,7 +13,7 @@ import { MySharedModules } from '../../../_com/myshared.module';
 export class SeyehatnameEditComponent {
 
   seyyahId: any;
-  submitForm(arg0: string) {
+  async submitForm(arg0: string) {
 
     if (arg0 == "update") {
 
@@ -23,11 +23,11 @@ export class SeyehatnameEditComponent {
       fd.append('yuzyil', this.editItem.yuzyil);
       fd.append('Id', this.editItem.Id.toString());
       
-        QW.jsonPost("/seyahatname", fd);
+      await QW.jsonPost("/seyahatname", fd);
      
     }
     else if (arg0 == "delete"){
-      QW.jsonPost("/seyahatname/delete/"+this.seyyahId);
+      await  QW.jsonPost("/seyahatname/delete/"+this.seyyahId);
 
     }
   }

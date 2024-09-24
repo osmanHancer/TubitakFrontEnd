@@ -5,7 +5,7 @@
       {{ editItem.metin }}
     </div>
     <p>
-        <div style="display: flex;flex-direction: row;text-align: start;justify-content: space-between;width: 40%;">
+        <div style="display: flex;flex-direction: row;text-align: start;justify-content: space-between;width: 50%;">
 
             <mat-form-field>
               <mat-label>Seyehatname Adı</mat-label>
@@ -15,16 +15,33 @@
               <mat-label>Kodu</mat-label>
               <input matInput placeholder="Kodu" [(ngModel)]="editItem.kodu" />
             </mat-form-field>
-            <mat-form-field>
-              <mat-label>Yüzyılı</mat-label>
-              <input type="number" matInput placeholder="Yüzyılı" [(ngModel)]="editItem.yuzyil" />
+            <mat-form-field >
+              <mat-label>Yüzyıl</mat-label>
+              <mat-select [(ngModel)]="editItem.yuzyil">
+                <mat-option value="11.yy">11.yy</mat-option>
+                <mat-option value="12.yy">12.yy</mat-option>
+                <mat-option value="13.yy">13.yy</mat-option>
+                <mat-option value="14.yy">14.yy</mat-option>
+                <mat-option value="15.yy">15.yy</mat-option>
+                <mat-option value="16.yy">16.yy</mat-option>
+                <mat-option value="17.yy">17.yy</mat-option>
+                <mat-option value="18.yy">18.yy</mat-option>
+                <mat-option value="19.yy">19.yy</mat-option>
+              </mat-select>
+            </mat-form-field>
+                  <mat-form-field  style="width: 50%;">
+                <mat-label >Seyyahlar </mat-label>
+                <mat-select [(ngModel)]="editItem.seyyah">
+                    <mat-option *ngFor="let item of seyyahlar" [value]="item.name">{{item.name}} </mat-option>
+
+                </mat-select>
             </mat-form-field>
          
           </div>
 
 
 <div style="display: flex;flex-direction: row;">
-    <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px;width: 10%;" color="coral" routerLink="../../makale"  (click)="Save()">
+    <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px;width: 10%;" color="coral"  (click)="Save()">
       Kaydet<mat-icon>save</mat-icon>
     </button>
     <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px;width: 10%;" color="coral" routerLink="../../makale" (click)="Delete()">

@@ -14,20 +14,24 @@ import { ActivatedRoute } from '@angular/router';
 export class SeyyaheditComponent {
 
   seyyahId: any;
-  submitForm(arg0: string) {
+  async submitForm(arg0: string) {
 
     if (arg0 == "update") {
 
       const fd = new URLSearchParams();
       fd.append('name', this.editItem.name);
-      fd.append('ozet', this.editItem.ozet);
+      fd.append('notlae', this.editItem.notlar);
+      fd.append('yuzyil', this.editItem.yuzyil);
+      fd.append('anadil', this.editItem.anadil);
+      fd.append('ceviri', this.editItem.ceviri);
+      fd.append('tarih', this.editItem.tarih);
       fd.append('id', this.editItem.id.toString());
       
-        QW.jsonPost("/seyyahs", fd);
+      await QW.jsonPost("/seyyahs", fd);
      
     }
     else if (arg0 == "delete"){
-      QW.jsonPost("/seyyahs/delete/"+this.seyyahId);
+      await  QW.jsonPost("/seyyahs/delete/"+this.seyyahId);
 
     }
   }
@@ -36,7 +40,7 @@ export class SeyyaheditComponent {
 
   }
   editItem: edititem = {
-    id: 0, name: '',ozet:'',
+    id: 0, name: '',notlar:'',yuzyil:'',tarih:'',ceviri:'',anadil:''
   };
 
   async ngOnInit() {
@@ -51,8 +55,12 @@ export class SeyyaheditComponent {
 }
 type edititem = {
   id: number
+  tarih:string
+  anadil:string
+  ceviri:string
   name: string
-  ozet:string
+  notlar:string
+  yuzyil:string
 
 
 }

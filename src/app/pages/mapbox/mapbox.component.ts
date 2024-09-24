@@ -1,6 +1,6 @@
-import {  ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { environment } from '../../../environments/environment';
@@ -40,7 +40,7 @@ export class MapboxComponent implements OnInit {
   yuzyillar: any = [13, 14, 15, 16, 17, 18, 19];
   featureCollection: any = [];
   points: any[] = [];
-  maps_data:any;
+  maps_data: any;
   all_dialog_info: any[] = [];
   dialog_info_index: any;
   router: any;
@@ -78,7 +78,9 @@ export class MapboxComponent implements OnInit {
     interval: 100
   };
 
-
+  constructor(
+    private route: ActivatedRoute
+  ) { }
   async ngOnInit() {
 
     this.maps_data = allpoints;
@@ -174,6 +176,16 @@ export class MapboxComponent implements OnInit {
 
       });
     });
+    let enlem = this.route.snapshot.paramMap.get('enlem')
+    let boylam = this.route.snapshot.paramMap.get('boylam')
+    if(enlem!=null&&boylam!=null){
+    this.map.flyTo({
+      center: [+enlem, +boylam],
+      zoom: 10,
+      essential: true // Kullanıcı hareketleri engellenmez
+    });
+  }
+
   }
 
   updateAllComplete(data: any) {
@@ -183,7 +195,7 @@ export class MapboxComponent implements OnInit {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'atlama', 'visibility', 'visible');
- 
+
     } else {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'none');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'none');
@@ -258,7 +270,7 @@ export class MapboxComponent implements OnInit {
 
   }
   async DrawPoint(SeyyahnameKod: string) {
-    let user_2 = await QW.json('/users/' + SeyyahnameKod);
+    let user_2 = await QW.json('/noktalar/' + SeyyahnameKod);
     console.log(user_2);
     this.points.push(user_2.data);
 
@@ -410,7 +422,7 @@ export class MapboxComponent implements OnInit {
             properties: {
               Point_id: point.seyahname_kodu + ',' + point.id,
               tespit_edilen_konum_olcegi: point.tespit_edilen_konum_olcegi,
-              seyahname_kodu:point.seyahname_kodu
+              seyahname_kodu: point.seyahname_kodu
             },
           });
         }
@@ -439,13 +451,13 @@ export class MapboxComponent implements OnInit {
     });
 
     dialogRef.keydownEvents().subscribe(async (event: { shiftKey: any; key: string }) => {
-      
+
       if (event.key === 'ArrowRight') {
         this.imagesslide = [];
 
-        if(this.all_dialog_info.length!=this.dialog_info_index)
-        this.dialog_info_index = this.dialog_info_index + 1;
-      
+        if (this.all_dialog_info.length != this.dialog_info_index)
+          this.dialog_info_index = this.dialog_info_index + 1;
+
         this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
         let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
         this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
@@ -469,8 +481,8 @@ export class MapboxComponent implements OnInit {
 
         this.imagesslide = [];
 
-        if(this.all_dialog_info.length!=0)
-        this.dialog_info_index = this.dialog_info_index - 1;
+        if (this.all_dialog_info.length != 0)
+          this.dialog_info_index = this.dialog_info_index - 1;
 
         this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
 
@@ -494,7 +506,7 @@ export class MapboxComponent implements OnInit {
       }
     });
   }
-  
+
   animateDashArray(timestamp: number): void {
     const newStep = Math.floor((timestamp / 50) % this.dashArraySequence.length);
 
@@ -512,7 +524,7 @@ export class MapboxComponent implements OnInit {
 
     const description = e.features[0].properties;
     let id = description.Point_id.split(',')[1];
-    let point = await QW.json('/users/' + description.seyahname_kodu + '/' + id);
+    let point = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
 
     this.point_info_dialog = await QW.json('/arazicalismasi/' + point.data[0]['yapi_envanter_kodu']);
 
@@ -531,7 +543,7 @@ export class MapboxComponent implements OnInit {
 
     let filter = (element: any) => element.yapi_envanter_kodu == point.data[0]['yapi_envanter_kodu'];
 
-    var allpoint = await QW.json('/users/' + description.seyahname_kodu);
+    var allpoint = await QW.json('/noktalar/' + description.seyahname_kodu);
     this.all_dialog_info = allpoint.data;
 
     this.dialog_info_index = this.all_dialog_info.findIndex(filter);
@@ -608,7 +620,7 @@ export class MapboxComponent implements OnInit {
       this.map.flyTo({ center: [27.422222, 38.630554], zoom: 6, speed: 1 });
     }
   }
-   getDialogData() {
+  getDialogData() {
     return {
       Envanter_Kodu: this.point_info_dialog.Envanter_Kodu,
       Yapi_Adi: this.point_info_dialog.Yapi_Adi,

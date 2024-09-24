@@ -4,20 +4,17 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { NgImageSliderModule } from 'ng-image-slider';
-
-import { BeforeSlideDetail } from 'lightgallery/lg-events';
-import lgZoom from 'lightgallery/plugins/zoom';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-yapi',
   standalone: true,
   imports: [CommonModule, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  templateUrl: './yapi.component.html',
+  styleUrl: './yapi.component.scss'
 })
-export class HomeComponent {
+export class YapiComponent {
   constructor(private route: ActivatedRoute) {
 
 

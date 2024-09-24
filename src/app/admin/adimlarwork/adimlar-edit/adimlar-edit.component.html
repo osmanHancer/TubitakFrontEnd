@@ -30,7 +30,7 @@
                    <input type="text"   placeholder="filter.." #filterplc>
                    <div  *ngFor="let opt of dataSource ">
                    <mat-option *ngIf="opt.Lokasyon_Adi.includes(filterplc.value)"
-                               [value]="opt.Id" value={{opt.Id}}>{{opt.Lokasyon_Adi}}  enlem: {{opt.Enlem}} boylam: {{opt.Boylam}}
+                               [value]="opt.Id" >{{opt.Lokasyon_Adi}}  enlem: {{opt.Enlem}} boylam: {{opt.Boylam}}
                    
                    </mat-option>
                      </div>

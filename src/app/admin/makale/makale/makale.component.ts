@@ -18,6 +18,7 @@ export class MakaleComponent {
   async ngOnInit() {
     const json =  await QW.json("/makale");
     this.dataSource.data=json.makale;
+    console.log(this.dataSource.data);
   }
   valuechange(searchValue: any): void {
     this.dataSource.filter=searchValue;

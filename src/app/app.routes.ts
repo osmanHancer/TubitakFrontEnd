@@ -9,7 +9,7 @@ import { SeyyaheditComponent } from './admin/SeyyahWork/seyyahedit/seyyahedit.co
 import { YapilarComponent } from './admin/yapilar/yapilar.component';
 import { LayoutAdminComponent } from './_layoutadmin/layoutadmin.component';
 import { LayoutHomeComponent } from './_layouthome/layouthome.component';
-import { HomeComponent } from './pages/home/home.component';
+import { YapiComponent } from './pages/yapı/yapi.component';
 import { PageMakaleComponent } from './pages/pageMakale/makale.component';
 import { FileuploadComponent } from './admin/fileupload/fileupload.component';
 import { SahacalismasiComponent } from './admin/sahacalismasi/sahacalismasi/sahacalismasi.component';
@@ -28,6 +28,7 @@ import { MapboxComponent } from './pages/mapbox/mapbox.component';
 import { ProjectteamComponent } from './pages/projectteam/projectteam.component';
 import { HakkindaComponent } from './pages/hakkinda/hakkinda.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import { DetayliaramaComponent } from './pages/detayliarama/detayliarama.component';
 
 export const routes: Routes = [
 
@@ -130,7 +131,7 @@ export const routes: Routes = [
         children: [
             {
                 path: "monografi/:yapı",
-                component: HomeComponent
+                component: YapiComponent
             },
             {
                 path: "makale/:makale",
@@ -139,6 +140,10 @@ export const routes: Routes = [
             {
                 path: "kütüphane",
                 component: KutuphaneComponent
+            },
+            {
+                path: "detayli-arama",
+                component: DetayliaramaComponent
             },
             {
                 path: "proje-ekibi",
@@ -155,7 +160,11 @@ export const routes: Routes = [
             {
                 path: "mapbox",
                 component: MapboxComponent
-            },
+              },
+              {
+                path: "mapbox/:enlem/:boylam",
+                component: MapboxComponent
+              },
             { path: '', redirectTo: 'home', pathMatch: 'full' },
         ],
 

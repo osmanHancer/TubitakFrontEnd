@@ -19,7 +19,7 @@ export class EditorEditComponent {
   }
   yapi_ismi:any
   editItemList: html = {
-    yuzyil: '', yapi_ismi: '', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '', lokasyonId: '',
+    yuzyil: '', yapi_ismi: '', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '', lokasyonId: 1,
     yapi_html_2: '',
     yapi_html_3: '',
     yapi_html_4: '',
@@ -35,13 +35,14 @@ export class EditorEditComponent {
 
 
   async ngOnInit() {
+    const json = await QW.json("/lokasyon");
+    this.LokasyonSource = json.lokasyon;
     this.yapi_ismi = this.route.snapshot.paramMap.get('id')
     if(this.yapi_ismi != "-1"){
     const yapi = await QW.json("/yapimonografisi/"+this.yapi_ismi);
     this.editItemList=yapi.data
     }
-    const json = await QW.json("/lokasyon");
-    this.LokasyonSource = json.lokasyon;
+  
 
 
   }
@@ -96,7 +97,12 @@ export class EditorEditComponent {
 
 
 
-  Save() {
+  async Save() {
+
+    const json = await QW.json("/lokasyon/"+this.editItemList.lokasyonId);
+    this.editItemList.enlem=json.lokasyon.Enlem
+    this.editItemList.boylam=json.lokasyon.Boylam
+
     const fd = new URLSearchParams();
     fd.append('yapi_ismi', this.editItemList.yapi_ismi);
     fd.append('baslik', this.editItemList.baslik);
@@ -109,17 +115,16 @@ export class EditorEditComponent {
     fd.append('yapi_html_4', this.editItemList.yapi_html_4);
     fd.append('yapi_html_5', this.editItemList.yapi_html_5);
     fd.append('yapi_html_6', this.editItemList.yapi_html_6);
-    fd.append('lokasyonId', this.editItemList.lokasyonId);
+    fd.append('lokasyonId', this.editItemList.lokasyonId.toString());
     fd.append('yuzyil', this.editItemList.yuzyil);
-    QW.jsonPost("/yapimonografisi", fd);
-    console.log(this.editItemList)
+   await QW.jsonPost("/yapimonografisi", fd);
   }
 
 
 
 }
 
-interface html {
+type html = {
 
   yapi_ismi: string
 
@@ -145,7 +150,7 @@ interface html {
  
   yuzyil:string
 
-  lokasyonId:string
+  lokasyonId:number
 
 
 }

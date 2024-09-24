@@ -16,7 +16,7 @@ export class SahacalismasieditComponent {
 
   sahaismi: any;
   dataSource: any;
-  submitForm(arg0: string) {
+  async submitForm(arg0: string) {
 
     if (arg0 == "update") {
 
@@ -26,11 +26,11 @@ export class SahacalismasieditComponent {
       fd.append('id', this.editItem.id.toString());
 
 
-      QW.jsonPost("/sahacalismasi", fd);
+      await QW.jsonPost("/sahacalismasi", fd);
 
     }
     else if (arg0 == "delete") {
-      QW.jsonPost("/sahacalismasi/delete/" + this.sahaismi);
+      await QW.jsonPost("/sahacalismasi/delete/" + this.sahaismi);
 
     }
   }

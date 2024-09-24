@@ -13,7 +13,7 @@ import { QW } from '../../../_lib/qw.helper';
 export class LokasyonComponent {
 
   Id: any;
-  submitForm(arg0: string) {
+  async submitForm(arg0: string) {
     if (arg0 == "update") {
       const fd = new URLSearchParams();
       fd.append('Enlem', this.editItem.Enlem);
@@ -25,14 +25,14 @@ export class LokasyonComponent {
       fd.append('Lokasyon_Adi', this.editItem.Lokasyon_Adi);
       if (this.Id != "-1") {
         fd.append('Id', this.Id);
-        QW.jsonPost("/lokasyon",fd);
+       await QW.jsonPost("/lokasyon",fd);
       }
       else {
-      QW.jsonPost("/lokasyon", fd);
+        await  QW.jsonPost("/lokasyon", fd);
       }
     }
     else {
-      QW.jsonPost("/lokasyon/delete/" + this.Id);
+      await  QW.jsonPost("/lokasyon/delete/" + this.Id);
     }
 
   }

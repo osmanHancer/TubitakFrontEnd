@@ -3,6 +3,7 @@ import { MySharedModules } from '../../../_com/myshared.module';
 import { QW } from '../../../_lib/qw.helper';
 import { ActivatedRoute } from '@angular/router';
 import {CdkDragDrop, CdkDropList, CdkDrag, moveItemInArray} from '@angular/cdk/drag-drop';
+
 @Component({
   selector: 'app-adimlar-edit',
   standalone: true,
@@ -45,12 +46,12 @@ export class AdimlarEditComponent {
     this.editItemList.push({ adimNo: ++this.nextId, LokasyonId: 1, not: "", sahacalismasiadi: this.sahacalismasi });
 
   }
-  deleteRow(adimNo: number) {
+  async deleteRow(adimNo: number) {
     if (this.adimlar != '-1') {
       const fd = new URLSearchParams();
       fd.append('adimNo', adimNo.toString())
       fd.append('sahacalismasiadi', this.adimlar)
-      QW.jsonPost("/saha-adimlari/delete", fd);
+     await QW.jsonPost("/saha-adimlari/delete", fd);
 
 
     }
@@ -59,13 +60,13 @@ export class AdimlarEditComponent {
   }
   save() {
 
-    this.editItemList.forEach(element => {
+    this.editItemList.forEach(async element => {
       const fd = new URLSearchParams();
       fd.append('sahacalismasiadi', element.sahacalismasiadi)
       fd.append('LokasyonId', element.LokasyonId.toString())
       fd.append('not', element.not)
       fd.append('adimNo', element.adimNo.toString())
-      QW.jsonPost("/saha-adimlari", fd);
+      await QW.jsonPost("/saha-adimlari", fd);
 
 
     });

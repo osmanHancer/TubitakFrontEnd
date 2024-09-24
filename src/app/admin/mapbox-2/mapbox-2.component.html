@@ -3,7 +3,7 @@
   <div class="map" id="map" class="match-parent"></div>
 
 
-  <mat-accordion style="position: absolute; top: 10px; left: 10px;" [multi]="false">
+  <mat-accordion style="position: absolute; top: 10px; left: 10px;min-width: 590px;max-width: 590px;" [multi]="false">
     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
       <mat-expansion-panel-header>
         <mat-panel-title> Yüzyıllara Göre filtrele </mat-panel-title>
@@ -13,13 +13,17 @@
       </mat-expansion-panel-header>
       <mat-accordion [multi]="false">
 
+        <mat-form-field class="example-full-width">
+          <mat-label>Seyyah İsmi Girniz</mat-label>
+          <input matInput placeholder="Seyyah" (input)="mapsDataFilter($event)">
+        </mat-form-field>
 
         @for (item of yuzyillar; track $index) {
 
         <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              {{item}}. Yüzyıl
+              {{item}}. Yüzyıl 
             </mat-panel-title>
             <mat-panel-description>
               <!-- Açıklama ekleyebilirsiniz -->
@@ -27,15 +31,15 @@
           </mat-expansion-panel-header>
           <div id="fit_2">
             <div *ngFor="let fet of maps_data ; let i = index">
-              <div style="display: flex; flex-direction: row;" *ngIf="item===fet.crs.properties.yuzyil">
-                <mat-checkbox (change)="updateAllComplete(fet.name)">
-                  <p style=" margin-top: 20px">{{fet.name}}</p>
+              <div style="display: flex; flex-direction: row;width: 450px;" *ngIf="item===fet.crs.properties.yuzyil">
+                <mat-checkbox style="max-width: 200px;" (change)="updateAllComplete(fet.name)">
+                  <p style=" margin-top: 20px;;">{{fet.name_tr}}</p>
                 </mat-checkbox>
                 <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"
                   [ngStyle]="{'background-color': fet.features[0].properties.color}">
                 </div>
                 <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
-                  <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(i)">
+                  <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(fet.name)">
                     <mat-icon>play_circle_filled</mat-icon>
                   </button>
                 </div>
@@ -98,13 +102,13 @@
 
           <td><mat-icon>
               location_pin
-            </mat-icon> {{this.point_info_dialog.Enlem}}</td>
+            </mat-icon> {{this.point_info_dialog.enlem}}</td>
         </tr>
         <tr>
           <th scope="row">Boylam</th>
           <td><mat-icon>
               location_pin
-            </mat-icon> {{this.point_info_dialog.Boylam}}</td>
+            </mat-icon> {{this.point_info_dialog.boylam}}</td>
         </tr>
         <tr>
           <th scope="row">Güzergah>

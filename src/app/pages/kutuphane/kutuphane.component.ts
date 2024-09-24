@@ -46,19 +46,22 @@ export class KutuphaneComponent {
 
   filterYapi(filtertext: any) {
 
-    this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(filtertext.toLowerCase()));
-    // this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_2.toLowerCase().includes(filtertext.toLowerCase()));
-    // this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_3.toLowerCase().includes(filtertext.toLowerCase()));
-    // this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_4.toLowerCase().includes(filtertext.toLowerCase()));
-    // this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_5.toLowerCase().includes(filtertext.toLowerCase()));
-    // this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_6.toLowerCase().includes(filtertext.toLowerCase()));
+    this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(filtertext.toLowerCase())||
+    item.yapi_html_2.toLowerCase().includes(filtertext.toLowerCase())||
+    item.yapi_html_3.toLowerCase().includes(filtertext.toLowerCase())||
+    item.yapi_html_4.toLowerCase().includes(filtertext.toLowerCase())||
+    item.yapi_html_5.toLowerCase().includes(filtertext.toLowerCase())||
+    item.yapi_html_6.toLowerCase().includes(filtertext.toLowerCase())
+  );
+
     this.yapisize = this.filteredYapi.length
-    
+
   }
 
   filterSeyahat(filtertext: any) {
 
-    this.filteredSeyahat = this.editItemListSeyyah.filter((item: any) => item.metin.toLowerCase().includes(filtertext.toLowerCase()));
+    this.filteredSeyahat = this.editItemListSeyyah.filter((item: any) => item.seyahatnameadi.toLowerCase().includes(filtertext.toLowerCase()) ||
+      item.metin.toLowerCase().includes(filtertext.toLowerCase()));
     this.seyyahsize = this.filteredSeyahat.length
 
   }

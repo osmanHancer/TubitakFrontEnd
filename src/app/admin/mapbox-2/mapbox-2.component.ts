@@ -80,17 +80,33 @@ export class Mapbox2Component implements OnInit {
     interval: 100
   };
 
+  mapsDataFilter(event: any) {
+
+    this.maps_data = allpoints.filter((feature: any) =>
+      feature.name_tr.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+
+ 
+    this.yuzyillar = Array.from(
+      new Set(
+        this.maps_data
+          .map((feature: any) => feature.crs.properties.yuzyil)
+          .filter((yuzyil: any) => yuzyil !== undefined && yuzyil !== null)
+      )
+    ).sort((a: any, b: any) => a - b);
+
+  }
 
   async ngOnInit() {
 
 
-
+    
     this.maps_data = allpoints;
     this.gizle = true;
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v11',
+      style: 'mapbox://styles/mapbox/outdoors-v12',
       zoom: 6,
 
       center: [27.422222, 38.630554],
@@ -213,6 +229,7 @@ export class Mapbox2Component implements OnInit {
     }
   }
   Heatmap(id: any) {
+  
 
     var location = [
       { point_type: 'YAPI', icon: 'castle_1', size: 2 },
@@ -243,27 +260,20 @@ export class Mapbox2Component implements OnInit {
     ];
     if (this.map.getLayoutProperty(id + 'clusters', 'visibility') == 'none') {
 
-      location.forEach((c) => {
-        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'none');
-
-      });
       this.map.setLayoutProperty(id + 'clusters', 'visibility', 'visible');
       this.map.setLayoutProperty(id + 'clusterstext', 'visibility', 'visible');
 
     }
     else {
-      location.forEach((c) => {
-        this.map.setLayoutProperty(id + c.point_type, 'visibility', 'visible');
 
-      });
       this.map.setLayoutProperty(id + 'clusters', 'visibility', 'none');
       this.map.setLayoutProperty(id + 'clusterstext', 'visibility', 'none');
     }
 
   }
   async DrawPoint(SeyyahnameKod: string) {
-    let user_2 = await QW.json('/users/' + SeyyahnameKod);
-    this.points.push(user_2.data);
+    let seyyahallpoint = await QW.json('/noktalar/' + SeyyahnameKod);
+    this.points.push(seyyahallpoint.data);
 
     this.pushFeatureCollectionPoint(this.featureCollection);
     this.map.addSource(SeyyahnameKod + 'point', {
@@ -275,15 +285,13 @@ export class Mapbox2Component implements OnInit {
     });
     this.map.addSource(SeyyahnameKod + 'cluster', {
       type: 'geojson',
-      // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
-      // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
       data: {
         type: 'FeatureCollection',
         features: this.featureCollection,
       },
       cluster: true,
-      clusterMaxZoom: 14, // Max zoom to cluster points on
-      clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
+      clusterMaxZoom: 11, // Max zoom to cluster points on
+      clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
     });
     var location = [
       { point_type: 'YAPI', icon: 'castle_1', size: 2 },
@@ -301,6 +309,7 @@ export class Mapbox2Component implements OnInit {
         },
 
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
+        minzoom: 6
       });
 
     });
@@ -324,11 +333,11 @@ export class Mapbox2Component implements OnInit {
         'circle-radius': [
           'step',
           ['get', 'point_count'],
-          20,
-          100,
-          30,
-          750,
-          40
+          50,
+          1000,
+          300,
+          7500,
+          400
         ]
       }
     });
@@ -369,17 +378,18 @@ export class Mapbox2Component implements OnInit {
           ['linear'],
           ['heatmap-density'],
           0,
-          'rgba(236,222,239,0)',
+          'rgba(255, 255, 255, 0)', // Şeffaf
           0.2,
-          'rgb(208,209,230)',
+          'rgb(255, 204, 204)', // Açık kırmızı
           0.4,
-          'rgb(166,189,219)',
+          'rgb(255, 153, 153)', // Orta kırmızı
           0.6,
-          'rgb(103,169,207)',
+          'rgb(255, 102, 102)', // Koyu kırmızı
           0.8,
-          'rgb(28,144,153)'
+          'rgb(255, 0, 0)' // Tam kırmızı
         ],
       },
+      
 
     });
     this.points = [];
@@ -445,83 +455,119 @@ export class Mapbox2Component implements OnInit {
 
       if (event.key === 'ArrowRight') {
         this.imagesslide = [];
-        this.alintilar=[];
+        this.alintilar = [];
 
-        if (this.dialog_info_index != this.all_dialog_info.length - 1 ){
+        if (this.dialog_info_index != this.all_dialog_info.length - 1) {
           this.dialog_info_index = this.dialog_info_index + 1;
-        if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
-          this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-          let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-          this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-          this.dialogImgs = this.dialogImgs.images;
-          this.dialogImgs.forEach((element: any) => {
 
-            const newImage: img = {
-              image: 'http://localhost:3000/file/' + element.imgname,
-              thumbImage: 'http://localhost:3000/file/' + element.imgname,
-              title: element.metin
-            };
+          console.log(this.all_dialog_info[this.dialog_info_index].enlem);
+          if (this.all_dialog_info[this.dialog_info_index].enlem != 0) {
+            if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
+              this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              this.dialogImgs = this.dialogImgs.images;
+              this.dialogImgs.forEach((element: any) => {
 
-            this.imagesslide.push(newImage);
+                const newImage: img = {
+                  image: 'http://localhost:3000/file/' + element.imgname,
+                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
+                  title: element.metin
+                };
 
-          });
+                this.imagesslide.push(newImage);
+
+              });
+            }
+            let alintilar = await QW.json('/noktalar/alinti/' + this.all_dialog_info[this.dialog_info_index].enlem + "/" + this.all_dialog_info[this.dialog_info_index].boylam)
+
+            alintilar.Id.forEach((element: any) => {
+
+              if (element.alintilar != "")
+                this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
+
+            });
+            if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
+              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
+              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              this.dialogImgs = this.dialogImgs.images;
+              this.dialogImgs.forEach((element: any) => {
+                const newImage: img = {
+                  image: 'http://localhost:3000/file/' + element.imgname,
+                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
+                  title: element.metin
+                };
+                this.imagesslide.push(newImage);
+              });
+              this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
+
+            }
+
+            this.point_info_dialog.alintilar = this.alintilar
+
+            dialogRef.componentInstance.data = this.getDialogData()
+            this.map.flyTo({ center: [parseFloat(this.all_dialog_info[this.dialog_info_index].boylam), parseFloat(this.all_dialog_info[this.dialog_info_index].enlem)], zoom: 11, speed: 0.6 });
+          }
         }
-        let alintilar = await QW.json('/users/location/' + this.all_dialog_info[this.dialog_info_index].enlem + "/" + this.all_dialog_info[this.dialog_info_index].boylam)
-
-        alintilar.Id.forEach((element: any) => {
-
-          this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
-
-        });
-
-        this.point_info_dialog.alintilar = this.alintilar
-
-        dialogRef.componentInstance.data = this.getDialogData()
-        this.map.flyTo({ center: [parseFloat(this.all_dialog_info[this.dialog_info_index].boylam), parseFloat(this.all_dialog_info[this.dialog_info_index].enlem)], zoom: 11, speed: 0.6 });
-      }
       }
       if (event.key === 'ArrowLeft') {
         this.imagesslide = [];
-        this.alintilar=[];
-
-        if (this.dialog_info_index != -1){
+        this.alintilar = [];
+        if (this.dialog_info_index != 0) {
           this.dialog_info_index = this.dialog_info_index - 1;
+          console.log(this.all_dialog_info[this.dialog_info_index].enlem);
 
-          console.log(this.all_dialog_info[this.dialog_info_index])
-          console.log(this.all_dialog_info)
-        if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
-          this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+          if (this.all_dialog_info[this.dialog_info_index].enlem != 0) {
+            if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
+              this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
 
-          let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-          this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-          this.dialogImgs = this.dialogImgs.images;
-          this.dialogImgs.forEach((element: any) => {
+              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
+              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              this.dialogImgs = this.dialogImgs.images;
+              this.dialogImgs.forEach((element: any) => {
 
-            const newImage: img = {
-              image: 'http://localhost:3000/file/' + element.imgname,
-              thumbImage: 'http://localhost:3000/file/' + element.imgname,
-              title: element.metin
-            };
+                const newImage: img = {
+                  image: 'http://localhost:3000/file/' + element.imgname,
+                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
+                  title: element.metin
+                };
 
-            this.imagesslide.push(newImage);
-
+                this.imagesslide.push(newImage);
 
 
-          });
+
+              });
+            }
+            let alintilar = await QW.json('/noktalar/alinti/' + this.all_dialog_info[this.dialog_info_index].enlem + "/" + this.all_dialog_info[this.dialog_info_index].boylam)
+
+            alintilar.Id.forEach((element: any) => {
+              if (element.alintilar != "")
+                this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
+
+            });
+
+            if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
+              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
+              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              this.dialogImgs = this.dialogImgs.images;
+              this.dialogImgs.forEach((element: any) => {
+                const newImage: img = {
+                  image: 'http://localhost:3000/file/' + element.imgname,
+                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
+                  title: element.metin
+                };
+                this.imagesslide.push(newImage);
+              });
+              this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
+
+            }
+            this.point_info_dialog.alintilar = this.alintilar
+
+
+            dialogRef.componentInstance.data = this.getDialogData()
+            this.map.flyTo({ center: [parseFloat(this.all_dialog_info[this.dialog_info_index].boylam), parseFloat(this.all_dialog_info[this.dialog_info_index].enlem)], zoom: 11, speed: 0.6 });
+          }
         }
-        let alintilar = await QW.json('/users/location/' + this.all_dialog_info[this.dialog_info_index].enlem + "/" + this.all_dialog_info[this.dialog_info_index].boylam)
-
-        alintilar.Id.forEach((element: any) => {
-
-          this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
-
-        });
-        this.point_info_dialog.alintilar = this.alintilar
-
-
-        dialogRef.componentInstance.data = this.getDialogData()
-        this.map.flyTo({ center: [parseFloat(this.all_dialog_info[this.dialog_info_index].boylam), parseFloat(this.all_dialog_info[this.dialog_info_index].enlem)], zoom: 11, speed: 0.6 });
-      }
       }
     });
   }
@@ -542,14 +588,14 @@ export class Mapbox2Component implements OnInit {
     this.imagesslide = [];
     this.alintilar = [];
     this.point_info_dialog = [];
-
-    console.log(e.features[0])
     const description = e.features[0].properties;
     let id = description.Point_id.split(',')[1];
-    let point = await QW.json('/users/' + description.seyahname_kodu + '/' + id);
-    if (point.data[0]["yapi_envanter_kodu"] != "-") {
-      this.point_info_dialog = await QW.json('/arazicalismasi/' + point.data[0]['yapi_envanter_kodu']);
-      let lokasyonId = await QW.json('/lokasyon/getId/' + point.data[0]['yapi_envanter_kodu']);
+
+    let clickPoint = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
+
+    if (clickPoint.data[0]["yapi_envanter_kodu"] != "-") {
+      this.point_info_dialog = await QW.json('/arazicalismasi/' + clickPoint.data[0]['yapi_envanter_kodu']);
+      let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
       this.dialogImgs = this.dialogImgs.images;
       this.dialogImgs.forEach((element: any) => {
@@ -561,37 +607,61 @@ export class Mapbox2Component implements OnInit {
         this.imagesslide.push(newImage);
       });
 
-      this.map.flyTo({ center: [parseFloat(this.point_info_dialog.boylam), parseFloat(this.point_info_dialog.enlem)], zoom: 11, speed: 0.6 });
+
     }
-    let filter = (element: any) => element.id == point.data[0]['id'];
-    var allpoint = await QW.json('/users/' + description.seyahname_kodu);
+    let filter = (element: any) => element.id == clickPoint.data[0]['id'];
+    var allpoint = await QW.json('/noktalar/' + description.seyahname_kodu);
     this.all_dialog_info = allpoint.data;
     this.dialog_info_index = this.all_dialog_info.findIndex(filter);
-    let alintilar = await QW.json('/users/location/' + point.data[0]['enlem'] + "/" + point.data[0]['boylam'])
-     this.point_info_dialog =  alintilar.Id[0];
-     console.log(this.point_info_dialog);
+    let alintilar = await QW.json('/noktalar/alinti/' + clickPoint.data[0]['enlem'] + "/" + clickPoint.data[0]['boylam'])
 
+    this.map.flyTo({ center: [parseFloat(clickPoint.data[0]['boylam']), parseFloat(clickPoint.data[0]['enlem'])], zoom: 11, speed: 0.6 });
+
+    console.log(alintilar);
     alintilar.Id.forEach((element: any) => {
 
-      this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
+      if (element.alintilar != "")
+        this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
 
     });
 
+    if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
+      let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['enlem'] + '/' + clickPoint.data[0]['boylam']);
+      this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+      this.dialogImgs = this.dialogImgs.images;
+      this.dialogImgs.forEach((element: any) => {
+        const newImage: img = {
+          image: 'http://localhost:3000/file/' + element.imgname,
+          thumbImage: 'http://localhost:3000/file/' + element.imgname,
+          title: element.metin
+        };
+        this.imagesslide.push(newImage);
+      });
+      this.point_info_dialog = clickPoint.data[0];
+    }
     this.point_info_dialog.alintilar = this.alintilar
     this.openDialog();
 
 
   }
   async WatchLine(data: any) {
-
-    const animationDuration = 80000;
+    const zoomLevel = 10; // Belirlediğin zoom seviyesi
     const cameraAltitude = 200000;
-    const routeDistance = turf.lineDistance(turf.lineString(await this.getTargetRoute(data)));
-    const cameraRouteDistance = turf.lineDistance(turf.lineString(await this.getCameraRoute(data)));
+
+    // Rotanın uzunluğunu hesapla
+    const route = await this.getTargetRoute(data);
+    const cameraroute = await this.getCameraRoute(data);
+    const routeDistance = turf.lineDistance(turf.lineString(route));
+    const cameraRouteDistance = turf.lineDistance(turf.lineString(cameraroute));
+
+    // Animasyon süresini rotanın uzunluğuna göre ayarla (Örnek: her km için 10 saniye)
+    const animationDuration = routeDistance * 100;
 
     let start: number;
-    let route = await this.getTargetRoute(data)
-    let cameraroute = await this.getCameraRoute(data)
+
+    // Zoom seviyesini ayarla
+    this.map.setZoom(zoomLevel);
+
     const frame = (time: number) => {
       if (!start) start = time;
       const phase = (time - start) / animationDuration;
@@ -627,26 +697,33 @@ export class Mapbox2Component implements OnInit {
       });
 
       this.map.setFreeCameraOptions(camera);
+
+      // Zoom seviyesini tekrar ayarla
+      this.map.setZoom(zoomLevel);
+
       this.animationFrameId = window.requestAnimationFrame(frame); // Save the frame ID
-
-
-    }
+    };
 
     this.animationFrameId = window.requestAnimationFrame(frame); // Start the animation
+    this.map.setPitch(-10);
+    this.map.setBearing(-90);
   }
+
+
   private async getTargetRoute(id: any) {
 
-    return await QW.json('/allcordinats/1');
+    return await QW.json('/allcordinats/' + id);
 
   }
 
   private async getCameraRoute(id: any) {
 
-    return await QW.json('/allcordinats/1');
+    return await QW.json('/allcordinats/' + id);
 
   }
   stopAnimation() {
     if (this.animationFrameId !== null) {
+
       window.cancelAnimationFrame(this.animationFrameId); // Cancel the animation
       this.animationFrameId = null; // Reset the ID
       this.map.flyTo({ center: [27.422222, 38.630554], zoom: 6, speed: 1 });

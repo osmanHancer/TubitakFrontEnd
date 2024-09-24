@@ -20,6 +20,11 @@
                 <mat-header-cell *matHeaderCellDef> Yüzyıl </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.yuzyil }} </mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="seyyah">
+                <mat-header-cell *matHeaderCellDef> Seyyah </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.seyyah }} </mat-cell>
+            </ng-container>
     
     
       
@@ -37,10 +42,10 @@
                 </mat-cell>
             </ng-container>
     
-            <mat-header-row *matHeaderRowDef="['kodu','seyahatnameadi','yuzyil','action']"></mat-header-row>
+            <mat-header-row *matHeaderRowDef="['kodu','seyahatnameadi','yuzyil','seyyah','action']"></mat-header-row>
             <mat-row *matRowDef="
               let row;
-              columns: ['kodu','seyahatnameadi','yuzyil','action']
+              columns: ['kodu','seyahatnameadi','yuzyil','seyyah','action']
             "></mat-row>
         </mat-table>
     </div>
