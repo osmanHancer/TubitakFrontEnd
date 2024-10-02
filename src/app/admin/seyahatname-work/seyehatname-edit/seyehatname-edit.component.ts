@@ -11,7 +11,7 @@ import { MySharedModules } from '../../../_com/myshared.module';
   styleUrl: './seyehatname-edit.component.scss'
 })
 export class SeyehatnameEditComponent {
-
+  seyyahlar: any
   seyyahId: any;
   async submitForm(arg0: string) {
 
@@ -22,12 +22,12 @@ export class SeyehatnameEditComponent {
       fd.append('Yazar', this.editItem.Yazar);
       fd.append('yuzyil', this.editItem.yuzyil);
       fd.append('Id', this.editItem.Id.toString());
-      
+
       await QW.jsonPost("/seyahatname", fd);
-     
+
     }
-    else if (arg0 == "delete"){
-      await  QW.jsonPost("/seyahatname/delete/"+this.seyyahId);
+    else if (arg0 == "delete") {
+      await QW.jsonPost("/seyahatname/delete/" + this.seyyahId);
 
     }
   }
@@ -36,24 +36,24 @@ export class SeyehatnameEditComponent {
 
   }
   editItem: edititem = {
-    Id: 0, SeyahatnameKodu: '',Yazar:'',yuzyil:''
+    Id: 0, SeyahatnameKodu: '', Yazar: '', yuzyil: ''
   };
 
   async ngOnInit() {
     this.seyyahId = this.route.snapshot.paramMap.get('id')
     if (this.seyyahId != "-1") {
       let user_2 = await QW.json("/seyahatname/" + this.seyyahId);
-      console.log(user_2)
       this.editItem = user_2
     }
-
+    let seyyahlar = await QW.json("/seyyahs");
+    this.seyyahlar = seyyahlar.users;
   }
 }
 type edititem = {
   Id: number
   SeyahatnameKodu: string
-  Yazar:string
-  yuzyil:string
+  Yazar: string
+  yuzyil: string
 
 
 }

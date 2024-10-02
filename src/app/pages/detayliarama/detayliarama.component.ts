@@ -37,20 +37,16 @@ export class DetayliaramaComponent {
   filterLokasyonlar: any;
   binding: any;
   seyyahlar: any
-  filtertextYapi = "";
-  filtertextSeyahat = "";
+  filtertext_1 = "";
+  filtertext_2 = "";
+  state :any;
   mekanTipleri: string[] = ['Han', 'Kervansaray', 'Seçenek 3'];
   selectedMekanTipleri: string[] = [];
   constructor(private route: ActivatedRoute) {
 
 
   }
-  @ViewChild('input') input: any;
 
-  filterLokasyon(): void {
-    const filterValue = this.input.nativeElement.value.toLowerCase();
-    this.filterLokasyonlar = this.lokasyonlar.filter((o: any) => o.mekan_adi.toLowerCase().includes(filterValue));
-  }
   async ngOnInit() {
 
     let seyyah = await QW.json("/seyyahs");
@@ -76,33 +72,71 @@ export class DetayliaramaComponent {
     this.filterYapi();
   }
   filterSeyahat() {
+    if (this.selectedSeyyah != null && this.selectedyuzyil != null) {
+      this.filteredSeyahat = this.editItemListSeyyahMakale.filter((item: any) =>
+        this.selectedyuzyil.some((yuzyil: any) =>
+          item.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())
+        ) || item.seyyah.toLowerCase().includes(this.selectedSeyyah.toLowerCase())
+      );
 
-    this.filteredSeyahat = this.editItemListSeyyahMakale.filter((item: any) =>
-      this.selectedyuzyil.some((yuzyil: string) =>
-        item.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())
-      ) && item.seyyah.toLowerCase().includes(this.selectedSeyyah.toLowerCase())
-    );
+    }
 
+    if (this.state == "ve") {
+
+      this.filteredSeyahat = this.editItemListSeyyahMakale.filter((item: any) => item.metin.toLowerCase().includes(this.filtertext_1.toLowerCase()) &&
+      item.metin.toLowerCase().includes(this.filtertext_2.toLowerCase()));
+    this.seyyahsize = this.filteredSeyahat.length
+
+    }
+    if (this.state == "veya") {
+
+      this.filteredSeyahat = this.editItemListSeyyahMakale.filter((item: any) => item.metin.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+      item.metin.toLowerCase().includes(this.filtertext_2.toLowerCase()));
+    this.seyyahsize = this.filteredSeyahat.length
+
+    }
     this.seyyahsize = this.filteredSeyahat.length
 
   }
   filterYapi() {
 
+    if (this.selectedLokasyon != null && this.selectedyuzyil != null) {
+      this.filteredYapi = this.editItemListYapi.filter((yapi: any) =>
+        this.selectedLokasyon.some((lokasyonId: any) => lokasyonId === yapi.lokasyonId) && this.selectedyuzyil.some((yuzyil: string) =>
+          yapi.yuzyil.toLowerCase().includes(yuzyil.toLowerCase()))
+      );
 
-    this.filteredYapi = this.editItemListYapi.filter((yapi: any) =>
-      this.selectedLokasyon.some((lokasyonId: any) => lokasyonId === yapi.lokasyonId)&& this.selectedyuzyil.some((yuzyil: string) =>
-        yapi.yuzyil.toLowerCase().includes(yuzyil.toLowerCase()))
-    );
-    
-    
-    
-      
-    
-      
-    
+    }
+
+    if (this.state == "ve") {
+      this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+        item.yapi_html_2.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+        item.yapi_html_3.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+        item.yapi_html_4.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+        item.yapi_html_5.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+        item.yapi_html_6.toLowerCase().includes(this.filtertext_1.toLowerCase())
+      );
+      this.filteredYapi = this.filteredYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_2.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_3.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_4.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_5.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_6.toLowerCase().includes(this.filtertext_2.toLowerCase())
+      );
+
+    }
+    if (this.state == "veya") {
+      this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_1.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_2.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_2.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_3.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_3.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_4.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_4.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_5.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_5.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+        item.yapi_html_6.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_6.toLowerCase().includes(this.filtertext_2.toLowerCase())
+      );
+
+    }
 
     this.yapisize = this.filteredYapi.length
-
   }
 
 }

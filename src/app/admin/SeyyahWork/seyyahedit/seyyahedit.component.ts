@@ -20,7 +20,7 @@ export class SeyyaheditComponent {
 
       const fd = new URLSearchParams();
       fd.append('name', this.editItem.name);
-      fd.append('notlae', this.editItem.notlar);
+      fd.append('notlar', this.editItem.notlar);
       fd.append('yuzyil', this.editItem.yuzyil);
       fd.append('anadil', this.editItem.anadil);
       fd.append('ceviri', this.editItem.ceviri);

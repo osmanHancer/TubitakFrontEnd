@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { MySharedModules } from '../../_com/myshared.module';
+import { MySharedModules } from '../../../_com/myshared.module';
 import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
-import { QW } from '../../_lib/qw.helper';
+import { QW } from '../../../_lib/qw.helper';
 
 @Component({
   selector: 'app-fileupload',
@@ -23,45 +23,40 @@ export class FileuploadComponent {
   editItem: galeri = { metin: "", lokasyonId: NaN };
   imgname: string = "";
   public dropped(files: NgxFileDropEntry[]) {
-    this.imgname = "";
-      this.files = files;
+      this.files = files;  
+  }
+  public save(){
+    
+    for (const droppedFile of this.files) {
 
-      for (const droppedFile of files) {
+      if (droppedFile.fileEntry.isFile) {
+        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+        fileEntry.file(async (file: File) => {
+          console.log(droppedFile.relativePath);
+          this.imgname = droppedFile.relativePath.toString();
 
-        if (droppedFile.fileEntry.isFile) {
-          const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-          fileEntry.file(async (file: File) => {
+          const formData = new FormData()
+          formData.append('file', file, droppedFile.relativePath)
 
-            this.imgname = droppedFile.relativePath.toString();
+        await  QW.jsonPost("/file/upload", formData);
 
-            const formData = new FormData()
-            formData.append('file', file, droppedFile.relativePath)
-
-          await  QW.jsonPost("/file/upload", formData);
-
-          });
-        } else {
-          const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
-          console.log(droppedFile.relativePath, fileEntry);
-        }
+        });
+      } else {
+        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
       }
+this.kaydet();
 
-
-
- this.kaydet();
- console.log(this.imgname)
-  
+    }
   }
-
-  public fileOver(event: any) {
+   fileOver(event: any) {
     console.log(event);
   }
 
-  public fileLeave(event: any) {
+   fileLeave(event: any) {
     console.log(event);
   }
 
-public async kaydet(){
+ async kaydet(){
 
   const formData_2 = new URLSearchParams();
   formData_2.append('imgname', this.imgname)

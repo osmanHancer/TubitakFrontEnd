@@ -7,7 +7,9 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-10 col-xl-9">
-				<p><i class="bi bi-calendar2-event-fill"></i> {{editItemList.yuzyil}}. yy.</p>
+				<p><i class="bi bi-calendar2-event-fill"></i> {{editItemList.yuzyil}}</p>
+			<a [href]="'home/mapbox/'+enlem+'/'+boylam">	{{enlem}},{{boylam}}</a>
+				<br>
 				<div>
 					<div [innerHTML]="editItemList.yapi_html_1"></div>
 					

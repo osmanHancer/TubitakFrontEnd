@@ -20,7 +20,8 @@ export class YapiComponent {
 
   }
   images: img[] = [];
-
+  enlem:any;
+  boylam:any
   galeriImgs: any
   editItemList: html = {
     yapi_ismi: '', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '',
@@ -38,12 +39,16 @@ export class YapiComponent {
     let yapı = this.route.snapshot.paramMap.get('yapı')
     const json = await QW.json("/yapimonografisi/" + yapı);
     this.editItemList = json.data;
+    let lokasyon = await QW.json('/lokasyon/' + this.editItemList.lokasyonId);
+    this.enlem = lokasyon.lokasyon.Enlem
+    this.boylam = lokasyon.lokasyon.Boylam
     this.galeriImgs = await QW.json('/galeri/filter/' + this.editItemList.lokasyonId);
+
     this.galeriImgs.images.forEach((element: any) => {
 
       const newImage: img = {
-        image: 'http://localhost:3000/file/'+element.imgname,
-        thumbImage: 'http://localhost:3000/file/'+element.imgname,
+        image: 'http://localhost:3000/file/' + element.imgname,
+        thumbImage: 'http://localhost:3000/file/' + element.imgname,
         title: element.metin
       };
 
@@ -52,7 +57,7 @@ export class YapiComponent {
 
     });
 
-    console.log( this.images)
+    console.log(this.images)
   }
 }
 interface html {

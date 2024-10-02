@@ -28,12 +28,12 @@ export class MakaleEditComponent {
     this.seyahatnameKodu = this.route.snapshot.paramMap.get('id')
     if (this.seyahatnameKodu != '-1') {
       let data = await QW.json("/makale/" + this.seyahatnameKodu);
-      let seyyah = await QW.json("/seyyahs");
-      this.seyyahlar = seyyah.users;
+     
       this.editItem = data.makale
 
     }
-
+    let seyyah = await QW.json("/seyyahs");
+    this.seyyahlar = seyyah.users;
   }
 
   async Save() {

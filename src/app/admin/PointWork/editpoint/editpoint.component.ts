@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MySharedModules } from '../../../_com/myshared.module';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { QW } from '../../../_lib/qw.helper';
 @Component({
   selector: 'app-editpoint',
@@ -41,21 +41,21 @@ export class EditpointComponent {
    
     await QW.jsonPost("/noktalar/delete/"+this.editItem.id.toString()+"/"+ this.editItem.seyahname_kodu,fd);
    }
-
+   await this.router.navigate(['/admin/point']);
 
   }
   editItem: edititem = {
     yuzyil: '', seyahname_kodu: '', yazar: '', seyahatname_adi: '', bolum_chapter_mektupnumarasi: '', sayfa_numarasi: NaN, seyahat_adimi: NaN, anlatida_gecen_mekan_adi: '', mekanin_gunumuzdeki_adi: '',
     enlem: 0.00000000, boylam: 0.000000000, tespit_edilen_konum_olcegi: '', mekan_tipi: '', konaklanma_durumu: '', yapi_envanter_kodu: '', alintilar: '', notlar: '', rota_notlari: '', deniz_yoluyla_ulasim: '',
   id:0,color:""};
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,private router: Router) {
 
 
   }
+  
   async ngOnInit() {
     const seyyahnameKodu = this.route.snapshot.paramMap.get('seyyahnameKodu') 
     const id = this.route.snapshot.paramMap.get('id')
-
     if(id !='-1'){
       this.gizle=false;
     let user_2 = await QW.json("/noktalar/"+seyyahnameKodu+"/"+id);

@@ -1,6 +1,6 @@
 <h2 mat-dialog-title class="modal_title">{{data.Yapi_Adi}}</h2>
 <mat-dialog-content style="padding-top: 30px;" class="mat-typography">
-  <div class="gallery-item">
+  <div  [hidden]="data.DialogImgs ==null ? true:false" class="gallery-item">
     <img class="img-fluid" [attr.src]="data.DialogImgs" />
 
   </div>

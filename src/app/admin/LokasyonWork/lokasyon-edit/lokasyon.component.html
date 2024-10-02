@@ -29,8 +29,8 @@
     </div>
     <div style="display: flex;flex-direction: row;justify-content: space-around;">
         <mat-form-field style="width: 40%;">
-            <mat-label>Envanter Kodu </mat-label>
-            <input required matInput placeholder="Envanter Kodu" [(ngModel)]="editItem.mekan_adi" />
+            <mat-label>Anlatıda Geçen Mekan Adı</mat-label>
+            <input required matInput placeholder="Anlatıda Geçen Mekan Adı" [(ngModel)]="editItem.mekan_adi" />
         </mat-form-field>
         <mat-form-field style="width: 40%;">
             <mat-label>Envanter Kodu </mat-label>
@@ -57,7 +57,7 @@
                 İptal<mat-icon>cancel</mat-icon>
             </button>
             <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px" color="coral"
-                routerLink="../../lokasyon" (click)="submitForm('delete')">
+                 (click)="submitForm('delete')">
                 Sil<mat-icon>delete</mat-icon>
             </button>
             <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px" color="coral"

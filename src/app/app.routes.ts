@@ -11,7 +11,7 @@ import { LayoutAdminComponent } from './_layoutadmin/layoutadmin.component';
 import { LayoutHomeComponent } from './_layouthome/layouthome.component';
 import { YapiComponent } from './pages/yapı/yapi.component';
 import { PageMakaleComponent } from './pages/pageMakale/makale.component';
-import { FileuploadComponent } from './admin/fileupload/fileupload.component';
+import { FileuploadComponent } from './admin/imagework/imageadd/fileupload.component';
 import { SahacalismasiComponent } from './admin/sahacalismasi/sahacalismasi/sahacalismasi.component';
 import { SahacalismasieditComponent } from './admin/sahacalismasi/sahacalismasiedit/sahacalismasiedit.component';
 import { EditorComponent } from './admin/editorwork/editor/editor.component';
@@ -29,6 +29,7 @@ import { ProjectteamComponent } from './pages/projectteam/projectteam.component'
 import { HakkindaComponent } from './pages/hakkinda/hakkinda.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DetayliaramaComponent } from './pages/detayliarama/detayliarama.component';
+import { ImagelistComponent } from './admin/imagework/imagelist/imagelist.component';
 
 export const routes: Routes = [
 
@@ -107,8 +108,12 @@ export const routes: Routes = [
                 component: YapilarComponent
             },
             {
-                path: "fileupload",
+                path: "imageadd",
                 component: FileuploadComponent
+            },
+            {
+                path: "imagelist",
+                component: ImagelistComponent
             },
             {
                 path: "makale",

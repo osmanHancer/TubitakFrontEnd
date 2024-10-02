@@ -86,7 +86,7 @@ export class Mapbox2Component implements OnInit {
       feature.name_tr.toLowerCase().includes(event.target.value.toLowerCase())
     );
 
- 
+
     this.yuzyillar = Array.from(
       new Set(
         this.maps_data
@@ -100,7 +100,7 @@ export class Mapbox2Component implements OnInit {
   async ngOnInit() {
 
 
-    
+
     this.maps_data = allpoints;
     this.gizle = true;
     this.map = new mapboxgl.Map({
@@ -229,7 +229,7 @@ export class Mapbox2Component implements OnInit {
     }
   }
   Heatmap(id: any) {
-  
+
 
     var location = [
       { point_type: 'YAPI', icon: 'castle_1', size: 2 },
@@ -389,7 +389,7 @@ export class Mapbox2Component implements OnInit {
           'rgb(255, 0, 0)' // Tam kırmızı
         ],
       },
-      
+
 
     });
     this.points = [];
@@ -488,17 +488,17 @@ export class Mapbox2Component implements OnInit {
 
             });
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
-              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
-              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-              this.dialogImgs = this.dialogImgs.images;
-              this.dialogImgs.forEach((element: any) => {
-                const newImage: img = {
-                  image: 'http://localhost:3000/file/' + element.imgname,
-                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
-                  title: element.metin
-                };
-                this.imagesslide.push(newImage);
-              });
+              // let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
+              // this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              // this.dialogImgs = this.dialogImgs.images;
+              // this.dialogImgs.forEach((element: any) => {
+              //   const newImage: img = {
+              //     image: 'http://localhost:3000/file/' + element.imgname,
+              //     thumbImage: 'http://localhost:3000/file/' + element.imgname,
+              //     title: element.metin
+              //   };
+              //   this.imagesslide.push(newImage);
+              // });
               this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
 
             }
@@ -547,17 +547,17 @@ export class Mapbox2Component implements OnInit {
             });
 
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
-              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
-              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-              this.dialogImgs = this.dialogImgs.images;
-              this.dialogImgs.forEach((element: any) => {
-                const newImage: img = {
-                  image: 'http://localhost:3000/file/' + element.imgname,
-                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
-                  title: element.metin
-                };
-                this.imagesslide.push(newImage);
-              });
+              // let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
+              // this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              // this.dialogImgs = this.dialogImgs.images;
+              // this.dialogImgs.forEach((element: any) => {
+              //   const newImage: img = {
+              //     image: 'http://localhost:3000/file/' + element.imgname,
+              //     thumbImage: 'http://localhost:3000/file/' + element.imgname,
+              //     title: element.metin
+              //   };
+              //   this.imagesslide.push(newImage);
+              // });
               this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
 
             }
@@ -617,7 +617,6 @@ export class Mapbox2Component implements OnInit {
 
     this.map.flyTo({ center: [parseFloat(clickPoint.data[0]['boylam']), parseFloat(clickPoint.data[0]['enlem'])], zoom: 11, speed: 0.6 });
 
-    console.log(alintilar);
     alintilar.Id.forEach((element: any) => {
 
       if (element.alintilar != "")
@@ -626,20 +625,22 @@ export class Mapbox2Component implements OnInit {
     });
 
     if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
-      let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['enlem'] + '/' + clickPoint.data[0]['boylam']);
-      this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-      this.dialogImgs = this.dialogImgs.images;
-      this.dialogImgs.forEach((element: any) => {
-        const newImage: img = {
-          image: 'http://localhost:3000/file/' + element.imgname,
-          thumbImage: 'http://localhost:3000/file/' + element.imgname,
-          title: element.metin
-        };
-        this.imagesslide.push(newImage);
-      });
+      // let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['enlem'] + '/' + clickPoint.data[0]['boylam']);
+      // this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+      // this.dialogImgs = this.dialogImgs.images;
+      // this.dialogImgs.forEach((element: any) => {
+      //   const newImage: img = {
+      //     image: 'http://localhost:3000/file/' + element.imgname,
+      //     thumbImage: 'http://localhost:3000/file/' + element.imgname,
+      //     title: element.metin
+      //   };
+      //   this.imagesslide.push(newImage);
+      // });
       this.point_info_dialog = clickPoint.data[0];
     }
     this.point_info_dialog.alintilar = this.alintilar
+    console.log(this.imagesslide);
+
     this.openDialog();
 
 

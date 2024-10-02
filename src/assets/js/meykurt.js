@@ -78,14 +78,14 @@ $( ".makale-tema-element" ).on( "click", addColorToTheme);
 
 
 
-var elementPosition = $('.makale-tema-holder').offset();
+// var elementPosition = $('.makale-tema-holder').offset();
 
-$(window).scroll(function(){
-        if($(window).scrollTop() > elementPosition.top - 50 && window.innerWidth < 992){
-              $('.makale-tema-holder').css('position','fixed').css('top','75px');
-        }  else {
-			$('.makale-tema-holder').css('position','static');
-		}
-});
+// $(window).scroll(function(){
+//         if($(window).scrollTop() > elementPosition.top - 50 && window.innerWidth < 992){
+//               $('.makale-tema-holder').css('position','fixed').css('top','75px');
+//         }  else {
+// 			$('.makale-tema-holder').css('position','static');
+// 		}
+// });
 
 

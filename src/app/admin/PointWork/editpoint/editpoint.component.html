@@ -1,7 +1,7 @@
 <div style="display: flex;flex-direction: column;margin-top: 2%;">
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
-  
-    <mat-form-field  style="width: 40%;">
+
+    <mat-form-field style="width: 40%;">
       <mat-label>Yüzyıl</mat-label>
       <mat-select matSort [(ngModel)]="editItem.yuzyil">
         <mat-option value="11.yy">11.yy</mat-option>
@@ -17,7 +17,7 @@
     </mat-form-field>
     <mat-form-field style="width: 40%;">
       <mat-label>Seyahname Kodu </mat-label>
-      <input  required matInput placeholder="Seyahname Kodu " [(ngModel)]="editItem.seyahname_kodu" />
+      <input required matInput placeholder="Seyahname Kodu " [(ngModel)]="editItem.seyahname_kodu" />
     </mat-form-field>
   </div>
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
@@ -44,7 +44,7 @@
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
     <mat-form-field style="width: 40%;">
       <mat-label>Seyahat Adımı </mat-label>
-      <input  required matInput placeholder="Seyahat Adımı" [(ngModel)]="editItem.seyahat_adimi" />
+      <input type="number" required matInput placeholder="Seyahat Adımı" [(ngModel)]="editItem.seyahat_adimi" />
     </mat-form-field>
     <mat-form-field style="width: 40%;">
       <mat-label>Anlatıda Geçen Mekan Adı </mat-label>
@@ -120,20 +120,25 @@
       </mat-select>
     </mat-form-field>
 
+    <mat-form-field style="width: 40%;">
+      <mat-label>ID </mat-label>
+      <input required matInput placeholder="ID" [(ngModel)]="editItem.id" />
+    </mat-form-field>
+  </div>
 
-    <div style="width: 40%;">
-      <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px;" color="coral" routerLink="../../../point"
-        (click)="submitForm('update')">
-        Kaydet<mat-icon>add</mat-icon>
-      </button>
-      <button [hidden]="gizle" mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral" routerLink="../../../point"
-        routerLink="../../../point" (click)="submitForm('delete')">
-        Sil<mat-icon>delete</mat-icon>
-      </button>
-      <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral" routerLink="../../../point">
-        İptal<mat-icon>cancel</mat-icon>
-      </button>
+  <div style="width: 95%;display: flex;flex-direction: row;justify-content:end">
+    <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px;" color="coral"
+      (click)="submitForm('update')" >
+      Kaydet<mat-icon>add</mat-icon>
+    </button>
+    <button [hidden]="gizle" mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral"
+      (click)="submitForm('delete')">
+      Sil<mat-icon>delete</mat-icon>
+    </button>
+    <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral"
+      routerLink="../../../point">
+      İptal<mat-icon>cancel</mat-icon>
+    </button>
 
-    </div>
   </div>
 </div>

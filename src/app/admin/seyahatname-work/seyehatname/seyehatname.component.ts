@@ -17,7 +17,6 @@ export class SeyehatnameComponent {
   async ngOnInit() {
     const json =  await QW.json("/seyahatname");
     this.dataSource.data=json.users;
-    console.log(json.users);
   }
   valuechange(searchValue: any): void {
     this.dataSource.filter=searchValue;

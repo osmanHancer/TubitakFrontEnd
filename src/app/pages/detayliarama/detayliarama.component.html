@@ -10,24 +10,22 @@
 
             <div class="col-12 col-lg-5 mb-5">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="metin1" aria-describedby="kutuphaneSearch"
+                    <input  [(ngModel)]="filtertext_1" type="text" class="form-control" id="metin1" aria-describedby="kutuphaneSearch"
                         placeholder="Aranacak metni giriniz" value="Arama metni">
                 </div>
 
             </div>
             <div class="col-6 col-lg-2 mb-5">
                 <div class="form-group">
-                    <select class="form-select" aria-label="ve / veya">
-                        <option>ve / veya</option>
-                        <option selected value="1">ve</option>
-                        <option value="2">veya</option>
-                    </select>
-                </div>
-
+                    <ng-select  [(ngModel)]="state" >
+                      <ng-option value="ve">ve</ng-option>
+                      <ng-option value="veya">veya</ng-option>
+                    </ng-select>
+                  </div>
             </div>
             <div class="col-12 col-lg-5 mb-5">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="metin2" aria-describedby="kutuphaneSearch"
+                    <input  [(ngModel)]="filtertext_2" type="text" class="form-control" id="metin2" aria-describedby="kutuphaneSearch"
                         placeholder="Aranacak metni giriniz" value="Arama metni">
                 </div>
 

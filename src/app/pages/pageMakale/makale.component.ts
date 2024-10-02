@@ -28,7 +28,7 @@ async ngOnInit() {
 }
 
   async ngAfterViewInit(): Promise<void> {
-   await this.loadScript("/assets/js/meykurt.js");
+  //  await this.loadScript("/assets/js/meykurt.js");
   }
 
   public loadScript(url:string) {

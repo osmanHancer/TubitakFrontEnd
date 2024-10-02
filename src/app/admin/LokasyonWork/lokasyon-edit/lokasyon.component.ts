@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MySharedModules } from '../../../_com/myshared.module';
 import { QW } from '../../../_lib/qw.helper';
 ;
@@ -25,23 +25,24 @@ export class LokasyonComponent {
       fd.append('Lokasyon_Adi', this.editItem.Lokasyon_Adi);
       if (this.Id != "-1") {
         fd.append('Id', this.Id);
-       await QW.jsonPost("/lokasyon",fd);
+        await QW.jsonPost("/lokasyon", fd);
       }
       else {
-        await  QW.jsonPost("/lokasyon", fd);
+        await QW.jsonPost("/lokasyon", fd);
       }
     }
     else {
-      await  QW.jsonPost("/lokasyon/delete/" + this.Id);
+      await QW.jsonPost("/lokasyon/delete/" + this.Id);
     }
+    await this.router.navigate(['/admin/lokasyon']);
 
   }
   editItem: edititem = {
-    Id: NaN,Lokasyon_Adi:'',
-    Enlem: '10.11', Boylam: '11.22', Mekanin_Gunumuzdeki_Adi: '', Olcek: '',mekan_adi:'',Envanter_Kodu:''
+    Id: NaN, Lokasyon_Adi: '',
+    Enlem: '10.11', Boylam: '11.22', Mekanin_Gunumuzdeki_Adi: '', Olcek: '', mekan_adi: '', Envanter_Kodu: ''
   };
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private router: Router) {
 
 
   }
@@ -66,8 +67,8 @@ type edititem = {
   Boylam: string
   Mekanin_Gunumuzdeki_Adi: string
   Olcek: string
-  mekan_adi:string
-  Envanter_Kodu:string
-  Lokasyon_Adi:string
+  mekan_adi: string
+  Envanter_Kodu: string
+  Lokasyon_Adi: string
 
 }
