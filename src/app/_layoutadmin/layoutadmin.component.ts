@@ -9,5 +9,5 @@ import { MySharedModules } from '../_com/myshared.module';
 })
 export class LayoutAdminComponent {
   title = 'Admin';
-opened!: boolean;
+opened: boolean=true;;
 }
