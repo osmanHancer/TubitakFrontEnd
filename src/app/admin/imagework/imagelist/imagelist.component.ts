@@ -12,22 +12,41 @@ import { QW } from '../../../_lib/qw.helper';
   styleUrl: './imagelist.component.scss'
 })
 export class ImagelistComponent {
+
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+  LokasyonSource: any;
   dataSource = new MatTableDataSource();
-  jsondata:any;
+  jsondata: any;
   columns: any;
-  str :any;
+  str: any;
   async ngOnInit() {
-    const json =  await QW.json("/lokasyon");
-    this.dataSource.data=json.lokasyon;
-    console.log(this.dataSource.data);
+
+    const json = await QW.json("/galeri");
+    this.dataSource.data = json.galeri;
+    const jsonlokasyon = await QW.json("/lokasyon");
+    this.LokasyonSource = jsonlokasyon.lokasyon;
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
-    }
+  }
 
   valuechange(searchValue: any): void {
-    this.dataSource.filter=searchValue;
+    this.dataSource.filter = searchValue;
+  }
+  async update(imagename: string, metin: string, lokasyonId: any) {
+    console.log(metin, lokasyonId);
+    const fd = new URLSearchParams();
+    fd.append('imgname', imagename);
+    fd.append('metin', metin);
+    fd.append('lokasyonId', lokasyonId);
+
+    await QW.jsonPost("/galeri", fd);
+  }
+  async delete(arg0: any) {
+    await QW.jsonPost("/galeri/delete/" + arg0);
+    const json = await QW.json("/galeri");
+    this.dataSource.data = json.galeri;
   }
 }

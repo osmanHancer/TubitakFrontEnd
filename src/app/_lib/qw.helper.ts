@@ -11,7 +11,7 @@ export class QW {
   public static host = window.location.hostname;
   public static protocol = window.location.protocol;
   public static isDev = this.port == '4200';
-  public static auth = "myusername:password123";
+  public static token = "";
 
 
   public static req(url: string, data: any = null, method = 'POST') {
@@ -22,7 +22,7 @@ export class QW {
     return fetch(apiUrl + url, {
       method: method,
       body: data,
-      headers: this.auth!=""?{'Authorization': 'Basic ' + btoa(this.auth)}:{}
+      headers: this.token!=""?{'Authorization': 'Bearer ' + this.token}:{}
     });
   }
 
@@ -41,12 +41,20 @@ export class QW {
   public static async jsonPost(url: string, data: any = null, method = 'POST') {
     try {
       const res = await this.req(url, data, method);
+  
+      // Eğer HTTP status 200-299 arasında değilse hata fırlat
+      if (!res.ok) {
+        throw new Error(`HTTP error! Status: ${res.status} ${res.statusText}`);
+      }
+  
       return await res.json();
     } catch (error) {
-      console.log(error)
+      // Burada console.log ile hata detayını yakalıyoruz
+      console.log(error,"osman");
       return null;
     }
   }
+  
 
   public static async text(url: string, data: any = '', method = 'GET') {
     try {

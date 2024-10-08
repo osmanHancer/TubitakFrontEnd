@@ -27,10 +27,10 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Renk</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.color }} </mat-cell>
             </ng-container> -->
-            <ng-container matColumnDef="deniz_yoluyla_ulasim">
+            <!-- <ng-container matColumnDef="deniz_yoluyla_ulasim">
                 <mat-header-cell *matHeaderCellDef>Deniz Ulaşımı</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.deniz_yoluyla_ulasim }} </mat-cell>
-            </ng-container>
+            </ng-container> -->
      
 
             <ng-container matColumnDef="konaklanma_durumu">
@@ -52,10 +52,10 @@
                 <mat-header-cell *matHeaderCellDef> notlar </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.notlar }} </mat-cell>
             </ng-container> -->
-            <ng-container matColumnDef="rota_notlari">
+            <!-- <ng-container matColumnDef="rota_notlari">
                 <mat-header-cell *matHeaderCellDef> Rota Notlari </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.rota_notlari }} </mat-cell>
-            </ng-container>
+            </ng-container> -->
             <!-- <ng-container matColumnDef="sayfa_numarasi">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> sayfa_numarasi </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.sayfa_numarasi }} </mat-cell>
@@ -69,8 +69,8 @@
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Seyahatname Adi </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.seyahatname_adi }} </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="seyahname_kodu">
-                <mat-header-cell *matHeaderCellDef mat-sort-header> Seyahname Kodu </mat-header-cell>
+            <ng-container matColumnDef="seyahatname_kodu">
+                <mat-header-cell *matHeaderCellDef  > Seyahatname Kodu </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.seyahname_kodu }} </mat-cell>
             </ng-container>
             <ng-container matColumnDef="tespit_edilen_konum_olcegi">
@@ -106,11 +106,11 @@
                 </mat-cell>
             </ng-container>
             <mat-header-row
-                *matHeaderRowDef="[ 'anlatida_gecen_mekan_adi', 'boylam','enlem','deniz_yoluyla_ulasim','konaklanma_durumu','mekanin_gunumuzdeki_adi','rota_notlari', 'seyahat_adimi','seyahatname_adi','seyahname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']">
+                *matHeaderRowDef="[ 'anlatida_gecen_mekan_adi', 'boylam','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi', 'seyahat_adimi','seyahatname_adi','seyahatname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']">
             </mat-header-row>
             <mat-row *matRowDef="
               let row;
-              columns: [ 'anlatida_gecen_mekan_adi', 'boylam','enlem','deniz_yoluyla_ulasim','konaklanma_durumu','mekanin_gunumuzdeki_adi','rota_notlari', 'seyahat_adimi','seyahatname_adi','seyahname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']
+              columns: [ 'anlatida_gecen_mekan_adi', 'boylam','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi', 'seyahat_adimi','seyahatname_adi','seyahatname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']
             "></mat-row>
         </mat-table>
         <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons

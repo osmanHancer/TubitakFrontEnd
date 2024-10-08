@@ -30,7 +30,6 @@ export class PointComponent {
     
     const json =  await QW.json("/noktalar");
    this.dataSource.data=json.users
-   console.log(this.dataSource.data);
   }
 
   valuechange(searchValue: any): void {

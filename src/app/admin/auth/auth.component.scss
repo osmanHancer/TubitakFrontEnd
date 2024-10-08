@@ -1,0 +1,20 @@
+
+
+
+.form-container {
+    width: 40%; /* Sayfanın %40'ını kaplasın */
+    background-color: #f8f9fa; /* Arkaplan rengi isteğe bağlı */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+
+.app-container {
+    background-color: red; /* Arka plan kırmızı */
+    height: 100%; /* En az ekran yüksekliğini kapla */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

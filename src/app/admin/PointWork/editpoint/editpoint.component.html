@@ -67,21 +67,30 @@
       <input required matInput placeholder="Boylam " [(ngModel)]="editItem.boylam" />
     </mat-form-field>
     <mat-form-field style="width: 40%;">
-      <mat-label>Tespit Edilen Konum Ölçeği (Şehir/Köy/Yapı)</mat-label>
+      <mat-label>Tespit Edilen Konum Ölçeği </mat-label>
       <mat-select [(ngModel)]="editItem.tespit_edilen_konum_olcegi">
-        <mat-option value="Şehir">Şehir</mat-option>
-        <mat-option value="Köy">Köy</mat-option>
-        <mat-option value="Kasaba">Kasaba</mat-option>
-        <mat-option value="İlçe">İlçe</mat-option>
-        <mat-option value="Ada">Ada</mat-option>
-        <mat-option value="Yerleşim Dışı Alan">Yerleşim Dışı Alan</mat-option>
+        <mat-option value="YAKLAŞIK KONUM">YAKLAŞIK KONUM</mat-option>
+        <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
+        <mat-option value="YAPI">YAPI</mat-option>
+       
       </mat-select>
     </mat-form-field>
   </div>
   <div style="display: flex;flex-direction: row;justify-content: space-around;">
     <mat-form-field style="width: 40%;">
       <mat-label>Mekan Tipi </mat-label>
-      <input required matInput placeholder="Mekan Tipi" [(ngModel)]="editItem.mekan_tipi" />
+      <mat-select [(ngModel)]="editItem.mekan_tipi">
+        <mat-option value="KERVANSARAY / HAN">KERVANSARAY / HAN</mat-option>
+        <mat-option value="ÖZEL MÜLK">ÖZEL MÜLK</mat-option>
+        <mat-option value="MİSAFİRHANE / OTEL / PANSİYON">MİSAFİRHANE / OTEL / PANSİYON</mat-option>
+        <mat-option value="AÇIK ALANDA KONAKLAMA">AÇIK ALANDA KONAKLAMA</mat-option>
+        <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
+        <mat-option value="TANIMLANMAYAN MEKAN">TANIMLANMAYAN MEKAN</mat-option>
+        <mat-option value="DİNİ YAPI">DİNİ YAPI</mat-option>
+        <mat-option value="ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR">ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR</mat-option>
+        <mat-option value="DİĞER">DİĞER</mat-option>
+       
+      </mat-select>
     </mat-form-field>
     <mat-form-field style="width: 40%;">
       <mat-label>Konaklanma Durumu (Evet/Hayır) </mat-label>

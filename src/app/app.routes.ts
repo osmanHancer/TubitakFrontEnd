@@ -30,102 +30,131 @@ import { HakkindaComponent } from './pages/hakkinda/hakkinda.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { DetayliaramaComponent } from './pages/detayliarama/detayliarama.component';
 import { ImagelistComponent } from './admin/imagework/imagelist/imagelist.component';
+import { AuthComponent } from './admin/auth/auth.component';
+import { AuthGuard } from './_lib/auth.guard';
 
 export const routes: Routes = [
 
 
+
+    {
+        path:"login",
+        component:AuthComponent
+    },
     {
 
         path: "admin",
+        canActivate:[AuthGuard],
         component: LayoutAdminComponent,
         children: [
+            { path: '', redirectTo: 'auth', pathMatch: 'full' },
 
-      
-
-
+           
             {
                 path: "seyahatname",
-                component: SeyehatnameComponent
+                component: SeyehatnameComponent,
+                
+
             },
             {
                 path: "seyahatname/:id",
                 component: SeyehatnameEditComponent
+
             },
             {
                 path: "adım/:id",
                 component: AdimlarEditComponent
+
             },
             {
                 path: "adım",
                 component: AdimlarComponent
+
             },
             {
                 path: "saha",
                 component: SahacalismasiComponent
+
             },
             {
                 path: "editsaha/:sahaismi",
                 component: SahacalismasieditComponent
+
             },
             {
                 path: "editpoint/:seyyahnameKodu/:id",
                 component: EditpointComponent
+
             },
             {
                 path: "mapbox2",
-                component: Mapbox2Component
+                component: Mapbox2Component,
+
             },
             {
                 path: "lokasyon",
                 component: LokasyonEditComponent
+
             },
             {
                 path: "lokasyonedit/:gunumuzdeki_adi",
                 component: LokasyonComponent
+
             },
             {
                 path: "point",
                 component: PointComponent
+
             },
             {
                 path: "seyyah",
                 component: SeyyahComponent
+
             },
             {
                 path: "seyyah/:id",
                 component: SeyyaheditComponent
+
             },
             {
                 path: "editor",
                 component: EditorComponent
+
             },
             {
                 path: "editor/:id",
                 component: EditorEditComponent
+
             },
             {
                 path: "yapılar",
                 component: YapilarComponent
+
             },
             {
                 path: "imageadd",
                 component: FileuploadComponent
+
             },
             {
                 path: "imagelist",
                 component: ImagelistComponent
+
             },
             {
                 path: "makale",
                 component: MakaleComponent
+
             },
             {
                 path: "makale/:id",
                 component: MakaleEditComponent
+
             },
             {
                 path: "deneme",
                 component: DenemeComponent
+
             },
 
         ]

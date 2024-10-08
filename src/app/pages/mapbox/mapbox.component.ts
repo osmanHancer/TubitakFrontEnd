@@ -67,19 +67,7 @@ export class MapboxComponent implements OnInit {
 
   line_animation_kod: any
 
-  onBeforeSlide = (detail: BeforeSlideDetail): void => {
-    const { index, prevIndex } = detail;
-    console.log(index, prevIndex);
-  };
 
-  settings = {
-    counter: false,
-    plugins: [lgZoom],
-    interval: 100
-  };
-  constructor(
-    private route: ActivatedRoute
-  ) { }
 
   mapsDataFilter(event: any) {
 
@@ -97,6 +85,10 @@ export class MapboxComponent implements OnInit {
     ).sort((a: any, b: any) => a - b);
 
   }
+  
+  constructor(
+    private route: ActivatedRoute
+  ) { }
 
   async ngOnInit() {
 
@@ -707,7 +699,6 @@ export class MapboxComponent implements OnInit {
     }
     this.point_info_dialog.alintilar = this.alintilar
 
-    console.log(this.point_info_dialog);
     this.openDialog();
 
 
