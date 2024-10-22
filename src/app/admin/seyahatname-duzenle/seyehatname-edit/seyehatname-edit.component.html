@@ -1,31 +1,31 @@
-<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 50%">
+<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 40%">
     <div style="display: flex;justify-content: space-around;">
 
 
-        <mat-form-field style="width: 50%;">
+        <mat-form-field style="width: 40%;" >
             <mat-label>Seyyahlar </mat-label>
             <mat-select [(ngModel)]="editItem.Yazar">
                 <mat-option *ngFor="let item of seyyahlar" [value]="item.name">{{item.name}} </mat-option>
 
             </mat-select>
         </mat-form-field>
-        <mat-form-field style="width: 50%;">
+        <mat-form-field style="width:40%;"class="mx-2">
             <mat-label>Kodu </mat-label>
             <input required matInput placeholder="Kodu" [(ngModel)]="editItem.SeyahatnameKodu" />
         </mat-form-field>
 
-        <mat-form-field style="width: 20%;">
+        <mat-form-field style="width: 30%;">
             <mat-label>Yüzyıl</mat-label>
             <mat-select [(ngModel)]="editItem.yuzyil">
-                <mat-option value="11.yy">11.yy</mat-option>
-                <mat-option value="12.yy">12.yy</mat-option>
-                <mat-option value="13.yy">13.yy</mat-option>
-                <mat-option value="14.yy">14.yy</mat-option>
-                <mat-option value="15.yy">15.yy</mat-option>
-                <mat-option value="16.yy">16.yy</mat-option>
-                <mat-option value="17.yy">17.yy</mat-option>
-                <mat-option value="18.yy">18.yy</mat-option>
-                <mat-option value="19.yy">19.yy</mat-option>
+                <mat-option value="11. yüzyıl">11. yüzyıl</mat-option>
+                <mat-option value="12. yüzyıl">12. yüzyıl</mat-option>
+                <mat-option value="13. yüzyıl">13. yüzyıl</mat-option>
+                <mat-option value="14. yüzyıl">14. yüzyıl</mat-option>
+                <mat-option value="15. yüzyıl">15. yüzyıl</mat-option>
+                <mat-option value="16. yüzyıl">16. yüzyıl</mat-option>
+                <mat-option value="17. yüzyıl">17. yüzyıl</mat-option>
+                <mat-option value="18. yüzyıl">18. yüzyıl</mat-option>
+                <mat-option value="19. yüzyıl">19. yüzyıl</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

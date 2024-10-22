@@ -1,0 +1,112 @@
+<div style="margin-top: 1%;">
+    <mat-form-field appearance="fill" style="width: 250px">
+        <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
+    </mat-form-field>
+    <div style="width: 100%; overflow-x: auto">
+        <mat-table [dataSource]="dataSource" >
+
+
+            <ng-container matColumnDef="Envanter_Kodu">
+                <mat-header-cell *matHeaderCellDef> Envanter Kodu</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Envanter_Kodu }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Yapi_Adi">
+                <mat-header-cell *matHeaderCellDef> Yapı İsmi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Yapi_Adi }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="enlem">
+                <mat-header-cell *matHeaderCellDef> Enlem </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.enlem }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="color">
+                <mat-header-cell *matHeaderCellDef> Renk</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.color }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="boylam">
+                <mat-header-cell *matHeaderCellDef>Boylam</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.boylam }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Guzergah">
+                <mat-header-cell *matHeaderCellDef> Güzergah </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Guzergah }} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Donemi">
+                <mat-header-cell *matHeaderCellDef> Dönemi</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Donemi }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="mekan_tipi">
+                <mat-header-cell *matHeaderCellDef> mekan_tipi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.mekan_tipi }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="Kitabesi">
+                ">
+                <mat-header-cell *matHeaderCellDef>Kitabesi
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Kitabesi
+                    }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="notlar">
+                <mat-header-cell *matHeaderCellDef> notlar </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.notlar }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="Banisi">
+                <mat-header-cell *matHeaderCellDef> Banisi</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Banisi }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="sayfa_numarasi">
+                <mat-header-cell *matHeaderCellDef> sayfa_numarasi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.sayfa_numarasi }} </mat-cell>
+            </ng-container> -->
+
+            <!-- <ng-container matColumnDef="Seyahatnamelerdeki_Anlatimi">
+                <mat-header-cell *matHeaderCellDef> Seyahatnamelerdeki Anlatımı </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Seyahatnamelerdeki_Anlatimi }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="Durumu">
+                <mat-header-cell *matHeaderCellDef> Durumu </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Durumu }} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="Bugunki_Kullanimi">
+                <mat-header-cell *matHeaderCellDef> Bugünki Kullanımı </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Bugunki_Kullanimi }} </mat-cell>
+            </ng-container>
+            <!-- <ng-container matColumnDef="Mimari_Ozellikler">
+                <mat-header-cell *matHeaderCellDef> Mimari Özellikler </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Mimari_Ozellikler }} </mat-cell>
+            </ng-container> -->
+            <ng-container matColumnDef="Yapim_Teknigi_Ve_Malzeme">
+                <mat-header-cell *matHeaderCellDef> Yapim ve Tekniği </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.Yapim_Teknigi_Ve_Malzeme }} </mat-cell>
+            </ng-container>
+         
+
+
+
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef>
+                    <button mat-mini-fab routerLink="../arazicalismasi-edit/-1"
+                        style="background-color: rgb(117, 107, 93); color: coral">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row; let i = index">
+                    <button mat-mini-fab routerLink="../arazicalismasi-edit/{{row.Envanter_Kodu}}"
+                        style="background-color: rgb(117, 107, 93); color: coral" button>
+                        <mat-icon>edit</mat-icon></button>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row
+                *matHeaderRowDef="[ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi','Durumu','Bugunki_Kullanimi','Yapim_Teknigi_Ve_Malzeme','action']">
+            </mat-header-row>
+            <mat-row *matRowDef="
+              let row;
+              columns: [ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi', 'Durumu','Bugunki_Kullanimi','Yapim_Teknigi_Ve_Malzeme','action']
+            "></mat-row>
+        </mat-table>
+        <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>

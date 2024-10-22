@@ -42,10 +42,7 @@ export class LokasyonComponent {
     Enlem: '10.11', Boylam: '11.22', Mekanin_Gunumuzdeki_Adi: '', Olcek: '', mekan_adi: '', Envanter_Kodu: ''
   };
 
-  constructor(private route: ActivatedRoute, private router: Router) {
-
-
-  }
+  constructor(private route: ActivatedRoute, private router: Router) {}
   async ngOnInit() {
     this.Id = this.route.snapshot.paramMap.get('gunumuzdeki_adi')
     if (this.Id != "-1") {

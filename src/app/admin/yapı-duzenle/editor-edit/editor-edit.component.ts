@@ -4,10 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { MySharedModules } from '../../../_com/myshared.module';
 import { QW } from '../../../_lib/qw.helper';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { NgLabelTemplateDirective, NgOptionTemplateDirective, NgSelectComponent, NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
 @Component({
   selector: 'app-editor-edit',
   standalone: true,
-  imports: [AngularEditorModule, FormsModule, MySharedModules],
+  imports: [MySharedModules, CommonModule, NgLabelTemplateDirective,
+    NgOptionTemplateDirective,
+    NgSelectComponent, NgSelectModule,AngularEditorModule,FormsModule],
   templateUrl: './editor-edit.component.html',
   styleUrl: './editor-edit.component.scss'
 })

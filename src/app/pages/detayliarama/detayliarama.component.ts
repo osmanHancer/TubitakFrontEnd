@@ -29,7 +29,7 @@ export class DetayliaramaComponent {
   seyyahsize: any;
   filteredYapi: any
   filteredSeyahat: any
-  selectedSeyyah: any;
+  selectedSeyyah: any=null;
   selectedLokasyon: any[] = [];
   selectedyapi: any[] = [];
   selectedyuzyil: any[] = [];
@@ -72,7 +72,10 @@ export class DetayliaramaComponent {
     this.filterYapi();
   }
   filterSeyahat() {
-    if (this.selectedSeyyah != null && this.selectedyuzyil != null) {
+    if(this.selectedSeyyah == null && this.selectedyuzyil.length == 0 && this.state != "veya" && this.state != "ve"){
+      this.filteredSeyahat = this.editItemListSeyyahMakale
+    }
+    if (this.selectedSeyyah != null && this.selectedyuzyil.length != 0) {
       this.filteredSeyahat = this.editItemListSeyyahMakale.filter((item: any) =>
         this.selectedyuzyil.some((yuzyil: any) =>
           item.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())
@@ -99,8 +102,10 @@ export class DetayliaramaComponent {
 
   }
   filterYapi() {
-
-    if (this.selectedLokasyon != null && this.selectedyuzyil != null) {
+    if(this.selectedLokasyon.length == 0 && this.selectedyuzyil.length == 0 && this.state != "veya" && this.state != "ve"){
+      this.filteredYapi = this.editItemListYapi
+    }
+    if (this.selectedLokasyon.length != 0 && this.selectedyuzyil.length != 0) {
       this.filteredYapi = this.editItemListYapi.filter((yapi: any) =>
         this.selectedLokasyon.some((lokasyonId: any) => lokasyonId === yapi.lokasyonId) && this.selectedyuzyil.some((yuzyil: string) =>
           yapi.yuzyil.toLowerCase().includes(yuzyil.toLowerCase()))
@@ -109,23 +114,32 @@ export class DetayliaramaComponent {
     }
 
     if (this.state == "ve") {
-      this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
-        item.yapi_html_2.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
-        item.yapi_html_3.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
-        item.yapi_html_4.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
-        item.yapi_html_5.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
-        item.yapi_html_6.toLowerCase().includes(this.filtertext_1.toLowerCase())
-      );
-      this.filteredYapi = this.filteredYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
-        item.yapi_html_2.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
-        item.yapi_html_3.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
-        item.yapi_html_4.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
-        item.yapi_html_5.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
-        item.yapi_html_6.toLowerCase().includes(this.filtertext_2.toLowerCase())
-      );
-
+      this.filteredYapi = this.editItemListYapi.filter((item: any) => {
+        // İlk filtre için text_1 kontrolü
+        const matchesFilterText1 = 
+          item.yapi_html_1.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+          item.yapi_html_2.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+          item.yapi_html_3.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+          item.yapi_html_4.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+          item.yapi_html_5.toLowerCase().includes(this.filtertext_1.toLowerCase()) ||
+          item.yapi_html_6.toLowerCase().includes(this.filtertext_1.toLowerCase());
+    
+        // İkinci filtre için text_2 kontrolü
+        const matchesFilterText2 = 
+          item.yapi_html_1.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+          item.yapi_html_2.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+          item.yapi_html_3.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+          item.yapi_html_4.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+          item.yapi_html_5.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
+          item.yapi_html_6.toLowerCase().includes(this.filtertext_2.toLowerCase());
+    
+        // Her iki filtre koşulunu sağlayan öğeleri döndür
+        return matchesFilterText1 && matchesFilterText2;
+      });
     }
+    
     if (this.state == "veya") {
+
       this.filteredYapi = this.editItemListYapi.filter((item: any) => item.yapi_html_1.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_1.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
         item.yapi_html_2.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_2.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||
         item.yapi_html_3.toLowerCase().includes(this.filtertext_1.toLowerCase()) || item.yapi_html_3.toLowerCase().includes(this.filtertext_2.toLowerCase()) ||

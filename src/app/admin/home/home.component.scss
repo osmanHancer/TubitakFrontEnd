@@ -1,0 +1,22 @@
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body h2 {
+    font-size: 48px;
+    margin: 0;
+  }
+  
+  .card-body p {
+    font-size: 14px;
+  }
+  
+  .card-body h6 {
+    font-weight: bold;
+  }
+  .chart-container {
+    width: 80%;  /* Daha küçük genişlik */
+    max-width: 600px;
+  }
+  

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MySharedModules } from '../../../_com/myshared.module';
 import { MatTableDataSource } from '@angular/material/table';
 import { QW } from '../../../_lib/qw.helper';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-seyyahedit',
@@ -34,8 +34,10 @@ export class SeyyaheditComponent {
       await  QW.jsonPost("/seyyahs/delete/"+this.seyyahId);
 
     }
+    await this.router.navigate(['/admin/lokasyon']);
+
   }
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,private router: Router) {
 
 
   }

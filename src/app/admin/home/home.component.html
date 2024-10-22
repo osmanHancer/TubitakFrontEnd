@@ -1,1 +1,99 @@
-<p>home works!</p>
+<div class="container my-4">
+  <div class="row">
+    <!-- Card 1 -->
+    <div class="col-md-3">
+      <a routerLink="/admin/seyyah" style="text-decoration: none;">
+      <div class="card text-center">
+        <div class="card-body">
+          <h6 class="card-title">Seyyah Sayısı</h6>
+          <h2 class="text-primary" [countUp]="seyyahsayisi" [duration]="duration">
+          </h2>
+         <mat-icon class="my-1">person</mat-icon>
+        </div>
+      </div>
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-3">
+      <a routerLink="/admin/point" style="text-decoration: none;">
+      <div class="card text-center">
+        <div class="card-body">
+          <h6 class="card-title">Nokta Sayısı</h6>
+          <h2 class="text-danger" [countUp]="noktasayisi" [duration]="duration">
+          </h2>
+          <mat-icon class="my-1"> location_on</mat-icon>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-3">
+      <a routerLink="/admin/seyahatname" style="text-decoration: none;">
+      <div class="card text-center">
+        <div class="card-body">
+          <h6 class="card-title">Seyahatname Sayısı</h6>
+          <h2 class="text-warning" [countUp]="seyahatnamesayisi" [duration]="duration">
+          </h2>
+          <mat-icon class="my-1"> local_library</mat-icon>
+        </div>
+      </div>
+    </a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="col-md-3">
+      <a routerLink="/admin/makale" style="text-decoration: none;">
+        <!-- Buraya yönlendirmek istediğiniz URL'yi ekleyin -->
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="card-title">Makale Sayısı</h6>
+            <h2 class="text-success" [countUp]="makalesayisi" [duration]="duration">
+            </h2>
+            <mat-icon class="my-1"> local_library</mat-icon>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+  <div class="row my-2">
+    <div class="col-md-6 ">
+      <a routerLink="/admin/imagelist" style="text-decoration: none;">
+        <!-- Buraya yönlendirmek istediğiniz URL'yi ekleyin -->
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="card-title">Görsel Sayısı</h6>
+            <h2 class="text-muted" [countUp]="galerisayisi" [duration]="duration">
+            </h2>
+            <mat-icon class="my-1"> image</mat-icon>
+
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-md-6 ">
+      <a routerLink="/admin/lokasyon" style="text-decoration: none;">
+        <!-- Buraya yönlendirmek istediğiniz URL'yi ekleyin -->
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="card-title">İlişkli Lokasyon Sayısı</h6>
+            <h2 class="text-info" [countUp]="lokasyonsayisi" [duration]="duration">
+            </h2>
+            <p class="my-1"><mat-icon>location_on</mat-icon></p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+  <div style="display: flex;flex-direction: row;">
+  <div class="chart-container">
+    <p-chart type="bar" [data]="basicData "></p-chart>
+  </div>
+  <div class="chart-container">
+    <p-chart type="bar" [data]="basicDataSeyyah "></p-chart>
+  </div>
+</div>
+</div>

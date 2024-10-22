@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { MySharedModules } from '../../../_com/myshared.module';
 import { NgxFileDropEntry, NgxFileDropModule } from 'ngx-file-drop';
 import { QW } from '../../../_lib/qw.helper';
+import { NgLabelTemplateDirective, NgOptionTemplateDirective, NgSelectComponent, NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-fileupload',
   standalone: true,
-  imports: [MySharedModules, NgxFileDropModule],
+  imports: [MySharedModules, NgxFileDropModule,NgLabelTemplateDirective,NgOptionTemplateDirective,NgSelectComponent,NgSelectModule,FormsModule],
   templateUrl: './fileupload.component.html',
   styleUrl: './fileupload.component.scss'
 })

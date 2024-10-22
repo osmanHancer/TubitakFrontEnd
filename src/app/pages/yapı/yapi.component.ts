@@ -1,21 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { QW } from '../../_lib/qw.helper';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { MySharedModules } from '../../_com/myshared.module';
 
 
 @Component({
   selector: 'app-yapi',
   standalone: true,
-  imports: [CommonModule, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
+  imports: [CommonModule, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule,MySharedModules],
   templateUrl: './yapi.component.html',
-  styleUrl: './yapi.component.scss'
+  styleUrl: './yapi.component.scss',
+
 })
 export class YapiComponent {
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,private sanitizer: DomSanitizer) {
 
 
   }
@@ -23,6 +26,12 @@ export class YapiComponent {
   enlem:any;
   boylam:any
   galeriImgs: any
+  yapi_html_1: SafeHtml | undefined
+  yapi_html_2: SafeHtml | undefined
+  yapi_html_3: SafeHtml | undefined
+  yapi_html_4: SafeHtml | undefined
+  yapi_html_5: SafeHtml | undefined
+  yapi_html_6: SafeHtml | undefined
   editItemList: html = {
     yapi_ismi: '', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '',
     yapi_html_2: '',
@@ -33,6 +42,7 @@ export class YapiComponent {
     yuzyil: '',
     lokasyonId: ''
   };
+
 
 
   async ngOnInit() {
@@ -56,8 +66,12 @@ export class YapiComponent {
 
 
     });
-
-    console.log(this.images)
+    this.yapi_html_1 = this.sanitizer.bypassSecurityTrustHtml(this.editItemList.yapi_html_1);
+    this.yapi_html_2 = this.sanitizer.bypassSecurityTrustHtml(this.editItemList.yapi_html_2);
+    this.yapi_html_3 = this.sanitizer.bypassSecurityTrustHtml(this.editItemList.yapi_html_3);
+    this.yapi_html_4 = this.sanitizer.bypassSecurityTrustHtml(this.editItemList.yapi_html_4);
+    this.yapi_html_5 = this.sanitizer.bypassSecurityTrustHtml(this.editItemList.yapi_html_5);
+    this.yapi_html_6 = this.sanitizer.bypassSecurityTrustHtml(this.editItemList.yapi_html_6);
   }
 }
 interface html {

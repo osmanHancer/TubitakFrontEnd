@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/c
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { environment } from '../../../environments/environment';
 import allpoints from '../../../assets/19_james_morier_smooth_2.json';
 import { MySharedModules } from '../../_com/myshared.module';
@@ -14,8 +13,8 @@ import { LightgalleryModule } from 'lightgallery/angular';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { data } from 'jquery';
 declare var turf: any;
 @Component({
   selector: 'app-mapbox-2',
@@ -85,7 +84,7 @@ export class MapboxComponent implements OnInit {
     ).sort((a: any, b: any) => a - b);
 
   }
-  
+
   constructor(
     private route: ActivatedRoute
   ) { }
@@ -495,7 +494,6 @@ export class MapboxComponent implements OnInit {
       },
       data: this.getDialogData()
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result == undefined)
         this.gizle = true;
@@ -543,17 +541,7 @@ export class MapboxComponent implements OnInit {
 
             });
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
-              // let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
-              // this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-              // this.dialogImgs = this.dialogImgs.images;
-              // this.dialogImgs.forEach((element: any) => {
-              //   const newImage: img = {
-              //     image: 'http://localhost:3000/file/' + element.imgname,
-              //     thumbImage: 'http://localhost:3000/file/' + element.imgname,
-              //     title: element.metin
-              //   };
-              //   this.imagesslide.push(newImage);
-              // });
+
               this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
 
             }
@@ -603,17 +591,7 @@ export class MapboxComponent implements OnInit {
             });
 
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
-              // let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].enlem + '/' + this.all_dialog_info[this.dialog_info_index].boylam);
-              // this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-              // this.dialogImgs = this.dialogImgs.images;
-              // this.dialogImgs.forEach((element: any) => {
-              //   const newImage: img = {
-              //     image: 'http://localhost:3000/file/' + element.imgname,
-              //     thumbImage: 'http://localhost:3000/file/' + element.imgname,
-              //     title: element.metin
-              //   };
-              //   this.imagesslide.push(newImage);
-              // });
+
               this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
 
             }
@@ -684,18 +662,9 @@ export class MapboxComponent implements OnInit {
     });
 
     if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
-      // let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['enlem'] + '/' + clickPoint.data[0]['boylam']);
-      // this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
-      // this.dialogImgs = this.dialogImgs.images;
-      // this.dialogImgs.forEach((element: any) => {
-      //   const newImage: img = {
-      //     image: 'http://localhost:3000/file/' + element.imgname,
-      //     thumbImage: 'http://localhost:3000/file/' + element.imgname,
-      //     title: element.metin
-      //   };
-      //   this.imagesslide.push(newImage);
-      // });
+
       this.point_info_dialog = clickPoint.data[0];
+      console.log(this.point_info_dialog);
     }
     this.point_info_dialog.alintilar = this.alintilar
 

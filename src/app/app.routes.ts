@@ -32,6 +32,9 @@ import { SeyyahComponent } from './admin/Seyyah-duzenle/seyyah/seyyah.component'
 import { SeyyaheditComponent } from './admin/Seyyah-duzenle/seyyahedit/seyyahedit.component';
 import { EditorEditComponent } from './admin/yapı-duzenle/editor-edit/editor-edit.component';
 import { EditorComponent } from './admin/yapı-duzenle/editor/editor.component';
+import { HomeComponent } from './admin/home/home.component';
+import { ArazicalismasiListComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-list/arazicalismasi-list.component';
+import { ArazicalismasiEditComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-edit/arazicalismasi-edit.component';
 
 export const routes: Routes = [
 
@@ -47,7 +50,7 @@ export const routes: Routes = [
         canActivate:[AuthGuard],
         component: LayoutAdminComponent,
         children: [
-            { path: '', redirectTo: 'auth', pathMatch: 'full' },
+            { path: '', redirectTo: 'home', pathMatch: 'full' },
 
            
             {
@@ -55,6 +58,23 @@ export const routes: Routes = [
                 component: SeyehatnameComponent,
                 
 
+            },
+            {
+                path: "home",
+                component: HomeComponent,
+                
+
+            },
+            {
+                path: "arazicalismasi-list",
+                component: ArazicalismasiListComponent,
+                
+
+            },
+            {
+                path: "arazicalismasi-edit/:EnvanterKodu",
+                component: ArazicalismasiEditComponent,
+                
             },
             {
                 path: "seyahatname/:id",

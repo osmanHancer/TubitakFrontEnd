@@ -7,54 +7,48 @@
 		</div>
 		<div class="row justify-content-center">
 			<div class="col-12 col-lg-10 col-xl-9">
-				<p><i class="bi bi-calendar2-event-fill"></i> {{editItemList.yuzyil}}</p>
-			<a [href]="'home/mapbox/'+enlem+'/'+boylam">	{{enlem}},{{boylam}}</a>
-				<br>
+				<div style="margin-bottom: 10px;">
+				<p> <i class="bi bi-calendar2-event-fill"></i> {{editItemList.yuzyil}}</p>
+				<p><i class="bi bi-geo-alt-fill"></i><a [href]="'home/mapbox/'+enlem+'/'+boylam"> {{enlem}},{{boylam}}</a></p>
+				
+			</div>
 				<div>
-					<div [innerHTML]="editItemList.yapi_html_1"></div>
-					
-					<!-- <p class="text-center">Hanın Dıştan Görünümü<br>
-						<small>Hakkı Acun, “Konya Kızılören Han”, T.C. Kültür ve Turizm Bakanlığı Yayınları, 1992,
-							89-101.</small>
-					</p> -->
+					<div [innerHTML]="yapi_html_1"></div>
+
 				</div>
 				<div>
-					<div [innerHTML]="editItemList.yapi_html_2"></div>
-				
-				
+					<div [innerHTML]="yapi_html_2"></div>
+
+
 				</div>
 				<div>
-					<div [innerHTML]="editItemList.yapi_html_3"></div>
-				
-				
+					<div [innerHTML]="yapi_html_3"></div>
+
+
 				</div>
 				<div>
-					<div [innerHTML]="editItemList.yapi_html_4"></div>
-					
-				
+					<div [innerHTML]="yapi_html_4"></div>
+
+
 				</div>
 				<div>
-					<div [innerHTML]="editItemList.yapi_html_5"></div>
-					
-					
+					<div [innerHTML]="yapi_html_5"></div>
+
+
 				</div>
 				<div>
-					<div [innerHTML]="editItemList.yapi_html_6"></div>
-					
-					
+					<div [innerHTML]="yapi_html_6"></div>
+
+
 				</div>
 			</div>
 			<div style="text-align: -webkit-center">
-      
+
 				<div style="width: 1000px; height: 700px;">
-					<ng-image-slider #nav
-					  [images]="images"	
-					  [infinite]="false"
-					  [autoSlide]="12"
-					  [imageSize]="{width: '30%', height: 300}"
-					  slideImage="1"></ng-image-slider>
-				  </div>
+					<ng-image-slider #nav [images]="images" [infinite]="false" [autoSlide]="12"
+						[imageSize]="{width: '30%', height: 300}" slideImage="1"></ng-image-slider>
 				</div>
+			</div>
 		</div>
 
 	</div>

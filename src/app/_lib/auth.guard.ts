@@ -3,15 +3,25 @@ import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Route, Ro
 import { QW } from "./qw.helper";
 
 @Injectable()
-export class AuthGuard implements CanActivate{
-    constructor(private router:Router){
-        
+export class AuthGuard implements CanActivate {
+    constructor(private router: Router) {
+
     }
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): MaybeAsync<GuardResult> {
-        if(localStorage.getItem('jwt_token')==null){
+    async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+        if (localStorage.getItem('jwt_token') != null) {
+            let user = await QW.json("/auth/verify-token")
+            console.log(user);
+            if (user.valid == true)
+                return true;
+            else {
+                this.router.navigateByUrl("/login")
+                return false;
+
+            }
+        }
+        else {
             this.router.navigateByUrl("/login")
             return false;
         }
-        return true;
     }
 }

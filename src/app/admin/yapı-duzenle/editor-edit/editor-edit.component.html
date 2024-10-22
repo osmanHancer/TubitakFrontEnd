@@ -2,154 +2,129 @@
   <div>
     <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_1
 " [config]="config"></angular-editor>
-    <h5 style="color: black;" class="html-header">HTML Output</h5>
-    <div style="color: black;" class="html">
-      {{ editItemList.yapi_html_1
-      }}
 
-      <div style="display: flex;flex-direction: row;margin-top: 10px;">
+
+    <div style="display: flex;flex-direction: row;margin-top: 10px;">
 
 
 
 
 
-      </div>
     </div>
-    <p>
-    <div>
-      <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_2" [config]="config"></angular-editor>
+  </div>
+  <p>
+  <div>
+    <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_2" [config]="config"></angular-editor>
 
-      <h5 style="color: black;" class="html-header">HTML Output</h5>
-      <div style="color: black;" class="html">
-        {{ editItemList.yapi_html_2
-        }}
-        <div style="display: flex;flex-direction: row;margin-top: 10px;">
+
+    <div style="display: flex;flex-direction: row;margin-top: 10px;">
 
 
 
 
 
-        </div>
+    </div>
+  </div>
+  <p>
+  <div>
+    <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_3" [config]="config"></angular-editor>
+
+
+    <div style="display: flex;flex-direction: row;margin-top: 10px;">
+
+
+
+
+    </div>
+  </div>
+  <p>
+  <div>
+    <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_4" [config]="config"></angular-editor>
+
+
+    <div style="display: flex;flex-direction: row;margin-top: 10px;">
+
+
+
+    </div>
+  </div>
+  <p>
+  <div>
+    <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_5" [config]="config"></angular-editor>
+
+
+    <div style="display: flex;flex-direction: row;margin-top: 10px;">
+
+
+
+
+    </div>
+  </div>
+  <p>
+    <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_6" [config]="config"></angular-editor>
+
+
+    <div style="display: flex;flex-direction: row;margin-top: 10px;margin-left: 2%;">
+
+
+
+      <div class=" my-1" style="width: 60%;">
+        <ng-select [multiple]="false" [(ngModel)]="editItemList.lokasyonId"
+          [placeholder]="'Seçilecek lokasyonları belirtin...'">
+          <ng-option *ngFor="let lokasyon of LokasyonSource" [value]="lokasyon.Id">
+            {{ lokasyon.Id }} -
+            <span class="mekan-label">Mekan Adı:</span> {{ lokasyon.mekan_adi }}
+            <span class="gunumuzdeki-label">Günümüzdeki Adı:</span> {{ lokasyon.Mekanin_Gunumuzdeki_Adi }}
+
+
+          </ng-option>
+        </ng-select>
       </div>
-      <p>
-      <div>
-        <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_3" [config]="config"></angular-editor>
-        <h5 style="color: black;" class="html-header">HTML Output</h5>
-        <div style="color: black;" class="html">
-          {{ editItemList.yapi_html_3
-          }}
 
-          <div style="display: flex;flex-direction: row;margin-top: 10px;">
+    </div>
+  <p>
 
+  <div style="display: flex;flex-direction: row;text-align: start;justify-content:flex-start;width: 100%;">
 
+    <mat-form-field class="mx-4" style="width: 30%;">
+      <mat-label>Yapı</mat-label>
+      <input matInput placeholder="Yapı İsmi" [(ngModel)]="editItemList.yapi_ismi" />
+    </mat-form-field>
+    <mat-form-field class="mx-4" style="width: 30%;">
+      <mat-label>Başlık</mat-label>
+      <input matInput placeholder="Başlık" [(ngModel)]="editItemList.baslik" />
+    </mat-form-field>
 
-
-          </div>
-        </div>
-        <p>
-        <div>
-          <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_4"
-            [config]="config"></angular-editor>
-          <h5 style="color: black;" class="html-header">HTML Output</h5>
-          <div style="color: black;" class="html">
-            {{ editItemList.yapi_html_4
-            }}
-
-            <div style="display: flex;flex-direction: row;margin-top: 10px;">
-
-
-
-            </div>
-          </div>
-          <p>
-          <div>
-            <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_5"
-              [config]="config"></angular-editor>
-
-            <h5 style="color: black;" class="html-header">HTML Output</h5>
-            <div style="color: black;" class="html">
-              {{ editItemList.yapi_html_5
-              }}
-              <div style="display: flex;flex-direction: row;margin-top: 10px;">
+    <mat-form-field class="mx-4" style="width: 30%;">
+      <mat-label>Yüzyıl</mat-label>
+      <mat-select [(ngModel)]="editItemList.yuzyil">
+        <mat-option value="11. yüzyıl">11. yüzyıl</mat-option>
+        <mat-option value="12. yüzyıl">12. yüzyıl</mat-option>
+        <mat-option value="13. yüzyıl">13. yüzyıl</mat-option>
+        <mat-option value="14. yüzyıl">14. yüzyıl</mat-option>
+        <mat-option value="15. yüzyıl">15. yüzyıl</mat-option>
+        <mat-option value="16. yüzyıl">16. yüzyıl</mat-option>
+        <mat-option value="17. yüzyıl">17. yüzyıl</mat-option>
+        <mat-option value="18. yüzyıl">18. yüzyıl</mat-option>
+        <mat-option value="19. yüzyıl">19. yüzyıl</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: flex;flex-direction: row;text-align: start;justify-content: space-between;width:90%;">
+    <mat-form-field class="mx-4" style="width: 30%;">
+      <mat-label>Eski Adı</mat-label>
+      <input matInput placeholder="Alt Başlık" [(ngModel)]="editItemList.alt_baslik" />
+    </mat-form-field>
 
 
+    <button mat-button style="background-color: rgb(124, 45, 74); " color="coral" (click)="Save()">
+      Kaydet<mat-icon>save</mat-icon>
+    </button>
 
-
-              </div>
-            </div>
-            <p>
-            <div>
-              <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_6"
-                [config]="config"></angular-editor>
-
-              <h5 style="color: black;" class="html-header">HTML Output</h5>
-              <div style="color: black;" class="html">
-                {{ editItemList.yapi_html_6
-                }}
-                <div style="display: flex;flex-direction: row;margin-top: 10px;">
+  </div>
+</div>
+<div>
 
 
 
-                  <mat-form-field style="width: 40%;">
-                    <mat-select [(ngModel)]="editItemList.lokasyonId">
-                      <div *ngFor="let opt of LokasyonSource ">
-                        <mat-option [value]="opt.Id">{{opt.Id}} enlem: {{opt.Enlem}} boylam: {{opt.Boylam}}
-
-                        </mat-option>
-                      </div>
-                    </mat-select>
-                    
-                  </mat-form-field>
-
-
-                </div>
-              </div>
-              <p>
-
-              <div
-                style="display: flex;flex-direction: row;text-align: start;justify-content: space-between;width: 35%;">
-
-                <mat-form-field>
-                  <mat-label>Yapı</mat-label>
-                  <input matInput placeholder="Yapı İsmi" [(ngModel)]="editItemList.yapi_ismi" />
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label>Başlık</mat-label>
-                  <input matInput placeholder="Başlık" [(ngModel)]="editItemList.baslik" />
-                </mat-form-field>
-
-                <mat-form-field>
-                  <mat-label>Yüzyıl</mat-label>
-                  <mat-select [(ngModel)]="editItemList.yuzyil">
-                    <mat-option value="11.yy">11.yy</mat-option>
-                    <mat-option value="12.yy">12.yy</mat-option>
-                    <mat-option value="13.yy">13.yy</mat-option>
-                    <mat-option value="14.yy">14.yy</mat-option>
-                    <mat-option value="15.yy">15.yy</mat-option>
-                    <mat-option value="16.yy">16.yy</mat-option>
-                    <mat-option value="17.yy">17.yy</mat-option>
-                    <mat-option value="18.yy">18.yy</mat-option>
-                    <mat-option value="19.yy">19.yy</mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div
-                style="display: flex;flex-direction: row;text-align: start;justify-content: space-between;width: 22.5%;">
-                <mat-form-field>
-                  <mat-label>Eski Adı</mat-label>
-                  <input matInput placeholder="Alt Başlık" [(ngModel)]="editItemList.alt_baslik" />
-                </mat-form-field>
-
-
-                <button mat-button style="background-color: rgb(124, 45, 74); margin-left: 10px" color="coral"
-                  (click)="Save()">
-                  Kaydet<mat-icon>save</mat-icon>
-                </button>
-
-              </div>
-            </div>
-            <div>
-
-
-
-            </div>
+</div>

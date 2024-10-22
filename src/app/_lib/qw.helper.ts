@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 
 export class QW {
   public static isMobile: boolean;
@@ -22,7 +23,7 @@ export class QW {
     return fetch(apiUrl + url, {
       method: method,
       body: data,
-      headers: this.token!=""?{'Authorization': 'Bearer ' + this.token}:{}
+      headers: localStorage.getItem('jwt_token')!=null?{'Authorization': 'Bearer ' +  localStorage.getItem('jwt_token')}:{}
     });
   }
 
@@ -164,5 +165,6 @@ export class QW {
     if (!QW.isDev) return;
     console.log(...data);
   }
+
 }
 

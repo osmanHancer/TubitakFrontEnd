@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/c
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { environment } from '../../../environments/environment';
 import allpoints from '../../../assets/19_james_morier_smooth_2.json';
 import S29 from '../../../assets/S29-RP-DescEast.json';
@@ -15,7 +14,6 @@ import { LightgalleryModule } from 'lightgallery/angular';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogModule, MatDialogTitle } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { NgImageSliderModule } from 'ng-image-slider';
 declare var turf: any;
 
