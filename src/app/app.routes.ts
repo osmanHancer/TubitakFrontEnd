@@ -3,7 +3,7 @@ import { Mapbox2Component } from './admin/mapbox-2/mapbox-2.component';
 import { YapilarComponent } from './admin/yapilar/yapilar.component';
 import { LayoutAdminComponent } from './_layoutadmin/layoutadmin.component';
 import { LayoutHomeComponent } from './_layouthome/layouthome.component';
-import { YapiComponent } from './pages/yapı/yapi.component';
+import { YapiComponent } from './pages/yapi/yapi.component';
 import { PageMakaleComponent } from './pages/pageMakale/makale.component';
 import { SahacalismasiComponent } from './admin/sahacalismasi/sahacalismasi/sahacalismasi.component';
 import { SahacalismasieditComponent } from './admin/sahacalismasi/sahacalismasiedit/sahacalismasiedit.component';

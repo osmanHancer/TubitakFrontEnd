@@ -18,11 +18,11 @@ import { NgLabelTemplateDirective, NgOptionTemplateDirective, NgSelectComponent,
   styleUrl: './detayliarama.component.scss'
 })
 export class DetayliaramaComponent {
-  onOptionSelected(arg0: any) {
-    console.log("girdi");
-    console.log(arg0);
-    this.selectedLokasyon = arg0;
-  }
+  // onOptionSelected(arg0: any) {
+  //   console.log("girdi");
+  //   console.log(arg0);
+  //   this.selectedLokasyon = arg0;
+  // }
   editItemListYapi: any;
   editItemListSeyyahMakale: any;
   yapisize: any;
@@ -39,11 +39,10 @@ export class DetayliaramaComponent {
   seyyahlar: any
   filtertext_1 = "";
   filtertext_2 = "";
-  state :any;
+  state :any="ve";
   mekanTipleri: string[] = ['Han', 'Kervansaray', 'Seçenek 3'];
   selectedMekanTipleri: string[] = [];
   constructor(private route: ActivatedRoute) {
-
 
   }
 
