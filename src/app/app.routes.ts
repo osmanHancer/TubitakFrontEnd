@@ -30,8 +30,8 @@ import { SeyehatnameEditComponent } from './admin/seyahatname-duzenle/seyehatnam
 import { SeyehatnameComponent } from './admin/seyahatname-duzenle/seyehatname/seyehatname.component';
 import { SeyyahComponent } from './admin/Seyyah-duzenle/seyyah/seyyah.component';
 import { SeyyaheditComponent } from './admin/Seyyah-duzenle/seyyahedit/seyyahedit.component';
-import { EditorEditComponent } from './admin/yapı-duzenle/editor-edit/editor-edit.component';
-import { EditorComponent } from './admin/yapı-duzenle/editor/editor.component';
+import { EditorEditComponent } from './admin/yapi-duzenle/editor-edit/editor-edit.component';
+import { EditorComponent } from './admin/yapi-duzenle/editor/editor.component';
 import { HomeComponent } from './admin/home/home.component';
 import { ArazicalismasiListComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-list/arazicalismasi-list.component';
 import { ArazicalismasiEditComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-edit/arazicalismasi-edit.component';
