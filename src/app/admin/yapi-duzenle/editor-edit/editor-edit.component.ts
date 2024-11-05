@@ -23,7 +23,7 @@ export class EditorEditComponent {
   }
   yapi_ismi:any
   editItemList: html = {
-    yuzyil: '', yapi_ismi: '', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '', lokasyonId: 1,
+    yuzyil: '', yapi_ismi: '',yapituru:'', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '', lokasyonId: 1,
     yapi_html_2: '',
     yapi_html_3: '',
     yapi_html_4: '',
@@ -109,6 +109,7 @@ export class EditorEditComponent {
 
     const fd = new URLSearchParams();
     fd.append('yapi_ismi', this.editItemList.yapi_ismi);
+    fd.append('yapituru', this.editItemList.yapituru);
     fd.append('baslik', this.editItemList.baslik);
     fd.append('alt_baslik', this.editItemList.alt_baslik);
     fd.append('enlem', this.editItemList.enlem);
@@ -131,6 +132,8 @@ export class EditorEditComponent {
 type html = {
 
   yapi_ismi: string
+
+  yapituru:string
 
   baslik: string
 

@@ -1,7 +1,7 @@
 <mat-accordion style="position: absolute; top: 150px; left: 10px;z-index: 999;" [multi]="false">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
-      <mat-panel-title> Yüzyıllara Göre filtrele </mat-panel-title>
+      <mat-panel-title> Yüzyıllara Göre Filtrele </mat-panel-title>
       <mat-panel-description>
 
       </mat-panel-description>
@@ -27,7 +27,7 @@
         <div id="fit_2">
           <div *ngFor="let fet of maps_data ; let i = index">
             <div style="display: flex; flex-direction: row;width: 450px;" *ngIf="item===fet.crs.properties.yuzyil">
-              <mat-checkbox style="max-width: 200px;" (change)="updateAllComplete(fet.name)">
+              <mat-checkbox [(ngModel)]="fet.crs.properties.checked" style="max-width: 200px;" (change)="updateAllComplete(fet.name)">
                 <p style=" margin-top: 20px;;">{{fet.name_tr}}</p>
               </mat-checkbox>
               <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"

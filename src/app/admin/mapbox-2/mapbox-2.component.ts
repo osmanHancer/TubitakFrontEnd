@@ -4,7 +4,6 @@ import { RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
 import allpoints from '../../../assets/19_james_morier_smooth_2.json';
-import S29 from '../../../assets/S29-RP-DescEast.json';
 import { MySharedModules } from '../../_com/myshared.module';
 import { QW } from '../../_lib/qw.helper';
 import { LayoutAdminComponent } from "../../_layoutadmin/layoutadmin.component";

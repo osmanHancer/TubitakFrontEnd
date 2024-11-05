@@ -47,7 +47,6 @@ export class DetayliaramaComponent {
   }
 
   async ngOnInit() {
-
     let seyyah = await QW.json("/seyyahs");
     this.seyyahlar = seyyah.users;
     const json = await QW.json("/lokasyon");

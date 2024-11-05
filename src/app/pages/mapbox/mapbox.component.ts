@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { data } from 'jquery';
+import { MatExpansionPanel } from '@angular/material/expansion';
 declare var turf: any;
 @Component({
   selector: 'app-mapbox-2',
@@ -68,6 +69,7 @@ export class MapboxComponent implements OnInit {
 
 
 
+
   mapsDataFilter(event: any) {
 
     this.maps_data = allpoints.filter((feature: any) =>
@@ -107,20 +109,28 @@ export class MapboxComponent implements OnInit {
     this.map.on('load', async () => {
 
       this.map.loadImage(
-        '../../../assets/icons/castle.png',
+        '../../../assets/icons/yapi.png',
         (error, image: any) => {
           if (error) throw error;
 
           // Add the image to the map style.
-          this.map.addImage('castle_1', image);
+          this.map.addImage('yapi', image);
         });
       this.map.loadImage(
-        '../../../assets/icons/houses.png',
+        '../../../assets/icons/yaklasikkonum.png',
         (error, image: any) => {
           if (error) throw error;
 
           // Add the image to the map style.
-          this.map.addImage('houses', image);
+          this.map.addImage('yaklasikkonum', image);
+        });
+      this.map.loadImage(
+        '../../../assets/icons/yerlesimyeri.png',
+        (error, image: any) => {
+          if (error) throw error;
+
+          // Add the image to the map style.
+          this.map.addImage('yerlesimyeri', image);
         });
       let enlem = this.route.snapshot.paramMap.get('enlem')
       let boylam = this.route.snapshot.paramMap.get('boylam')
@@ -250,6 +260,9 @@ export class MapboxComponent implements OnInit {
 
   updateAllComplete(data: any) {
 
+ 
+   
+
     if (this.map.getLayoutProperty(data + 'kara', 'visibility') == 'none') {
       this.DrawPoint(data);
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'visible');
@@ -264,9 +277,9 @@ export class MapboxComponent implements OnInit {
 
       // this.map.setLayoutProperty(data+"dasharray", 'visibility', 'none');
       var location = [
-        { point_type: 'YAPI', icon: 'castle_1', size: 2 },
-        { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
-        { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+        { point_type: 'YAPI', icon: 'yapi', size: 0.1 },
+        { point_type: 'YERLEŞİM YERİ', icon: 'yerlesimyeri', size: 0.1 },
+        { point_type: 'YAKLAŞIK KONUM', icon: 'yaklasikkonum', size: 0.1 },
       ];
       location.forEach((c) => {
         this.map.removeLayer(data + c.point_type);
@@ -284,9 +297,9 @@ export class MapboxComponent implements OnInit {
 
 
     var location = [
-      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
-      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
-      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+      { point_type: 'YAPI', icon: 'yapi', size: 2 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'yerlesimyeri', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'yaklasikkonum', size: 0.1 },
     ];
     if (this.map.getLayoutProperty(id + 'heatmap', 'visibility') == 'none') {
       location.forEach((c) => {
@@ -306,9 +319,9 @@ export class MapboxComponent implements OnInit {
   }
   Clustermap(id: any) {
     var location = [
-      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
-      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
-      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+      { point_type: 'YAPI', icon: 'yapi', size: 2 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'yerlesimyeri', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'yaklasikkonum', size: 0.1 },
     ];
     if (this.map.getLayoutProperty(id + 'clusters', 'visibility') == 'none') {
 
@@ -346,9 +359,9 @@ export class MapboxComponent implements OnInit {
       clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
     });
     var location = [
-      { point_type: 'YAPI', icon: 'castle_1', size: 2 },
-      { point_type: 'YERLEŞİM YERİ', icon: 'houses', size: 0.1 },
-      { point_type: 'YAKLAŞIK KONUM', icon: 'houses', size: 0.1 },
+      { point_type: 'YAPI', icon: 'yapi', size: 0.1 },
+      { point_type: 'YERLEŞİM YERİ', icon: 'yerlesimyeri', size: 0.1 },
+      { point_type: 'YAKLAŞIK KONUM', icon: 'yaklasikkonum', size: 0.1 },
     ];
     location.forEach((c) => {
       this.map.addLayer({

@@ -110,14 +110,27 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div style="display: flex;flex-direction: row;text-align: start;justify-content: space-between;width:90%;">
+  <div style="display: flex;flex-direction: row;text-align: start;justify-content: flex-start;width:100%;">
     <mat-form-field class="mx-4" style="width: 30%;">
       <mat-label>Eski Adı</mat-label>
       <input matInput placeholder="Alt Başlık" [(ngModel)]="editItemList.alt_baslik" />
     </mat-form-field>
+    <mat-form-field class="mx-4" style="width: 30%;">
+      <mat-label>Yapı Türü</mat-label>
+      <mat-select [(ngModel)]="editItemList.yapituru">
+        <mat-option value="KERVANSARAY / HAN">KERVANSARAY / HAN</mat-option>
+        <mat-option value="ÖZEL MÜLK">ÖZEL MÜLK</mat-option>
+        <mat-option value="MİSAFİRHANE / OTEL / PANSİYON">MİSAFİRHANE / OTEL / PANSİYON</mat-option>
+        <mat-option value="AÇIK ALANDA KONAKLAMA">AÇIK ALANDA KONAKLAMA</mat-option>
+        <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
+        <mat-option value="TANIMLANMAYAN MEKAN">TANIMLANMAYAN MEKAN</mat-option>
+        <mat-option value="DİNİ YAPI">DİNİ YAPI</mat-option>
+        <mat-option value="ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR">ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR</mat-option>
+        <mat-option value="DİĞER">DİĞER</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-
-    <button mat-button style="background-color: rgb(124, 45, 74); " color="coral" (click)="Save()">
+    <button class="mx-3" mat-button style="background-color: rgb(124, 45, 74); " color="coral" (click)="Save()">
       Kaydet<mat-icon>save</mat-icon>
     </button>
 

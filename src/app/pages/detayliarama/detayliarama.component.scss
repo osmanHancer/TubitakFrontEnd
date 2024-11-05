@@ -1,1 +1,10 @@
 @import url(../../pages.scss);
+.custom-form-field {
+    background-color: white;
+    border-radius: 10px; /* Kenarları yumuşatmak için */
+    padding: 6px;
+    width: 100%;
+    border: 1px solid #ccc; /* Kenar çizgisi kalınlığını ve rengini ayarlayın */
+    transition: border-color 0.9s;
+  }
+  

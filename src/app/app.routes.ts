@@ -181,7 +181,7 @@ export const routes: Routes = [
     },
 
     {
-        path: "home", component: LayoutHomeComponent,
+        path: "", component: LayoutHomeComponent,
         children: [
             {
                 path: "monografi/:yapı",
@@ -219,7 +219,7 @@ export const routes: Routes = [
                 path: "mapbox/:enlem/:boylam",
                 component: MapboxComponent
               },
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            // { path: '', redirectTo: 'home', pathMatch: 'full' },
         ],
 
     },

@@ -10,23 +10,24 @@
 
             <div class="col-12 col-lg-5 mb-5">
                 <div class="form-group">
-                    <input  [(ngModel)]="filtertext_1" type="text" class="form-control" id="metin1" aria-describedby="kutuphaneSearch"
-                        placeholder="Aranacak metni giriniz" value="Arama metni">
+                    <input [(ngModel)]="filtertext_1" type="text" class="form-control" id="metin1"
+                        aria-describedby="kutuphaneSearch" placeholder="Aranacak metni giriniz" value="Arama metni">
+                        
                 </div>
 
             </div>
             <div class="col-6 col-lg-2 mb-5">
                 <div class="form-group">
-                    <ng-select  [(ngModel)]="state" >
-                      <ng-option value="ve">ve</ng-option>
-                      <ng-option value="veya">veya</ng-option>
+                    <ng-select [(ngModel)]="state">
+                        <ng-option value="ve">ve</ng-option>
+                        <ng-option value="veya">veya</ng-option>
                     </ng-select>
-                  </div>
+                </div>
             </div>
             <div class="col-12 col-lg-5 mb-5">
                 <div class="form-group">
-                    <input  [(ngModel)]="filtertext_2" type="text" class="form-control" id="metin2" aria-describedby="kutuphaneSearch"
-                        placeholder="Aranacak metni giriniz" value="Arama metni">
+                    <input [(ngModel)]="filtertext_2" type="text" class="form-control" id="metin2"
+                        aria-describedby="kutuphaneSearch" placeholder="Aranacak metni giriniz" value="Arama metni">
                 </div>
 
             </div>
@@ -34,9 +35,8 @@
             <div class="col-12 col-lg-6 col-xl-3 mb-5">
 
 
-                <ng-select [(ngModel)]="selectedSeyyah"
-                [placeholder]="'Seçilecek Seyyahı belirtin...'">
-                >
+                <ng-select [(ngModel)]="selectedSeyyah" [placeholder]="'Seçilecek Seyyahı belirtin...'">
+                    >
                     @for (seyyah of seyyahlar; track seyyah.Id) {
                     <ng-option [value]="seyyah.name">{{seyyah.name}}</ng-option>
                     }
@@ -48,15 +48,13 @@
             <div class="col-12 col-lg-6 col-xl-3 mb-5">
 
 
-                <ng-select 
-                [multiple]="true" 
-                [(ngModel)]="selectedLokasyon" 
-                [placeholder]="'Seçilecek lokasyonları belirtin...'">
-                <ng-option *ngFor="let lokasyon of lokasyonlar" [value]="lokasyon.Id">
-                    {{ lokasyon.Id }} - {{ lokasyon.Mekanin_Gunumuzdeki_Adi }}
-                </ng-option>
-            </ng-select>
-            
+                <ng-select [multiple]="true" [(ngModel)]="selectedLokasyon"
+                    [placeholder]="'Seçilecek lokasyonları belirtin...'">
+                    <ng-option *ngFor="let lokasyon of lokasyonlar" [value]="lokasyon.Id">
+                        {{ lokasyon.Id }} - {{ lokasyon.Mekanin_Gunumuzdeki_Adi }}
+                    </ng-option>
+                </ng-select>
+
 
 
 
@@ -64,8 +62,7 @@
             </div>
             <div class="col-12 col-lg-6 col-xl-3 mb-5">
 
-                <ng-select [multiple]="true" [(ngModel)]="selectedyapi"
-                [placeholder]="' Yapı Türünü belirtin...'">>
+                <ng-select [multiple]="true" [(ngModel)]="selectedyapi" [placeholder]="' Yapı Türünü belirtin...'">>
                     <ng-option selected>Han</ng-option>
                     <ng-option selected>Kervansaray</ng-option>
                     <ng-option>Seçenek 3</ng-option>
@@ -78,8 +75,8 @@
             <div class="col-12 col-lg-6 col-xl-3 mb-5">
 
                 <ng-select [multiple]="true" [(ngModel)]="selectedyuzyil"
-                [placeholder]="'Seçilecek Yüzyılları belirtin...'">
-                >
+                    [placeholder]="'Seçilecek Yüzyılları belirtin...'">
+                    >
                     <ng-option selected value="11. yüzyıl">11. yüzyıl</ng-option>
                     <ng-option value="12. yüzyıl">12. yüzyıl</ng-option>
                     <ng-option value="13. yüzyıl">13. yüzyıl</ng-option>
