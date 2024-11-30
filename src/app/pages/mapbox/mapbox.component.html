@@ -1,7 +1,7 @@
 <mat-accordion style="position: absolute; top: 150px; left: 10px;z-index: 999;" [multi]="false">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
-      <mat-panel-title> Yüzyıllara Göre Filtrele </mat-panel-title>
+      <mat-panel-title> Seyahatnameler</mat-panel-title>
       <mat-panel-description>
 
       </mat-panel-description>
@@ -24,10 +24,11 @@
             <!-- Açıklama ekleyebilirsiniz -->
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div id="fit_2">
+        <div>
           <div *ngFor="let fet of maps_data ; let i = index">
             <div style="display: flex; flex-direction: row;width: 450px;" *ngIf="item===fet.crs.properties.yuzyil">
-              <mat-checkbox [(ngModel)]="fet.crs.properties.checked" style="max-width: 200px;" (change)="updateAllComplete(fet.name)">
+              <mat-checkbox [(ngModel)]="fet.crs.properties.checked" style="max-width: 200px;"
+                (change)="updateAllComplete(fet.name)">
                 <p style=" margin-top: 20px;;">{{fet.name_tr}}</p>
               </mat-checkbox>
               <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"
@@ -106,7 +107,7 @@
             </mat-icon> {{this.point_info_dialog.boylam}}</td>
         </tr>
         <tr>
-          <th scope="row">Güzergah>
+          <th scope="row">Güzergah
           <td>{{this.point_info_dialog.Guzergah}}</td>
         </tr>
         <tr>
@@ -166,7 +167,44 @@
 
           <td>
             @for (item of this.point_info_dialog.alintilar; track $index) {
-            <div>
+            <div class="card w-100 ">
+              <div class="card-body">
+                <div style="display: flex;flex-direction: row;">
+                  <div>
+                    <h5 class="card-title"> Yüzyıl </h5>
+                  </div>
+                  <div>
+                    <p> : {{item[3]}}</p>
+                  </div>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                  <div>
+                    <h5 class="card-title"> Yazar </h5>
+                  </div>
+                  <div>
+                    <p> : {{item[2]}}</p>
+                  </div>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                  <div>
+                    <h5 class="card-title"> Seyahatname İsmi </h5>
+                  </div>
+                  <div>
+                    <p> : {{item[1]}}</p>
+                  </div>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                  <div>
+                    <h5 class="card-title"> Alıntı </h5>
+                  </div>
+                  <div>
+                    <p> : {{item[0]}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div>
               Yüzyıl : {{item[3]}}
             </div> <br>
             <div>
@@ -177,7 +215,7 @@
             </div> <br>
             <div>
               Alıntı : {{item[0]}}
-            </div><br>
+            </div><br> -->
             }
 
           </td>

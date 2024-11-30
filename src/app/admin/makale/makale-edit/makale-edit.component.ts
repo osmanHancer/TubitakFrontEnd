@@ -70,26 +70,26 @@ export class MakaleEditComponent {
     customClasses: [
       {
         name: "Konaklama bilgisi / mimari mekansal birimler",
-        class: "makale-tema-text makale-tema-01",
+        class: "tema-1 makale-tema-text makale-tema-01",
       },
       {
         name: 'Deneyim-Aktivite / Olay örgüsü/Çatışmalar/Riskler',
-        class: 'makale-tema-text makale-tema-02',
+        class: 'tema-2 makale-tema-text makale-tema-02',
 
       },
       {
         name: "Seyahat Kültürü",
-        class: "makale-tema-text makale-tema-03",
+        class: "tema-3 makale-tema-text makale-tema-03",
 
       },
       {
         name: "Seyahatnamelerin aktörleri",
-        class: "makale-tema-text makale-tema-04",
+        class: "tema-4 makale-tema-text makale-tema-04",
 
       },
       {
         name: "Diğer seyyahlar",
-        class: "makale-tema-text makale-tema-05",
+        class: " tema-4 makale-tema-text makale-tema-05",
 
       },
 

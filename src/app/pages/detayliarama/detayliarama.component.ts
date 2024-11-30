@@ -2,17 +2,13 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QW } from '../../_lib/qw.helper';
 import { MySharedModules } from '../../_com/myshared.module';
-import { FormControl } from '@angular/forms';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { NgLabelTemplateDirective, NgOptionTemplateDirective, NgSelectComponent, NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
+import {  NgSelectComponent,NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
   selector: 'app-detayliarama',
   standalone: true,
-  imports: [MySharedModules, CommonModule, NgLabelTemplateDirective,
-    NgOptionTemplateDirective,
+  imports: [MySharedModules, CommonModule,
     NgSelectComponent, NgSelectModule],
   templateUrl: './detayliarama.component.html',
   styleUrl: './detayliarama.component.scss'

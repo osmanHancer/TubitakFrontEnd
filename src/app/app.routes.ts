@@ -35,6 +35,8 @@ import { EditorComponent } from './admin/yapi-duzenle/editor/editor.component';
 import { HomeComponent } from './admin/home/home.component';
 import { ArazicalismasiListComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-list/arazicalismasi-list.component';
 import { ArazicalismasiEditComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-edit/arazicalismasi-edit.component';
+import { PageHomeComponent } from './pages/home/home.component';
+import { LayoutHome2Component } from './layouthome2/layouthome2.component';
 
 export const routes: Routes = [
 
@@ -181,18 +183,23 @@ export const routes: Routes = [
     },
 
     {
-        path: "", component: LayoutHomeComponent,
+        path: "home", component: LayoutHomeComponent,
         children: [
             {
                 path: "monografi/:yapı",
                 component: YapiComponent
             },
+          
             {
                 path: "makale/:makale",
                 component: PageMakaleComponent
             },
             {
                 path: "kütüphane",
+                component: KutuphaneComponent
+            },
+            {
+                path: "", 
                 component: KutuphaneComponent
             },
             {
@@ -219,7 +226,21 @@ export const routes: Routes = [
                 path: "mapbox/:enlem/:boylam",
                 component: MapboxComponent
               },
-            // { path: '', redirectTo: 'home', pathMatch: 'full' },
+          
+        ],
+
+    },
+
+    {
+        path: "", component: LayoutHome2Component,
+        children: [
+           
+            {
+                path: '',
+                component: PageHomeComponent
+            },
+           
+          
         ],
 
     },

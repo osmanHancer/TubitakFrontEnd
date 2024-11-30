@@ -118,6 +118,9 @@ a.nav-link.taba {
 	color: #aa6f3a;
 }
 
+// .dropdown-item.active{
+// 	background-color: #000000 !important;
+// }
 .dropdown-item {
 	padding: 10px;
 }
@@ -188,12 +191,12 @@ a.nav-link.taba {
 	color:#FFF;
 }
 
-// .home-purpose {
-// 	padding: 75px 0;
-// 	background-image: url("../img/pattern-back-01.png");
-// 	color:#666;
-// 	line-height: 2.2em;	
-// }
+.home-purpose {
+	padding: 75px 0;
+	background-image: url("../assets/img/pattern-back-01.png");
+	color:#666;
+	line-height: 2.2em;	
+}
 
 h2 {
 	font-weight: bold;

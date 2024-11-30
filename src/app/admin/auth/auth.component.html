@@ -1,22 +1,23 @@
-<div class="bg-danger p-2 text-center text-white" *ngIf="errorMessage!=null">
-    {{errorMessage}}
+<div class="bg-danger p-2 text-center text-white "  *ngIf="errorMessage!=null">
+  {{errorMessage}}
 </div>
-<div class="app-container" style="display: flex; flex-direction: row; justify-content: center; align-items: center; width: 100%; height: 100vh;">
-    <div class="form-container">
-      <form #form="ngForm" (ngSubmit)="login(form)">
-        <div class="form-group">
-          <label for="">Mail</label>
-          <input class="form-control" name="mail" [(ngModel)]="mail" required>
-        </div>
-        <div class="form-group">
-          <label for="">Password</label>
-          <input class="form-control" name="password" [(ngModel)]="password" required>
-        </div>
-        <div class="text-center mt-2">
-          <button class="btn btn-secondary" type="button">Geri Dön</button>
-          <button class="btn btn-primary ms-2" type="submit">Giriş</button>
-        </div>
-      </form>
-    </div>
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100 app-container">
+<div class="col-12 col-sm-8 col-md-6 col-lg-4">
+  <div class="card p-4 shadow">
+    <form #form="ngForm" (ngSubmit)="login(form)">
+      <div class="form-group mb-3">
+        <label for="mail" class="form-label">Mail</label>
+        <input id="mail" class="form-control" name="mail" [(ngModel)]="mail" required>
+      </div>
+      <div class="form-group mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" class="form-control" type="password" name="password" [(ngModel)]="password" required>
+      </div>
+      <div class="text-center">
+        <button class="btn btn-secondary" type="button">Geri Dön</button>
+        <button class="btn btn-primary ms-2" type="submit">Giriş</button>
+      </div>
+    </form>
   </div>
-  
+</div>
+</div>

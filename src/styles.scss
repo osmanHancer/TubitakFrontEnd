@@ -19,6 +19,43 @@ html, body {
 .mat-dialog-container#mat-mdc-dialog-1 {
   width: 30% !important;
 }
+/* Add application styles & imports to this file! */
+
+
+.tema-1 {
+  background-color: #7F99EB;
+	color:#000;
+}
+.tema-2 {
+  background-color: #D48755;
+	color:#000;
+}
+.tema-3 {
+  background-color: #FAEE64;
+	color:#000;
+}
+.tema-4 {
+	background-color: #ED69AC;
+	color:#000;
+}
+.tema-5 {
+	background-color: #76D67C;
+	color:#000;
+}
+
+
+.redText {
+    color: Red;
+    font-size: 12px;
+    font-family: Arial;
+}
+
+h1.titleText {
+    color: #69a8cf;
+    text-align: left;
+    margin-top: 40px;
+    font-weight: normal;
+}
  
 
 @import 'bootstrap/scss/bootstrap';

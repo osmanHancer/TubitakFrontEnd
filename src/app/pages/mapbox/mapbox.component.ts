@@ -6,7 +6,6 @@ import { environment } from '../../../environments/environment';
 import allpoints from '../../../assets/19_james_morier_smooth_2.json';
 import { MySharedModules } from '../../_com/myshared.module';
 import { QW } from '../../_lib/qw.helper';
-import { LayoutAdminComponent } from "../../_layoutadmin/layoutadmin.component";
 import lgZoom from 'lightgallery/plugins/zoom';
 import { BeforeSlideDetail } from 'lightgallery/lg-events';
 import { LightgalleryModule } from 'lightgallery/angular';
@@ -14,15 +13,13 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogContent, MatDialogModule, MatDialo
 import { MatButtonModule } from '@angular/material/button';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgImageSliderModule } from 'ng-image-slider';
-import { data } from 'jquery';
-import { MatExpansionPanel } from '@angular/material/expansion';
 declare var turf: any;
 @Component({
   selector: 'app-mapbox-2',
   standalone: true,
   templateUrl: './mapbox.component.html',
   styleUrls: ['./mapbox.component.scss'],
-  imports: [CommonModule, RouterOutlet, MySharedModules, LayoutAdminComponent, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
+  imports: [CommonModule, MySharedModules, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
 })
 export class MapboxComponent implements OnInit {
   CloseModal() {
@@ -136,7 +133,7 @@ export class MapboxComponent implements OnInit {
       let boylam = this.route.snapshot.paramMap.get('boylam')
       if (enlem != null && boylam != null) {
         this.map.flyTo({
-          center: [+enlem + 0.4, +boylam],
+          center: [+boylam + 0.4, +enlem],
           zoom: 10,
           essential: true // Kullanıcı hareketleri engellenmez
         });
@@ -186,9 +183,12 @@ export class MapboxComponent implements OnInit {
 
         }, 500); // Her 500ms'de bir yanıp sönsün
         let lokasyon = await QW.json('/lokasyon/getId/' + enlem + '/' + boylam);
+        let info=await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
+        if(info!=null)
+        {
         this.point_info_dialog = await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
         this.gizle = false;
-
+        }
       }
 
       this.maps_data.forEach((element: any) => {
@@ -370,8 +370,21 @@ export class MapboxComponent implements OnInit {
         source: SeyyahnameKod + 'point',
         'layout': {
           'icon-image': c.icon, // reference the image
-          'icon-size': c.size
+          'icon-size': c.size,
+          'text-field': [
+            'format',
+            ['upcase', ['get', 'yer_ismi']],
+            { 'font-scale': 0.8 },
+            '\n\n\n\n\n',
+           
+        ],
+        'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold']
         },
+        'paint': {
+    'text-color': '#ff0000', // Metin rengini kırmızı yapar
+    'text-halo-color': '#ffffff', // Metin çevresindeki hale rengini beyaz yapar
+    'text-halo-width': 1.5 // Hale genişliği
+       },
 
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
         minzoom: 6
@@ -488,7 +501,8 @@ export class MapboxComponent implements OnInit {
             properties: {
               Point_id: point.seyahname_kodu + ',' + point.id,
               tespit_edilen_konum_olcegi: point.tespit_edilen_konum_olcegi,
-              seyahname_kodu: point.seyahname_kodu
+              seyahname_kodu: point.seyahname_kodu,
+              yer_ismi:point.mekanin_gunumuzdeki_adi
             },
           });
         }
@@ -516,6 +530,7 @@ export class MapboxComponent implements OnInit {
     });
 
     dialogRef.keydownEvents().subscribe(async (event: { shiftKey: any; key: string }) => {
+
 
       if (event.key === 'ArrowRight') {
         this.imagesslide = [];
@@ -616,6 +631,8 @@ export class MapboxComponent implements OnInit {
           }
         }
       }
+      console.log(this.getDialogData());
+
     });
   }
 
@@ -677,11 +694,12 @@ export class MapboxComponent implements OnInit {
     if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
       this.point_info_dialog = clickPoint.data[0];
-      console.log(this.point_info_dialog);
     }
     this.point_info_dialog.alintilar = this.alintilar
 
     this.openDialog();
+    console.log(this.getDialogData());
+
 
 
   }
@@ -767,7 +785,8 @@ export class MapboxComponent implements OnInit {
 
       window.cancelAnimationFrame(this.animationFrameId); // Cancel the animation
       this.animationFrameId = null; // Reset the ID
-      this.map.flyTo({ center: [27.422222, 38.630554], zoom: 6, speed: 1 });
+      this.map.resetNorthPitch();
+
     }
   }
   getDialogData() {

@@ -15,7 +15,7 @@
       <div class="col-12 col-xl-6">
         <div class="search-form my-5">
           <div class="form-group">
-            <input matInput type="text" [(ngModel)]="filtertextYapi" (ngModelChange)="filterYapi(filtertextYapi)"
+            <input matInput type="text" [(ngModel)]="filtertextYapi" autocomplete="off" (ngModelChange)="filterYapi(filtertextYapi)"
               class="form-control" id="kutuphane-search" aria-describedby="kutuphaneSearch"
               placeholder="Aramak istediğiniz terimi giriniz">
           </div>
@@ -47,7 +47,7 @@
             <div class="col-12 col-xl-6">
               <div class="search-form my-5">
                 <div class="form-group">
-                  <input type="text" [(ngModel)]="filtertextSeyahat" (ngModelChange)="filterSeyahat(filtertextSeyahat)"
+                  <input type="text" [(ngModel)]="filtertextSeyahat" autocomplete="off" (ngModelChange)="filterSeyahat(filtertextSeyahat)"
                     class="form-control" id="kutuphane-search" aria-describedby="kutuphaneSearch"
                     placeholder="Aramak istediğiniz terimi giriniz">
                 </div>

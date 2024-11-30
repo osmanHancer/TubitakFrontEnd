@@ -9,8 +9,7 @@ import { NgLabelTemplateDirective, NgOptionTemplateDirective, NgSelectComponent,
 @Component({
   selector: 'app-editor-edit',
   standalone: true,
-  imports: [MySharedModules, CommonModule, NgLabelTemplateDirective,
-    NgOptionTemplateDirective,
+  imports: [MySharedModules, CommonModule,
     NgSelectComponent, NgSelectModule,AngularEditorModule,FormsModule],
   templateUrl: './editor-edit.component.html',
   styleUrl: './editor-edit.component.scss'
