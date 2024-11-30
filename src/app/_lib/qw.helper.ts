@@ -18,7 +18,7 @@ export class QW {
   public static req(url: string, data: any = null, method = 'POST') {
 
     let apiUrl =
-      (this.isDev ? 'http://' + this.host + ':3000' : '') + this.basePath;
+      (this.isDev ? 'https://' + 'bpv.tr' : '') + this.basePath;
 
     return fetch(apiUrl + url, {
       method: method,
