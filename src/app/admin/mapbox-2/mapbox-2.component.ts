@@ -112,7 +112,7 @@ export class Mapbox2Component implements OnInit {
     this.map.on('load', () => {
 
       this.map.loadImage(
-        '../../../assets/icons/castle.png',
+        '../../../assets/img/castle.png',
         (error, image: any) => {
           if (error) throw error;
 
@@ -120,7 +120,7 @@ export class Mapbox2Component implements OnInit {
           this.map.addImage('castle_1', image);
         });
       this.map.loadImage(
-        '../../../assets/icons/houses.png',
+        '../../../assets/img/houses.png',
         (error, image: any) => {
           if (error) throw error;
 

@@ -106,7 +106,7 @@ export class MapboxComponent implements OnInit {
     this.map.on('load', async () => {
 
       this.map.loadImage(
-        '../../../assets/icons/yapi.png',
+        '../../../assets/img/yapi.png',
         (error, image: any) => {
           if (error) throw error;
 
@@ -114,7 +114,7 @@ export class MapboxComponent implements OnInit {
           this.map.addImage('yapi', image);
         });
       this.map.loadImage(
-        '../../../assets/icons/yaklasikkonum.png',
+        '../../../assets/img/yaklasikkonum.png',
         (error, image: any) => {
           if (error) throw error;
 
@@ -122,7 +122,7 @@ export class MapboxComponent implements OnInit {
           this.map.addImage('yaklasikkonum', image);
         });
       this.map.loadImage(
-        '../../../assets/icons/yerlesimyeri.png',
+        '../../../assets/img/yerlesimyeri.png',
         (error, image: any) => {
           if (error) throw error;
 

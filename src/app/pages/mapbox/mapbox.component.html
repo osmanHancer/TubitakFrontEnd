@@ -24,7 +24,7 @@
             <!-- Açıklama ekleyebilirsiniz -->
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div>
+        <div id="fit_2">
           <div *ngFor="let fet of maps_data ; let i = index">
             <div style="display: flex; flex-direction: row;width: 450px;" *ngIf="item===fet.crs.properties.yuzyil">
               <mat-checkbox [(ngModel)]="fet.crs.properties.checked" style="max-width: 200px;"
@@ -167,7 +167,7 @@
 
           <td>
             @for (item of this.point_info_dialog.alintilar; track $index) {
-            <div class="card w-100 ">
+            <div class="card w-100 mt-2">
               <div class="card-body">
                 <div style="display: flex;flex-direction: row;">
                   <div>
