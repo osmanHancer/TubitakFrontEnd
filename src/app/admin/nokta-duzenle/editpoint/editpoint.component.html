@@ -1,7 +1,6 @@
-<div style="display: flex;flex-direction: column;margin-top: 2%;">
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-
-    <mat-form-field style="width: 40%;">
+<div class="container">
+  <div class="row">
+    <mat-form-field class="col-xl-6">
       <mat-label>Yüzyıl</mat-label>
       <mat-select matSort [(ngModel)]="editItem.yuzyil">
         <mat-option value="11. yüzyıl">11. yüzyıl</mat-option>
@@ -15,69 +14,57 @@
         <mat-option value="19. yüzyıl">19. yüzyıl</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Seyahname Kodu </mat-label>
       <input required matInput placeholder="Seyahname Kodu " [(ngModel)]="editItem.seyahname_kodu" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Yazar </mat-label>
       <input required matInput placeholder="Yazar" [(ngModel)]="editItem.yazar" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Seyahatname Adı </mat-label>
       <input required matInput placeholder="Seyahatname Adı" [(ngModel)]="editItem.seyahatname_adi" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Bölüm/Chapter/Mektup Numarası </mat-label>
       <input required matInput placeholder="Bölüm/Chapter/Mektup Numarası"
         [(ngModel)]="editItem.bolum_chapter_mektupnumarasi" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Sayfa Numarası </mat-label>
       <input type="number" required matInput placeholder="Sayfa Numarası" [(ngModel)]="editItem.sayfa_numarasi" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Seyahat Adımı </mat-label>
       <input type="number" required matInput placeholder="Seyahat Adımı" [(ngModel)]="editItem.seyahat_adimi" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Anlatıda Geçen Mekan Adı </mat-label>
       <input required matInput placeholder="Anlatıda Geçen Mekan Adı" [(ngModel)]="editItem.anlatida_gecen_mekan_adi" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Mekanın Günümüzdeki Adı </mat-label>
       <input required matInput placeholder="Mekanın Günümüzdeki Adı" [(ngModel)]="editItem.mekanin_gunumuzdeki_adi" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Enlem</mat-label>
       <input required matInput placeholder="Enlem" [(ngModel)]="editItem.enlem" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Boylam </mat-label>
       <input required matInput placeholder="Boylam " [(ngModel)]="editItem.boylam" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Tespit Edilen Konum Ölçeği </mat-label>
       <mat-select [(ngModel)]="editItem.tespit_edilen_konum_olcegi">
         <mat-option value="YAKLAŞIK KONUM">YAKLAŞIK KONUM</mat-option>
         <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
         <mat-option value="YAPI">YAPI</mat-option>
-       
+
       </mat-select>
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Mekan Tipi </mat-label>
       <mat-select [(ngModel)]="editItem.mekan_tipi">
         <mat-option value="KERVANSARAY / HAN">KERVANSARAY / HAN</mat-option>
@@ -89,39 +76,33 @@
         <mat-option value="DİNİ YAPI">DİNİ YAPI</mat-option>
         <mat-option value="ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR">ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR</mat-option>
         <mat-option value="DİĞER">DİĞER</mat-option>
-       
+
       </mat-select>
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Konaklanma Durumu (Evet/Hayır) </mat-label>
       <mat-select [(ngModel)]="editItem.konaklanma_durumu">
         <mat-option value="EVET">Evet</mat-option>
         <mat-option value="HAYIR">Hayır</mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Yapı Envanter Kodu (Varsa) </mat-label>
       <input required matInput placeholder="Yapı Envanter Kodu (Varsa)" [(ngModel)]="editItem.yapi_envanter_kodu" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>ALINTILAR </mat-label>
       <input required matInput placeholder="ALINTILAR" [(ngModel)]="editItem.alintilar" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>NOTLAR </mat-label>
       <input required matInput placeholder="NOTLAR" [(ngModel)]="editItem.notlar" />
     </mat-form-field>
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>ROTA NOTLARI </mat-label>
       <input required matInput placeholder="ROTA NOTLARI" [(ngModel)]="editItem.rota_notlari" />
     </mat-form-field>
-  </div>
-  <div style="display: flex;flex-direction: row;justify-content: space-around;">
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>Deniz Yoluyla Ulaşım </mat-label>
       <mat-select [(ngModel)]="editItem.deniz_yoluyla_ulasim">
         <mat-option value="EVET">Evet</mat-option>
@@ -129,25 +110,23 @@
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field style="width: 40%;">
+    <mat-form-field class="col-xl-6">
       <mat-label>ID </mat-label>
       <input required matInput placeholder="ID" [(ngModel)]="editItem.id" />
     </mat-form-field>
   </div>
-
-  <div style="width: 95%;display: flex;flex-direction: row;justify-content:end">
-    <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px;" color="coral"
-      (click)="submitForm('update')" >
-      Kaydet<mat-icon>add</mat-icon>
-    </button>
-    <button [hidden]="gizle" mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral"
-      (click)="submitForm('delete')">
-      Sil<mat-icon>delete</mat-icon>
-    </button>
-    <button mat-button style="background-color: rgb(124, 45, 74);margin-left: 10px; " color="coral"
-      routerLink="../../../point">
-      İptal<mat-icon>cancel</mat-icon>
-    </button>
-
-  </div>
 </div>
+
+    <div class="container">
+      <div class="row">
+        <button class="col-xl-2 m-2"  mat-flat-button   (click)="submitForm('update')">
+          Kaydet<mat-icon>add</mat-icon>
+        </button>
+        <button class="col-xl-2 m-2" [hidden]="gizle"  mat-flat-button   (click)="submitForm('delete')">
+          Sil<mat-icon>delete</mat-icon>
+        </button>
+        <button class="col-xl-2 m-2"  mat-flat-button   routerLink="../../../point">
+          İptal<mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>

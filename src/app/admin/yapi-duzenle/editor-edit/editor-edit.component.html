@@ -64,80 +64,70 @@
     <angular-editor style="color: black;" [(ngModel)]="editItemList.yapi_html_6" [config]="config"></angular-editor>
 
 
-    <div style="display: flex;flex-direction: row;margin-top: 10px;margin-left: 2%;">
+
+
+  <div class="container-fluid">
+    <div class="row">
+
+      <ng-select class="col-xl-6" [multiple]="false" [(ngModel)]="editItemList.lokasyonId"
+        [placeholder]="'Seçilecek lokasyonları belirtin...'">
+        <ng-option *ngFor="let lokasyon of LokasyonSource" [value]="lokasyon.Id">
+          {{ lokasyon.Id }} -
+          <span class="mekan-label">Mekan Adı:</span> {{ lokasyon.mekan_adi }}
+          <span class="gunumuzdeki-label">Günümüzdeki Adı:</span> {{ lokasyon.Mekanin_Gunumuzdeki_Adi }}
+
+
+        </ng-option>
+      </ng-select>
 
 
 
-      <div class=" my-1" style="width: 60%;">
-        <ng-select [multiple]="false" [(ngModel)]="editItemList.lokasyonId"
-          [placeholder]="'Seçilecek lokasyonları belirtin...'">
-          <ng-option *ngFor="let lokasyon of LokasyonSource" [value]="lokasyon.Id">
-            {{ lokasyon.Id }} -
-            <span class="mekan-label">Mekan Adı:</span> {{ lokasyon.mekan_adi }}
-            <span class="gunumuzdeki-label">Günümüzdeki Adı:</span> {{ lokasyon.Mekanin_Gunumuzdeki_Adi }}
+      <mat-form-field class="col-xl-6">
+        <mat-label>Yapı</mat-label>
+        <input matInput placeholder="Yapı İsmi" [(ngModel)]="editItemList.yapi_ismi" />
+      </mat-form-field>
+      <mat-form-field class="col-xl-6">
+        <mat-label>Başlık</mat-label>
+        <input matInput placeholder="Başlık" [(ngModel)]="editItemList.baslik" />
+      </mat-form-field>
 
+      <mat-form-field class="col-xl-6">
+        <mat-label>Yüzyıl</mat-label>
+        <mat-select [(ngModel)]="editItemList.yuzyil">
+          <mat-option value="11. yüzyıl">11. yüzyıl</mat-option>
+          <mat-option value="12. yüzyıl">12. yüzyıl</mat-option>
+          <mat-option value="13. yüzyıl">13. yüzyıl</mat-option>
+          <mat-option value="14. yüzyıl">14. yüzyıl</mat-option>
+          <mat-option value="15. yüzyıl">15. yüzyıl</mat-option>
+          <mat-option value="16. yüzyıl">16. yüzyıl</mat-option>
+          <mat-option value="17. yüzyıl">17. yüzyıl</mat-option>
+          <mat-option value="18. yüzyıl">18. yüzyıl</mat-option>
+          <mat-option value="19. yüzyıl">19. yüzyıl</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="col-xl-6">
+        <mat-label>Eski Adı</mat-label>
+        <input matInput placeholder="Alt Başlık" [(ngModel)]="editItemList.alt_baslik" />
+      </mat-form-field>
+      <mat-form-field class="col-xl-6">
+        <mat-label>Yapı Türü</mat-label>
+        <mat-select [(ngModel)]="editItemList.yapituru">
+          <mat-option value="KERVANSARAY / HAN">KERVANSARAY / HAN</mat-option>
+          <mat-option value="ÖZEL MÜLK">ÖZEL MÜLK</mat-option>
+          <mat-option value="MİSAFİRHANE / OTEL / PANSİYON">MİSAFİRHANE / OTEL / PANSİYON</mat-option>
+          <mat-option value="AÇIK ALANDA KONAKLAMA">AÇIK ALANDA KONAKLAMA</mat-option>
+          <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
+          <mat-option value="TANIMLANMAYAN MEKAN">TANIMLANMAYAN MEKAN</mat-option>
+          <mat-option value="DİNİ YAPI">DİNİ YAPI</mat-option>
+          <mat-option value="ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR">ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR</mat-option>
+          <mat-option value="DİĞER">DİĞER</mat-option>
+        </mat-select>
+      </mat-form-field>
 
-          </ng-option>
-        </ng-select>
-      </div>
+      <button class="col-xl-2 m-2" mat-flat-button  (click)="Save()">
+        Kaydet<mat-icon>save</mat-icon>
+      </button>
+
 
     </div>
-  <p>
-
-  <div style="display: flex;flex-direction: row;text-align: start;justify-content:flex-start;width: 100%;">
-
-    <mat-form-field class="mx-4" style="width: 30%;">
-      <mat-label>Yapı</mat-label>
-      <input matInput placeholder="Yapı İsmi" [(ngModel)]="editItemList.yapi_ismi" />
-    </mat-form-field>
-    <mat-form-field class="mx-4" style="width: 30%;">
-      <mat-label>Başlık</mat-label>
-      <input matInput placeholder="Başlık" [(ngModel)]="editItemList.baslik" />
-    </mat-form-field>
-
-    <mat-form-field class="mx-4" style="width: 30%;">
-      <mat-label>Yüzyıl</mat-label>
-      <mat-select [(ngModel)]="editItemList.yuzyil">
-        <mat-option value="11. yüzyıl">11. yüzyıl</mat-option>
-        <mat-option value="12. yüzyıl">12. yüzyıl</mat-option>
-        <mat-option value="13. yüzyıl">13. yüzyıl</mat-option>
-        <mat-option value="14. yüzyıl">14. yüzyıl</mat-option>
-        <mat-option value="15. yüzyıl">15. yüzyıl</mat-option>
-        <mat-option value="16. yüzyıl">16. yüzyıl</mat-option>
-        <mat-option value="17. yüzyıl">17. yüzyıl</mat-option>
-        <mat-option value="18. yüzyıl">18. yüzyıl</mat-option>
-        <mat-option value="19. yüzyıl">19. yüzyıl</mat-option>
-      </mat-select>
-    </mat-form-field>
   </div>
-  <div style="display: flex;flex-direction: row;text-align: start;justify-content: flex-start;width:100%;">
-    <mat-form-field class="mx-4" style="width: 30%;">
-      <mat-label>Eski Adı</mat-label>
-      <input matInput placeholder="Alt Başlık" [(ngModel)]="editItemList.alt_baslik" />
-    </mat-form-field>
-    <mat-form-field class="mx-4" style="width: 30%;">
-      <mat-label>Yapı Türü</mat-label>
-      <mat-select [(ngModel)]="editItemList.yapituru">
-        <mat-option value="KERVANSARAY / HAN">KERVANSARAY / HAN</mat-option>
-        <mat-option value="ÖZEL MÜLK">ÖZEL MÜLK</mat-option>
-        <mat-option value="MİSAFİRHANE / OTEL / PANSİYON">MİSAFİRHANE / OTEL / PANSİYON</mat-option>
-        <mat-option value="AÇIK ALANDA KONAKLAMA">AÇIK ALANDA KONAKLAMA</mat-option>
-        <mat-option value="YERLEŞİM YERİ">YERLEŞİM YERİ</mat-option>
-        <mat-option value="TANIMLANMAYAN MEKAN">TANIMLANMAYAN MEKAN</mat-option>
-        <mat-option value="DİNİ YAPI">DİNİ YAPI</mat-option>
-        <mat-option value="ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR">ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR</mat-option>
-        <mat-option value="DİĞER">DİĞER</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <button class="mx-3" mat-button style="background-color: rgb(124, 45, 74); " color="coral" (click)="Save()">
-      Kaydet<mat-icon>save</mat-icon>
-    </button>
-
-  </div>
-</div>
-<div>
-
-
-
-</div>

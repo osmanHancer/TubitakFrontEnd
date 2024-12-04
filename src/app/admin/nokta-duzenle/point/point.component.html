@@ -100,13 +100,13 @@
 
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef >
-                    <button mat-mini-fab routerLink="../editpoint/-1/-1"
+                    <button mat-mini-fab routerLink="../point/-1/-1"
                         style="background-color: rgb(117, 107, 93); color: coral">
                         <mat-icon>add</mat-icon>
                     </button>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row; let i = index">
-                    <button mat-mini-fab routerLink="../editpoint/{{row.seyahname_kodu}}/{{ row.id }}"
+                    <button mat-mini-fab routerLink="../point/{{row.seyahname_kodu}}/{{ row.id }}"
                         style="background-color: rgb(117, 107, 93); color: coral" button>
                         <mat-icon>edit</mat-icon></button>
                 </mat-cell>

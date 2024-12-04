@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { Mapbox2Component } from './admin/mapbox-2/mapbox-2.component';
-import { YapilarComponent } from './admin/yapilar/yapilar.component';
 import { LayoutAdminComponent } from './_layoutadmin/layoutadmin.component';
 import { LayoutHomeComponent } from './_layouthome/layouthome.component';
 import { YapiComponent } from './pages/yapi/yapi.component';
@@ -99,12 +98,12 @@ export const routes: Routes = [
 
             },
             {
-                path: "editsaha/:sahaismi",
+                path: "saha/:sahaismi",
                 component: SahacalismasieditComponent
 
             },
             {
-                path: "editpoint/:seyyahnameKodu/:id",
+                path: "point/:seyyahnameKodu/:id",
                 component: EditpointComponent
 
             },
@@ -119,7 +118,7 @@ export const routes: Routes = [
 
             },
             {
-                path: "lokasyonedit/:gunumuzdeki_adi",
+                path: "lokasyon/:gunumuzdeki_adi",
                 component: LokasyonComponent
 
             },
@@ -148,11 +147,7 @@ export const routes: Routes = [
                 component: EditorEditComponent
 
             },
-            {
-                path: "yapılar",
-                component: YapilarComponent
-
-            },
+            
             {
                 path: "imageadd",
                 component: FileuploadComponent

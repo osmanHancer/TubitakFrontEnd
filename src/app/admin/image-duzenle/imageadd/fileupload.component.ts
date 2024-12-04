@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-fileupload',
   standalone: true,
-  imports: [MySharedModules, NgxFileDropModule,NgLabelTemplateDirective,NgOptionTemplateDirective,NgSelectComponent,NgSelectModule,FormsModule],
+  imports: [MySharedModules, NgxFileDropModule,NgSelectComponent,NgSelectModule,FormsModule],
   templateUrl: './fileupload.component.html',
   styleUrl: './fileupload.component.scss'
 })

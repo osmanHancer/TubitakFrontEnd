@@ -1,56 +1,60 @@
-<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 50%">
-    <div style="display: flex;flex-direction: column;">
-        <div style="display: flex;flex-direction: row;justify-content:space-around;">
-            <mat-form-field style="width: 40%;">
+<div class="container mt-2">
+    <div class="row">
+        
+            <mat-form-field class="col-xl-6 ">
                 <mat-label>Yüzyıl </mat-label>
                 <input required matInput placeholder="Yuzyil" [(ngModel)]="editItem.yuzyil" />
             </mat-form-field>
-            <mat-form-field style="width: 40%;">
+            <mat-form-field class="col-xl-6 ">
                 <mat-label>Adı </mat-label>
                 <input required matInput placeholder="Name" [(ngModel)]="editItem.name" />
             </mat-form-field>
-        </div>
-        <div style="display: flex;flex-direction: row;justify-content:space-around;">
-            <mat-form-field style="width: 40%;">
+      
+        
+            <mat-form-field class="col-xl-6 ">
                 <mat-label>Tarih </mat-label>
 
                 <input required matInput placeholder="Tarih" [(ngModel)]="editItem.tarih" />
             </mat-form-field>
-            <mat-form-field style="width: 40%;">
+            <mat-form-field class="col-xl-6 ">
                 <mat-label>Anadil </mat-label>
                 <input required matInput placeholder="Anadil" [(ngModel)]="editItem.anadil" />
             </mat-form-field>
-        </div>
-        <div style="display: flex;flex-direction: row;justify-content:space-around;">
-            <div  style="width: 40%;">
-            <mat-form-field style="width: 100%;">
+      
+        
+          
+            <mat-form-field class="col-xl-6 ">
                 <mat-label>Çeviri </mat-label>
                 <input required matInput placeholder="Çeviri" [(ngModel)]="editItem.ceviri" />
             </mat-form-field>
-        </div>
-        <div style="width: 40%;">
-            <mat-form-field  style="width: 100%;">
+      
+        
+            <mat-form-field class="col-xl-6 ">
                 <mat-label>Notlar</mat-label>
                 <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
                     cdkAutosizeMaxRows="20" [(ngModel)]="editItem.notlar"></textarea>
             </mat-form-field>
+      
+      
         </div>
-        </div>
+      </div>
     
-    </div>
-    <div style="display: flex;justify-content: space-around;width: 40%;padding-left: 3%;">
-        <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
+  
+    <div class="container">
+        <div class="row">
+
+        <button mat-flat-button class="col-xl-2 m-2"
             (click)="submitForm('update')">
             Kaydet<mat-icon>add</mat-icon>
         </button>
 
-        <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
+        <button mat-flat-button class="col-xl-2 m-2"
             (click)="submitForm('delete')">
             Sil<mat-icon>delete</mat-icon>
         </button>
-        <button mat-button style="background-color: rgb(124, 45, 74);" color="coral" routerLink="../../seyyah">
+        <button mat-flat-button class="col-xl-2 m-2"  routerLink="../../seyyah">
             İptal<mat-icon>cancel</mat-icon>
         </button>
 
-    </div>
+  </div>
 </div>

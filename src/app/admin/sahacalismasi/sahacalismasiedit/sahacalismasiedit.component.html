@@ -1,43 +1,41 @@
-<div style="display: flex;flex-direction:column;margin-top: 2%;margin-right: 50%">
-    <div style="display: flex;justify-content: space-around;">
+<div class="container mt-2">
+    <div class="row">
 
-        <mat-form-field style="width: 40%;">
+        <mat-form-field class="col-xl-6">
             <mat-label>Saha ismi </mat-label>
             <input required matInput placeholder="Saha ismi" [(ngModel)]="editItem.Sahaismi" />
         </mat-form-field>
-   
-          
 
-          <mat-form-field style="width: 40%;">
+
+
+        <mat-form-field class="col-xl-6">
             <mat-select [(ngModel)]="editItem.LokasyonId">
-               <input style="color: black;" matInput placeholder="filter.." #filterplc>
-               <div  *ngFor="let opt of dataSource ">
-               <mat-option *ngIf="opt.Lokasyon_Adi.includes(filterplc.value)"
-                           [value]="opt.Id" >{{opt.Lokasyon_Adi}}  enlem: {{opt.Enlem}} boylam: {{opt.Boylam}}>
-               
-               </mat-option>
-                 </div>
-             </mat-select>
-           </mat-form-field>
-      
+                <input style="color: black;" matInput placeholder="filter.." #filterplc>
+                <div *ngFor="let opt of dataSource ">
+                    <mat-option *ngIf="opt.Lokasyon_Adi.includes(filterplc.value)" [value]="opt.Id">{{opt.Lokasyon_Adi}}
+                        enlem: {{opt.Enlem}} boylam: {{opt.Boylam}}>
 
-
+                    </mat-option>
+                </div>
+            </mat-select>
+        </mat-form-field>
 
     </div>
-        <div  style="display: flex;justify-content: space-around;width: 40%;padding-left: 3%;">
-            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
-                (click)="submitForm('update')">
-                Kaydet<mat-icon>add</mat-icon>
-            </button>
+</div>
 
-            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
-                routerLink="../../saha" (click)="submitForm('delete')">
-                Sil<mat-icon>delete</mat-icon>
-            </button>
-            <button mat-button style="background-color: rgb(124, 45, 74);" color="coral"
-                routerLink="../../saha">
-                İptal<mat-icon>cancel</mat-icon>
-            </button>
 
-        </div>
+
+<div class="container">
+    <div class="row">
+        <button mat-flat-button class="col-xl-2 m-2" (click)="submitForm('update')">
+            Kaydet<mat-icon>add</mat-icon>
+        </button>
+
+        <button mat-flat-button class="col-xl-2 m-2" routerLink="../../saha" (click)="submitForm('delete')">
+            Sil<mat-icon>delete</mat-icon>
+        </button>
+        <button mat-flat-button class="col-xl-2 m-2" routerLink="../../saha">
+            İptal<mat-icon>cancel</mat-icon>
+        </button>
+    </div>
 </div>

@@ -20,12 +20,12 @@
       
             <ng-container matColumnDef="action">
                 <mat-header-cell *matHeaderCellDef>
-                    <button mat-mini-fab routerLink="../editsaha/-1" style="background-color: rgb(117, 107, 93); color: coral">
+                    <button mat-mini-fab routerLink="../saha/-1" style="background-color: rgb(117, 107, 93); color: coral">
                         <mat-icon>add</mat-icon>
                     </button>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row; let i = index">
-                    <button mat-mini-fab routerLink="../editsaha/{{ row.Sahaismi }}"
+                    <button mat-mini-fab routerLink="../saha/{{ row.Sahaismi }}"
                         style="background-color: rgb(117, 107, 93); color: coral">
                         <mat-icon>edit</mat-icon></button>
                      

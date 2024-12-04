@@ -89,6 +89,10 @@ export class MapboxComponent implements OnInit {
   async ngOnInit() {
 
 
+    setTimeout(() => {
+      this.openDialogİnfo();
+    }, 5000);
+
 
     this.maps_data = allpoints;
     this.gizle = true;
@@ -181,11 +185,10 @@ export class MapboxComponent implements OnInit {
 
         }, 500); // Her 500ms'de bir yanıp sönsün
         let lokasyon = await QW.json('/lokasyon/getId/' + enlem + '/' + boylam);
-        let info=await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
-        if(info!=null)
-        {
-        this.point_info_dialog = await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
-        this.gizle = false;
+        let info = await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
+        if (info != null) {
+          this.point_info_dialog = await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
+          this.gizle = false;
         }
       }
 
@@ -258,8 +261,8 @@ export class MapboxComponent implements OnInit {
 
   updateAllComplete(data: any) {
 
- 
-   
+
+
 
     if (this.map.getLayoutProperty(data + 'kara', 'visibility') == 'none') {
       this.DrawPoint(data);
@@ -374,15 +377,15 @@ export class MapboxComponent implements OnInit {
             ['upcase', ['get', 'yer_ismi']],
             { 'font-scale': 0.8 },
             '\n\n\n\n\n',
-           
-        ],
-        'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold']
+
+          ],
+          'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold']
         },
         'paint': {
-    'text-color': '#ff0000', // Metin rengini kırmızı yapar
-    'text-halo-color': '#ffffff', // Metin çevresindeki hale rengini beyaz yapar
-    'text-halo-width': 1.5 // Hale genişliği
-       },
+          'text-color': '#ff0000', // Metin rengini kırmızı yapar
+          'text-halo-color': '#ffffff', // Metin çevresindeki hale rengini beyaz yapar
+          'text-halo-width': 1.5 // Hale genişliği
+        },
 
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
         minzoom: 6
@@ -500,13 +503,21 @@ export class MapboxComponent implements OnInit {
               Point_id: point.seyahname_kodu + ',' + point.id,
               tespit_edilen_konum_olcegi: point.tespit_edilen_konum_olcegi,
               seyahname_kodu: point.seyahname_kodu,
-              yer_ismi:point.mekanin_gunumuzdeki_adi
+              yer_ismi: point.mekanin_gunumuzdeki_adi
             },
           });
         }
       });
     });
   }
+  openDialogİnfo(): void {
+    this.dialog.open(DialogAnimationsExampleDialogİnfo, {
+      panelClass: ["custom-dialog-info"],
+      width: '300px',
+      
+    });
+  }
+
   openDialog() {
     const dialogRef = this.dialog.open(DialogContentExampleDialog, {
       panelClass: ["custom-dialog-container", "mat-mdc-dialog-actions"],
@@ -654,7 +665,7 @@ export class MapboxComponent implements OnInit {
     let id = description.Point_id.split(',')[1];
 
     let clickPoint = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
-    this.point_info_dialog=clickPoint.data[0]
+    this.point_info_dialog = clickPoint.data[0]
     if (clickPoint.data[0]["yapi_envanter_kodu"] != "-") {
       this.point_info_dialog = await QW.json('/arazicalismasi/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.point_info_dialog.bolum_chapter_mektupnumarasi = clickPoint.data[0]['bolum_chapter_mektupnumarasi'];
@@ -693,12 +704,11 @@ export class MapboxComponent implements OnInit {
 
       this.point_info_dialog = clickPoint.data[0];
       console.log(this.point_info_dialog)
-      
+
     }
     this.point_info_dialog.alintilar = this.alintilar
 
     this.openDialog();
-
 
 
   }
@@ -850,6 +860,16 @@ export class DialogContentExampleDialog {
     this.cdr.detectChanges();
   }
 }
+@Component({
+  selector: 'dialog-animations-example-dialog-info',
+  templateUrl: 'dialog-animationinfo.html',
+  standalone: true,
+  imports: [MatDialogModule, MatButtonModule, MatDialogTitle, MatDialogContent, LightgalleryModule, MySharedModules],
+
+})
+export class DialogAnimationsExampleDialogİnfo {
+}
+
 
 
 interface img {
