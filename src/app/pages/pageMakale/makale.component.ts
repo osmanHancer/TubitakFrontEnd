@@ -21,16 +21,22 @@ constructor(private route: ActivatedRoute) {
 async ngOnInit() {
   let makale= this.route.snapshot.paramMap.get('makale') 
   let html= await QW.json("/makale/"+makale);
-  this.html=html.makale.metin;
+  this.html=this.cleanThemesFromHtml(html.makale.metin);
   this.name=html.makale.seyahatnameadi
 
 
 }
 
+
   async ngAfterViewInit(): Promise<void> {
   //  await this.loadScript("/assets/js/meykurt.js");
   }
 
+  cleanThemesFromHtml(html: string): string {
+    // RegEx ile 'tema-1', 'tema-2', ..., 'tema-5' sınıflarını kaldır
+    return html.replace(/\btema-[1-5]\b/g, '').replace(/\s{2,}/g, ' ').trim();
+  }
+  
   public loadScript(url:string) {
     return new Promise<void>((resolve, reject) => {
       if (document.getElementById("script_omap")) return resolve();

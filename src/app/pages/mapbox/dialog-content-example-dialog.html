@@ -1,27 +1,35 @@
-<h2 mat-dialog-title class="modal_title">{{data.Yapi_Adi}} {{data.Mekan_Adi}}</h2>
+<h2 mat-dialog-title class="modal_title">{{data.Yapi_Adi }} {{ data.Mekan_Adi }}
+  <span *ngIf="data.Gunumuzdeki_Mekan_Adi != undefined">
+    ({{ data.Gunumuzdeki_Mekan_Adi }})
+  </span>
+</h2>
+
 <mat-dialog-content style="padding-top: 30px;" class="mat-typography">
-  <div  [hidden]="data.DialogImgs ==null ? true:false" class="gallery-item">
+  <div [hidden]="data.DialogImgs ==null ? true:false" class="gallery-item">
     <img class="img-fluid" [attr.src]="data.DialogImgs" />
 
   </div>
-  <div style="padding-top: 30px;">
-    <div style="display: flex;flex-direction: row;"> <mat-icon>
+  <div style="padding-top: 10px;">
+    <div style="display: flex;flex-direction: row;">
+      <b>Tarih : </b><mat-icon>
         calendar_month
       </mat-icon>
-      <p>{{data.Donemi}}</p>
-      <p>{{data.Yuzyil}}</p>
+      <p>{{ data.Donemi}}</p>
+      <p>{{ data.Yuzyil}}</p>
     </div>
-    <div style="display: flex;flex-direction: row;"> <mat-icon>
+    <div style="display: flex;flex-direction: row;">
+      <b>Lokasyon : </b>
+      <mat-icon>
         location_pin
       </mat-icon>
-      <p>{{data.Enlem.toFixed(4)}},</p>
-      <p>{{data.Boylam.toFixed(4)}}</p>
+      <p>{{ data.Enlem.toFixed(4)}},</p>
+      <p>{{ data.Boylam.toFixed(4)}}</p>
     </div>
-    <p>Bölüm Numarsı {{data.Bolum_Numarasi}}</p>
-    <p>Sayfa Numarası {{data.Sayfa_Numarasi}}</p>
-    <p>Seyahat Adımı {{data.Seyahat_Adimi}}</p>
+    <p><b>Bölüm Numarası : </b> {{ data.Bolum_Numarasi}}</p>
+    <p><b>Sayfa Numarası : </b> {{ data.Sayfa_Numarasi}}</p>
+    <p><b>Seyahat Adımı : </b> {{ data.Seyahat_Adimi}}</p>
     <!-- <p>{{data.Mimari_Ozellikler}}</p> -->
-    <p>{{data.Seyahat_Name_Adi}}</p>
+    <p><b>Seyahatname Adı : </b> {{ data.Seyahat_Name_Adi}}</p>
 
 
 

@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, inject, Inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterOutlet } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
 import allpoints from '../../../assets/19_james_morier_smooth_2.json';
@@ -40,9 +40,7 @@ export class MapboxComponent implements OnInit {
   maps_data: any;
   all_dialog_info: any[] = [];
   dialog_info_index: any;
-  router: any;
   dialogImgs: any;
-  play: any
   private animationFrameId: number | null = null;
   gizle: any
   dashArraySequence = [
@@ -656,7 +654,7 @@ export class MapboxComponent implements OnInit {
     let id = description.Point_id.split(',')[1];
 
     let clickPoint = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
-
+    this.point_info_dialog=clickPoint.data[0]
     if (clickPoint.data[0]["yapi_envanter_kodu"] != "-") {
       this.point_info_dialog = await QW.json('/arazicalismasi/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.point_info_dialog.bolum_chapter_mektupnumarasi = clickPoint.data[0]['bolum_chapter_mektupnumarasi'];
@@ -694,11 +692,12 @@ export class MapboxComponent implements OnInit {
     if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
       this.point_info_dialog = clickPoint.data[0];
+      console.log(this.point_info_dialog)
+      
     }
     this.point_info_dialog.alintilar = this.alintilar
 
     this.openDialog();
-    console.log(this.getDialogData());
 
 
 
@@ -812,6 +811,7 @@ export class MapboxComponent implements OnInit {
       Seyahat_Name_Adi: this.point_info_dialog.seyahatname_adi,
       Alintilar: this.point_info_dialog.alintilar,
       Mekan_Adi: this.point_info_dialog.anlatida_gecen_mekan_adi,
+      Gunumuzdeki_Mekan_Adi: this.point_info_dialog.mekanin_gunumuzdeki_adi,
       Yuzyil: this.point_info_dialog.yuzyil,
       Bolum_Numarasi: this.point_info_dialog.bolum_chapter_mektupnumarasi,
       Sayfa_Numarasi: this.point_info_dialog.sayfa_numarasi,

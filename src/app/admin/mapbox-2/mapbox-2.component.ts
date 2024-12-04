@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
 import allpoints from '../../../assets/19_james_morier_smooth_2.json';
@@ -21,7 +20,7 @@ declare var turf: any;
   standalone: true,
   templateUrl: './mapbox-2.component.html',
   styleUrls: ['./mapbox-2.component.scss'],
-  imports: [CommonModule, RouterOutlet, MySharedModules, LayoutAdminComponent, LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
+  imports: [CommonModule,  MySharedModules,  LightgalleryModule, NgbPaginationModule, NgbAlertModule, NgImageSliderModule],
 })
 export class Mapbox2Component implements OnInit {
   CloseModal() {
@@ -42,9 +41,7 @@ export class Mapbox2Component implements OnInit {
   maps_data: any;
   all_dialog_info: any[] = [];
   dialog_info_index: any;
-  router: any;
   dialogImgs: any;
-  play: any
   private animationFrameId: number | null = null;
   gizle: any
   dashArraySequence = [
@@ -457,7 +454,6 @@ export class Mapbox2Component implements OnInit {
         if (this.dialog_info_index != this.all_dialog_info.length - 1) {
           this.dialog_info_index = this.dialog_info_index + 1;
 
-          console.log(this.all_dialog_info[this.dialog_info_index].enlem);
           if (this.all_dialog_info[this.dialog_info_index].enlem != 0) {
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
               this.point_info_dialog = await QW.json('/arazicalismasi/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
@@ -512,7 +508,6 @@ export class Mapbox2Component implements OnInit {
         this.alintilar = [];
         if (this.dialog_info_index != 0) {
           this.dialog_info_index = this.dialog_info_index - 1;
-          console.log(this.all_dialog_info[this.dialog_info_index].enlem);
 
           if (this.all_dialog_info[this.dialog_info_index].enlem != 0) {
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu != "-") {
@@ -589,7 +584,6 @@ export class Mapbox2Component implements OnInit {
     let id = description.Point_id.split(',')[1];
 
     let clickPoint = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
-
     if (clickPoint.data[0]["yapi_envanter_kodu"] != "-") {
       this.point_info_dialog = await QW.json('/arazicalismasi/' + clickPoint.data[0]['yapi_envanter_kodu']);
       let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['yapi_envanter_kodu']);
@@ -636,7 +630,6 @@ export class Mapbox2Component implements OnInit {
       this.point_info_dialog = clickPoint.data[0];
     }
     this.point_info_dialog.alintilar = this.alintilar
-    console.log(this.imagesslide);
 
     this.openDialog();
 

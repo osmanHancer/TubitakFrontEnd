@@ -12,7 +12,7 @@
                 <div class="form-group">
                     <input [(ngModel)]="filtertext_1" autocomplete="off" type="text" class="form-control" id="metin1"
                         aria-describedby="kutuphaneSearch" placeholder="Aranacak metni giriniz" value="Arama metni">
-                        
+
                 </div>
 
             </div>
@@ -63,9 +63,8 @@
             <div class="col-12 col-lg-6 col-xl-3 mb-5">
 
                 <ng-select [multiple]="true" [(ngModel)]="selectedyapi" [placeholder]="' Yapı Türünü belirtin...'">>
-                    <ng-option selected>Han</ng-option>
-                    <ng-option selected>Kervansaray</ng-option>
-                    <ng-option>Seçenek 3</ng-option>
+
+                    <ng-option *ngFor="let mekan of mekanTipleri" [value]="mekan">{{mekan}}</ng-option>
                 </ng-select>
 
 
@@ -93,15 +92,28 @@
 
 
             </div>
-            <div class="col-12">
-                <p class="text-center mb-5"><a class="btn sy-btn btn-olive" (click)="printt()">DETAYLI ARA <i
-                            class="bi bi-search"></i></a></p>
+            <div class="container text-center">
+                <div class="row justify-content-center">
+
+                    <div class="col-4">
+                        <p class="text-center mb-5"><a class="btn sy-btn btn-olive" (click)="filter()">DETAYLI ARA <i
+                                    class="bi bi-search"></i></a></p>
+                    </div>
+                    <div class="col-4">
+                        <p class="text-center mb-5"><a class="btn sy-btn btn-olive" (click)="clear()">ARAMAYI TEMİZLE <i
+                                    class="bi bi-x"></i></a></p>
+                    </div>
+
+                </div>
             </div>
+
+
 
         </div>
         <div class="row justify-content-center">
             <div class="col-12 col-xl-10">
-                <p>Arama tercihleriniz için arama sonuçlarını görüntülüyorsunuz. <i>(42 sonuç)</i></p>
+                <p>Arama tercihleriniz için arama sonuçlarını görüntülüyorsunuz. <i>({{yapisize+seyyahsize}} sonuç)</i>
+                </p>
             </div>
             <div class="col-12 col-xl-10">
                 <div class="accordion" id="accordionPanelsStayOpenExample">
@@ -139,7 +151,7 @@
                             aria-labelledby="panelsStayOpen-headingTwo">
                             <div class="accordion-body">
                                 <ul>
-                                    @for (item of filteredSeyahat; track $index) {
+                                    @for (item of filteredMakale; track $index) {
                                     <li><a [href]="'../home/makale/'+item.kodu">{{item.seyahatnameadi}}</a></li>
                                     }
                                 </ul>

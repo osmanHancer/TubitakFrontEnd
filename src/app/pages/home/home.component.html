@@ -66,47 +66,14 @@
             <div class="col-12">
                 <h2 class="olive text-center mb-5">Örnek Makaleler</h2>
             </div>
-            <div class="col-lg-6 col-xl-3">
+            <div *ngFor="let makale of listSelectedsMakale" class="col-lg-6 col-xl-3">
                 <div class="sy-card olive">
-                    <div class="sy-card-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor</div>
+                    <div class="sy-card-title" >{{makale.seyahatnameadi}}</div>
                     <div class="sy-card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida...</p>
-                        <p class="text-center mt-4"><a class="btn sy-btn btn-olive" href="#">TÜMÜNÜ GÖR</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-3">
-                <div class="sy-card olive">
-                    <div class="sy-card-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor</div>
-                    <div class="sy-card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida...</p>
-                        <p class="text-center mt-4"><a class="btn sy-btn btn-olive" href="#">TÜMÜNÜ GÖR</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-3">
-                <div class="sy-card olive">
-                    <div class="sy-card-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor</div>
-                    <div class="sy-card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida...</p>
-                        <p class="text-center mt-4"><a class="btn sy-btn btn-olive" href="#">TÜMÜNÜ GÖR</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-xl-3">
-                <div class="sy-card olive">
-                    <div class="sy-card-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor</div>
-                    <div class="sy-card-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida...</p>
-                        <p class="text-center mt-4"><a class="btn sy-btn btn-olive" href="#">TÜMÜNÜ GÖR</a></p>
+                        <p [innerHTML]="truncateText(makale.metin, 150)"></p>
+
+                        <a class="btn sy-btn btn-olive" [href]="'/home/makale/' + makale.kodu">TÜMÜNÜ GÖR</a>
+
                     </div>
                 </div>
             </div>

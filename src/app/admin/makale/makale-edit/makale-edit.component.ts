@@ -89,7 +89,7 @@ export class MakaleEditComponent {
       },
       {
         name: "Diğer seyyahlar",
-        class: " tema-4 makale-tema-text makale-tema-05",
+        class: " tema-5 makale-tema-text makale-tema-05",
 
       },
 

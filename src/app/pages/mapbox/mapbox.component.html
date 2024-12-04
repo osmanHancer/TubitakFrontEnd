@@ -1,4 +1,4 @@
-<mat-accordion style="position: absolute; top: 150px; left: 10px;z-index: 999;" [multi]="false">
+<mat-accordion style="position: absolute;z-index: 998;" class="col-8-xl" [multi]="false">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title> Seyahatnameler</mat-panel-title>
@@ -8,7 +8,7 @@
     </mat-expansion-panel-header>
     <mat-accordion [multi]="false">
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field >
         <mat-label>Seyyah İsmi Girniz</mat-label>
         <input matInput placeholder="Seyyah" (input)="mapsDataFilter($event)">
       </mat-form-field>
@@ -68,14 +68,14 @@
 
 
 
-<div [hidden]="gizle" style="position: absolute;top: 150px;z-index: 999;" class="middle-modal">
+<div [hidden]="gizle" style="position: absolute;top: 150px;z-index:999;" class="middle-modal">
   <div class="modal-close-button"><a (click)="CloseModal()"><mat-icon>close</mat-icon></a></div>
-  <div class="middle-modal-title">{{point_info_dialog.Yapi_Adi}} {{point_info_dialog.mekanin_gunumuzdeki_adi}}</div>
+  <div class="middle-modal-title">{{point_info_dialog.Yapi_Adi}} {{point_info_dialog.anlatida_gecen_mekan_adi}}  {{point_info_dialog.mekanin_gunumuzdeki_adi}}</div>
   <div class="middle-modal-body">
 
     <div style="text-align: -webkit-center">
 
-      <div [hidden]="imagesslide.length == 0 ? true:false" style="width: 1000px;">
+      <div [hidden]="imagesslide.length == 0 ? true:false" style="width: 80%">
         <ng-image-slider #nav [images]="gizle ? [] :imagesslide" [infinite]="false" [autoSlide]="6"
           [imageSize]="{width: '30%', height: 250}" slideImage="1"></ng-image-slider>
       </div>
