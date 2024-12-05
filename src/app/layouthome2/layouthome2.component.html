@@ -1,13 +1,13 @@
 <header>
-	<div class="index-top-holder" style="background-image: url('../../assets/img/index-image.png')">
+	<div class="index-top-holder" style="background-image: url('../../assets/img/index-image-empty.png')">
 		<nav class="navbar navbar-expand-xl main-nav">
 			<div class="container-fluid">
 				<a class="navbar-brand logo" [routerLink]="['/home']">
 					<img src="../../assets/img/top-logo.png" alt="" class="img-fluid">
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-					aria-label="Toggle navigation">
+					data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					aria-expanded="false" aria-label="Toggle navigation">
 					<span class="bi-list"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -22,9 +22,12 @@
 							</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" [routerLink]="['/home/proje-ekibi']">PROJE EKİBİ</a></li>
-								<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">PROJE HAKKINDA</a></li>
-								<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">ENGLISH SUMMARY</a></li>
-								<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">PROJE ÇIKTILARI</a></li>
+								<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">PROJE HAKKINDA</a>
+								</li>
+								<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">ENGLISH SUMMARY</a>
+								</li>
+								<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">PROJE ÇIKTILARI</a>
+								</li>
 							</ul>
 						</li>
 						<li class="nav-item">
@@ -43,7 +46,14 @@
 				</div>
 			</div>
 		</nav>
+		<div class="slider-text">
+			<div class="slider-title">Seyahat Yollarında Konaklama Mekanı Olarak Hanlar ve Kervansaraylar</div>
+			<div class="slider-exp">Anadolu’da Modern Öncesi Seyahat ve Konaklama Deneyiminin Zaman-Mekânsal
+				(Spatio-Temporal) Çözümlemesi</div>
+		
+		</div>
 	</div>
+
 </header>
 <router-outlet></router-outlet>
 <footer>

@@ -1,84 +1,85 @@
-<div style="height: 100%;position: relative;width: 100%;">
-  <mat-toolbar>
-    <mat-toolbar-row>
 
-      <button style="color: white;" mat-button (click)="opened=!opened"><mat-icon>menu</mat-icon></button>
-      <button style="color: white;" mat-button routerLink="./home"><mat-icon>home</mat-icon>Home</button>
-      <div style="position: absolute; right: 20px; top: 10px;">
-      <button style="color: white;" mat-icon-button matTooltip="My Account" [matMenuTriggerFor]="userAccountMenu">
-        <mat-icon>account_circle</mat-icon>
-      </button>
-      <mat-menu #userAccountMenu [overlapTrigger]="false" yPosition="below">
-        <button mat-menu-item routerLink="#">
-          <mat-icon>person</mat-icon><span>My Account</span>
-        </button>
-        <button mat-menu-item routerLink="#">
-          <mat-icon>settings</mat-icon><span>Settings</span>
-        </button>
-        <button mat-menu-item routerLink="#">
-          <mat-icon>help</mat-icon><span>Help</span>
-        </button>
-        <mat-divider></mat-divider>
-        <button mat-menu-item routerLink="/login">
-          <mat-icon>exit_to_app</mat-icon>Logout
-        </button>
-      </mat-menu>
-    </div>
-    </mat-toolbar-row>
+
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+  <mat-toolbar style="background-color: #774c60;" class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
   </mat-toolbar>
-  <mat-sidenav-container >
-    <mat-sidenav style="width: 15%;" [opened]="opened" mode="side">
-      <div style="display: flex;flex-direction: column;margin-top: 10%;align-items: flex-start;"> <button mat-button
-          style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./point"routerLinkActive="activebutton">
-          <mat-icon> place</mat-icon>
-          Seyahatname Noktaları
-        </button>
-        <button mat-button  style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./lokasyon"  routerLinkActive="activebutton">
-          <mat-icon>location_on</mat-icon>
-          Lokasyon Düzenle
-        </button>
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./seyyah" routerLinkActive="activebutton">
-          <mat-icon>person</mat-icon>
-          Seyyah Düzenle
-        </button>
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./seyahatname" routerLinkActive="activebutton">
-          <mat-icon>person</mat-icon>
-          Seyahatname Düzenle
-        </button>
 
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./saha" routerLinkActive="activebutton">
-          <mat-icon>person</mat-icon>
-          Proje Saha Noktaları
-        </button>
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./arazicalismasi-list" routerLinkActive="activebutton">
-          <mat-icon>person</mat-icon>
-          Arazi Çalışması
-        </button>
-        <!-- <button mat-button style="color: white;" mat-button routerLink="./yapılar" >
-          <mat-icon>location_city</mat-icon>
-          Yapı Düzenle
-        </button> -->
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./editor" routerLinkActive="activebutton">
-          <mat-icon>edit</mat-icon>
-          Seyahatname Yapıları
-        </button>
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./imagelist" routerLinkActive="activebutton">
-          <mat-icon>insert_drive_file</mat-icon>
-          Dosya Yükle
-        </button>
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./adım" routerLinkActive="activebutton">
-          <mat-icon>arrow_forward</mat-icon>
-          Seyahat Adımları
-        </button>
-        <button mat-button style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./makale" routerLinkActive="activebutton">
-          <mat-icon>arrow_forward</mat-icon>
-          Makale Editörü
-        </button>
-      </div>
+  <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav style="background-color: #b75d69;" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56">
+      <mat-nav-list>
+        <a
+        style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button
+        routerLink="./home" routerLinkActive="activebutton">
+        <mat-icon> home</mat-icon>
+       home
+      </a>
+      <a
+        style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button
+        routerLink="./point" routerLinkActive="activebutton">
+        <mat-icon> place</mat-icon>
+        Seyahatname Noktaları
+      </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./lokasyon" routerLinkActive="activebutton">
+        <mat-icon>location_on</mat-icon>
+        Lokasyon Düzenle
+    </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./seyyah" routerLinkActive="activebutton">
+        <mat-icon>person</mat-icon>
+        Seyyah Düzenle
+    </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./seyahatname" routerLinkActive="activebutton">
+        <mat-icon>person</mat-icon>
+        Seyahatname Düzenle
+    </a>
 
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./saha" routerLinkActive="activebutton">
+        <mat-icon>person</mat-icon>
+        Proje Saha Noktaları
+    </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./arazicalismasi-list" routerLinkActive="activebutton">
+        <mat-icon>person</mat-icon>
+        Arazi Çalışması
+    </a>
+
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./editor" routerLinkActive="activebutton">
+        <mat-icon>edit</mat-icon>
+        Seyahatname Yapıları
+    </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./imagelist" routerLinkActive="activebutton">
+        <mat-icon>insert_drive_file</mat-icon>
+        Dosya Yükle
+    </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./adım" routerLinkActive="activebutton">
+        <mat-icon>arrow_forward</mat-icon>
+        Seyahat Adımları
+    </a>
+      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
+         routerLink="./makale" routerLinkActive="activebutton">
+        <mat-icon>arrow_forward</mat-icon>
+        Makale Editörü
+    </a>
+      </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content >
+
+    <mat-sidenav-content>
       <router-outlet></router-outlet>
+    
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
+
+
+
+<!-- Copyright 2024 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at https://angular.io/license -->

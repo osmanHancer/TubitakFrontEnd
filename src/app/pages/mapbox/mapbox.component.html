@@ -1,4 +1,4 @@
-<mat-accordion style="position: absolute;z-index: 998;" class="col-8-xl" [multi]="false">
+<mat-accordion style="position: absolute;z-index: 998;width: 40%;" class="col-4-xl" [multi]="false">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title> Seyahatnameler</mat-panel-title>
@@ -8,7 +8,7 @@
     </mat-expansion-panel-header>
     <mat-accordion [multi]="false">
 
-      <mat-form-field >
+      <mat-form-field class="col-6" >
         <mat-label>Seyyah İsmi Girniz</mat-label>
         <input matInput placeholder="Seyyah" (input)="mapsDataFilter($event)">
       </mat-form-field>
@@ -26,30 +26,30 @@
         </mat-expansion-panel-header>
         <div id="fit_2">
           <div *ngFor="let fet of maps_data ; let i = index">
-            <div style="display: flex; flex-direction: row;width: 450px;" *ngIf="item===fet.crs.properties.yuzyil">
-              <mat-checkbox [(ngModel)]="fet.crs.properties.checked" style="max-width: 200px;"
+            <div  class="row" *ngIf="item===fet.crs.properties.yuzyil">
+              <mat-checkbox [(ngModel)]="fet.crs.properties.checked" class="col-6 "
                 (change)="updateAllComplete(fet.name)">
-                <p style=" margin-top: 20px;;">{{fet.name_tr}}</p>
+                <p class="mt-4" >{{fet.name_tr}}</p>
               </mat-checkbox>
-              <div style="width: 20px; height: 10px; margin-top: 25px; margin-left: 20px;"
+              <div class="col-1 mt-4" style="height: 20px;width: 10px;border-radius: 3px;"
                 [ngStyle]="{'background-color': fet.features[0].properties.color}">
               </div>
-              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+              <div class="col-1 mt-3">
                 <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(fet.name)">
                   <mat-icon>play_circle_filled</mat-icon>
                 </button>
               </div>
-              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+              <div class="col-1 mt-3">
                 <button mat-button style="color: rgb(198, 21, 21);" (click)="stopAnimation()">
                   <mat-icon>stop</mat-icon>
                 </button>
               </div>
-              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+              <div class="col-1 mt-3">
                 <button mat-button style="color: rgb(198, 21, 21);" (click)="Heatmap(fet.name)">
                   <mat-icon> layers</mat-icon>
                 </button>
               </div>
-              <div style="width: 20px; height: 10px; margin-top: 10px; margin-left: 20px;">
+              <div class="col-1 mt-3">
                 <button mat-button style="color: rgb(198, 21, 21);" (click)="Clustermap(fet.name)">
                   <mat-icon> category</mat-icon>
                 </button>

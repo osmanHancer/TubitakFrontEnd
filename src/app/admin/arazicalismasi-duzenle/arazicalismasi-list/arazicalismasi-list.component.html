@@ -3,7 +3,7 @@
         <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
     </mat-form-field>
     <div style="width: 100%; overflow-x: auto">
-        <mat-table [dataSource]="dataSource" >
+        <mat-table [dataSource]="dataSource"style="min-width: 900px; " >
 
 
             <ng-container matColumnDef="Envanter_Kodu">
@@ -100,7 +100,7 @@
             <mat-header-row
                 *matHeaderRowDef="[ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi','Durumu','Bugunki_Kullanimi','Yapim_Teknigi_Ve_Malzeme','action']">
             </mat-header-row>
-            <mat-row *matRowDef="
+            <mat-row style="height: 150px;" *matRowDef="
               let row;
               columns: [ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi', 'Durumu','Bugunki_Kullanimi','Yapim_Teknigi_Ve_Malzeme','action']
             "></mat-row>

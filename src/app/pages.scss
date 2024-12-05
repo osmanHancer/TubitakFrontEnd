@@ -18,6 +18,7 @@ body {
 	background-position: center;
 }
 
+
 header {
 	box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
 }
@@ -739,6 +740,95 @@ h1 small {
 	border-radius: 15px;
 	margin-left: 15px;
 	padding: 10px 12px;
+}
+.slider-text {
+	position: absolute;
+	width: 100%;
+	top:35%;
+	left: 0%;
+	padding: 0 25px;
+	text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+.slider-title {
+	font-weight: bold;
+	color: #FFF;
+	font-size: 28px;
+	line-height: 1.2em;
+	margin-bottom: 30px;
+	text-align: center;
+}
+
+.slider-exp {
+	font-size: 14px;
+	color: #ddcfc2;
+	line-height: 1.3em;
+	text-align: center;
+	
+}
+
+@media (min-width: 400px) { 
+	.slider-text {
+		padding: 0 50px;
+		max-width: 450px;
+}
+	.slider-title {
+	text-align: left;
+}
+
+.slider-exp {
+	text-align: left;
+}
+}
+
+@media (min-width: 600px) { 
+	.slider-exp {
+	color: #b9a593;
+}
+}
+
+@media (min-width: 700px) { 
+	.slider-text {
+		max-width: 600px;
+}
+	.slider-title {
+	font-size: 36px;
+}
+
+.slider-exp {
+	font-size: 18px;
+}
+}
+
+@media (min-width: 992px) { 
+	.slider-text {
+		max-width: none;
+		width: 610px;
+		padding: 0;
+		left: 15%;
+}
+	.slider-title {
+	font-size: 36px;
+}
+
+.slider-exp {
+	font-size: 18px;
+}
+}
+
+@media (min-width: 1880px) { 
+	.slider-text {
+	top:35%;
+	left: 25%;
+}
+
+.slider-title {
+	font-size: 42px;
+}
+
+.slider-exp {
+	font-size: 24px;
+}
 }
 
 

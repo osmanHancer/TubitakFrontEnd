@@ -8,6 +8,8 @@ $theme: mat.define-theme((
   )
 ));
 
+
+
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
@@ -23,6 +25,8 @@ html {
 
 @include mat.core();
 @include mat.color-variants-backwards-compatibility($theme);
+
+
 
 
 
@@ -73,6 +77,7 @@ h1.titleText {
     margin-top: 40px;
     font-weight: normal;
 }
+
  
 
 @import 'bootstrap/scss/bootstrap';

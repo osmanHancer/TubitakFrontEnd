@@ -79,10 +79,10 @@
                 <mat-header-cell *matHeaderCellDef  > Seyahatname Kodu </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.seyahname_kodu }} </mat-cell>
             </ng-container>
-            <ng-container matColumnDef="tespit_edilen_konum_olcegi">
+            <!-- <ng-container matColumnDef="tespit_edilen_konum_olcegi">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Konum Ölçeği </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.tespit_edilen_konum_olcegi }} </mat-cell>
-            </ng-container>
+            </ng-container> -->
             <ng-container matColumnDef="yapi_envanter_kodu">
                 <mat-header-cell *matHeaderCellDef mat-sort-header> Envanter Kodu </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.yapi_envanter_kodu }} </mat-cell>
@@ -112,11 +112,11 @@
                 </mat-cell>
             </ng-container>
             <mat-header-row
-                *matHeaderRowDef="[ 'anlatida_gecen_mekan_adi', 'boylam','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi', 'seyahat_adimi','seyahatname_adi','seyahatname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']">
+                *matHeaderRowDef="[ 'anlatida_gecen_mekan_adi', 'boylam','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi', 'seyahat_adimi','seyahatname_adi','seyahatname_kodu','yapi_envanter_kodu','yazar','yuzyil','action']">
             </mat-header-row>
             <mat-row *matRowDef="
               let row;
-              columns: [ 'anlatida_gecen_mekan_adi', 'boylam','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi', 'seyahat_adimi','seyahatname_adi','seyahatname_kodu','tespit_edilen_konum_olcegi','yapi_envanter_kodu','yazar','yuzyil','action']
+              columns: [ 'anlatida_gecen_mekan_adi', 'boylam','enlem','konaklanma_durumu','mekanin_gunumuzdeki_adi', 'seyahat_adimi','seyahatname_adi','seyahatname_kodu','yapi_envanter_kodu','yazar','yuzyil','action']
             "></mat-row>
         </mat-table>
         <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons

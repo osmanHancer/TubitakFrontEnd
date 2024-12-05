@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { MySharedModules } from '../_com/myshared.module';
+import { MediaMatcher } from '@angular/cdk/layout';
 @Component({
   selector: 'app-layoutadmin',
   standalone: true,
@@ -8,8 +9,23 @@ import { MySharedModules } from '../_com/myshared.module';
   styleUrl: './layoutadmin.component.scss'
 })
 export class LayoutAdminComponent {
-  title = 'Admin';
-opened: boolean=true;
+
+  mobileQuery: MediaQueryList ;
+
+  private _mobileQueryListener: () => void;
+
+  constructor() {
+    const changeDetectorRef = inject(ChangeDetectorRef);
+    const media = inject(MediaMatcher);
+
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
 // onUpdateProfile() {
 //   // Güncelleme ekranına yönlendirin
 //   this.router.navigate(['/profile-update']);
