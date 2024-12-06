@@ -66,19 +66,19 @@
             <div class="col-12">
                 <h2 class="olive text-center mb-5">Örnek Makaleler</h2>
             </div>
-            <div *ngFor="let makale of listSelectedsMakale" class="col-lg-6 col-xl-3">
+            <div *ngFor="let yapiMonografisi of listSelectedsMonografi" class="col-lg-6 col-xl-3">
                 <div class="sy-card olive">
-                    <div class="sy-card-title" >{{makale.seyahatnameadi}}</div>
+                    <div class="sy-card-title" >{{yapiMonografisi.baslik}}</div>
                     <div class="sy-card-body">
-                        <p [innerHTML]="truncateText(makale.metin, 150)"></p>
+                        <p [innerHTML]="truncateText(yapiMonografisi.yapi_html_1, 300)"></p>
 
-                        <a class="btn sy-btn btn-olive" [href]="'/home/makale/' + makale.kodu">TÜMÜNÜ GÖR</a>
+                        <a class="btn sy-btn btn-olive" [routerLink]="'/home/monografi/' + yapiMonografisi.baslik">TÜMÜNÜ GÖR</a>
 
                     </div>
                 </div>
             </div>
             <div class="col-12">
-                <p class="text-center my-5"><a class="btn sy-btn btn-olive" href="#">DAHA FAZLA BİLGİ</a></p>
+                <p class="text-center my-5"><a class="btn sy-btn btn-olive"  [routerLink]="['/home/kütüphane']">DAHA FAZLA BİLGİ</a></p>
             </div>
         </div>
     </div>

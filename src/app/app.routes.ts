@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Mapbox2Component } from './admin/mapbox-2/mapbox-2.component';
 import { LayoutAdminComponent } from './_layoutadmin/layoutadmin.component';
 import { LayoutHomeComponent } from './_layouthome/layouthome.component';
 import { YapiComponent } from './pages/yapi/yapi.component';
@@ -107,11 +106,7 @@ export const routes: Routes = [
                 component: EditpointComponent
 
             },
-            {
-                path: "mapbox2",
-                component: Mapbox2Component,
-
-            },
+           
             {
                 path: "lokasyon",
                 component: LokasyonEditComponent
@@ -191,7 +186,8 @@ export const routes: Routes = [
             },
             {
                 path: "kütüphane",
-                component: KutuphaneComponent
+                component: KutuphaneComponent,
+                
             },
             {
                 path: "", 

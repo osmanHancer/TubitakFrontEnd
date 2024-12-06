@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { QW } from '../../_lib/qw.helper';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { LightgalleryModule } from 'lightgallery/angular';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,9 +18,13 @@ import { MySharedModules } from '../../_com/myshared.module';
 
 })
 export class YapiComponent {
-  constructor(private route: ActivatedRoute,private sanitizer: DomSanitizer) {
-
-
+  
+  constructor(private router: Router, private viewportScroller: ViewportScroller,private route: ActivatedRoute,private sanitizer: DomSanitizer) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.viewportScroller.scrollToPosition([0, 0]); // Sayfanın en üstüne kaydır
+      }
+    });
   }
   images: img[] = [];
   enlem:any;

@@ -3,43 +3,43 @@
     <!-- Card 1 -->
     <div class="col-md-3">
       <a routerLink="/admin/seyyah" style="text-decoration: none;">
-      <div class="card text-center">
-        <div class="card-body">
-          <h6 class="card-title">Seyyah Sayısı</h6>
-          <h2 class="text-primary" [countUp]="seyyahsayisi" [duration]="duration">
-          </h2>
-         <mat-icon class="my-1">person</mat-icon>
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="card-title">Seyyah Sayısı</h6>
+            <h2 class="text-primary" [countUp]="seyyahsayisi" [duration]="duration">
+            </h2>
+            <mat-icon class="my-1">person</mat-icon>
+          </div>
         </div>
-      </div>
       </a>
     </div>
 
     <!-- Card 2 -->
     <div class="col-md-3">
       <a routerLink="/admin/point" style="text-decoration: none;">
-      <div class="card text-center">
-        <div class="card-body">
-          <h6 class="card-title">Nokta Sayısı</h6>
-          <h2 class="text-danger" [countUp]="noktasayisi" [duration]="duration">
-          </h2>
-          <mat-icon class="my-1"> location_on</mat-icon>
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="card-title">Nokta Sayısı</h6>
+            <h2 class="text-danger" [countUp]="noktasayisi" [duration]="duration">
+            </h2>
+            <mat-icon class="my-1"> location_on</mat-icon>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
     </div>
 
     <!-- Card 3 -->
     <div class="col-md-3">
       <a routerLink="/admin/seyahatname" style="text-decoration: none;">
-      <div class="card text-center">
-        <div class="card-body">
-          <h6 class="card-title">Seyahatname Sayısı</h6>
-          <h2 class="text-warning" [countUp]="seyahatnamesayisi" [duration]="duration">
-          </h2>
-          <mat-icon class="my-1"> local_library</mat-icon>
+        <div class="card text-center">
+          <div class="card-body">
+            <h6 class="card-title">Seyahatname Sayısı</h6>
+            <h2 class="text-warning" [countUp]="seyahatnamesayisi" [duration]="duration">
+            </h2>
+            <mat-icon class="my-1"> local_library</mat-icon>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
     </div>
 
     <!-- Card 4 -->
@@ -88,12 +88,14 @@
     </div>
 
   </div>
-  <div style="display: flex;flex-direction: row;">
-  <div class="chart-container">
-    <p-chart type="bar" [data]="basicData "></p-chart>
+  <div class="container">
+    <div class="row">
+      <div class="chart-container col-xl-6">
+        <p-chart type="bar" [data]="basicData "></p-chart>
+      </div>
+      <div class="chart-container col-xl-6">
+        <p-chart type="bar" [data]="basicDataSeyyah "></p-chart>
+      </div>
+    </div>
   </div>
-  <div class="chart-container">
-    <p-chart type="bar" [data]="basicDataSeyyah "></p-chart>
-  </div>
-</div>
 </div>

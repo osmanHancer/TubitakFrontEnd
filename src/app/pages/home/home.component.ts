@@ -12,21 +12,20 @@ import { MySharedModules } from '../../_com/myshared.module';
 })
 export class PageHomeComponent {
 
-listAllMakale:[]=[];
-listSelectedsMakale:any[]=[];
+listAllMonografi:any[]=[];
+listSelectedsMonografi:any[]=[];
 randomnumber:any
 
   async ngOnInit(): Promise<void> {
  
-  const jsonSeyyahlarveSeyahatnameleri = await QW.json("/makale");
+  const jsonYapiMonografisis = await QW.json("/yapimonografisi");
 
-  this.listAllMakale = jsonSeyyahlarveSeyahatnameleri.makale;
+  this.listAllMonografi = jsonYapiMonografisis.data;
 
-  this.randomnumber=this.generateRandomNumbers(this.listAllMakale.length)
+  this.randomnumber=this.generateRandomNumbers(this.listAllMonografi.length)
 
-  this.randomnumber.forEach((element:number )=> this.listSelectedsMakale.push(this.listAllMakale[element]));
+  this.randomnumber.forEach((element:number )=> this.listSelectedsMonografi.push(this.listAllMonografi[element]));
 
-  console.log(this.listSelectedsMakale);
 
 }
  generateRandomNumbers(limit: number): number[] {
@@ -42,6 +41,7 @@ randomnumber:any
   return randomNumbers;
 }
 truncateText(text: string, limit: number): string {
+  
   const div = document.createElement('div');
   div.innerHTML = text; // HTML içeriği temizlenir
   const plainText = div.innerText || div.textContent || ''; // Sadece düz metin alınır

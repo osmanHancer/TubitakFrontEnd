@@ -1,4 +1,6 @@
-<mat-accordion style="position: absolute;z-index: 998;width: 40%;" class="col-4-xl" [multi]="false">
+<div style="position: absolute;z-index: 998;" class="col-xl-5">
+  <div class="container-fluid">
+<mat-accordion  class="col-xl-6" [multi]="false">
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title> Seyahatnameler</mat-panel-title>
@@ -63,7 +65,8 @@
 
   </mat-expansion-panel>
 </mat-accordion>
-
+</div>
+</div>
 <div class="map" id="map" class="match-parent"></div>
 
 
