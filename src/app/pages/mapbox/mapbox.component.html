@@ -19,8 +19,11 @@
 
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{item}}. Yüzyıl
+          <mat-panel-title >
+            <div style="display: flex;flex-direction: row;justify-content: space-between;">
+            <span>{{item[0]}}. Yüzyıl </span>
+              <span matBadge={{item[1]}} matBadgeOverlap="false" class="mx-3 mt-1"  ></span>
+            </div>
           </mat-panel-title>
           <mat-panel-description>
             <!-- Açıklama ekleyebilirsiniz -->
@@ -28,9 +31,9 @@
         </mat-expansion-panel-header>
         <div id="fit_2">
           <div *ngFor="let fet of maps_data ; let i = index">
-            <div  class="row" *ngIf="item===fet.crs.properties.yuzyil">
+            <div  class="row" *ngIf="item[0]===fet.crs.properties.yuzyil">
               <mat-checkbox [(ngModel)]="fet.crs.properties.checked" class="col-6 "
-                (change)="updateAllComplete(fet.name)">
+                (change)="updateAllComplete(fet.name,item[0])">
                 <p class="mt-4" >{{fet.name_tr}}</p>
               </mat-checkbox>
               <div class="col-1 mt-4" style="height: 20px;width: 10px;border-radius: 3px;"
@@ -198,12 +201,21 @@
                 </div>
                 <div style="display: flex;flex-direction: row;">
                   <div>
+                    <h5 class="card-title "> Sayfa Numarası </h5>
+                  </div>
+                  <div>
+                    <p> : {{item[4]}}</p>
+                  </div>
+                </div>
+                <div style="display: flex;flex-direction: row;">
+                  <div>
                     <h5 class="card-title"> Alıntı </h5>
                   </div>
                   <div>
                     <p> : {{item[0]}}</p>
                   </div>
                 </div>
+         
               </div>
             </div>
 

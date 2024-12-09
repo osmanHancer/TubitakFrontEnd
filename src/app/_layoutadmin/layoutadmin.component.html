@@ -1,85 +1,92 @@
-
-
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
-  <mat-toolbar style="background-color: #774c60;" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-  </mat-toolbar>
-
-  <mat-sidenav-container  class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav opened="true" style="background-color: #b75d69;" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
-      fixedTopGap="56">
-      <mat-nav-list>
-        <a
-        style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button
-        routerLink="./home" routerLinkActive="activebutton">
-        <mat-icon> home</mat-icon>
-       home
+<mat-drawer-container class="example-container">
+  <mat-drawer style="background-image: url(../../assets/img/pattern.png); background-color: rgb(36, 10, 60);" #drawer mode="side" opened="true">
+    <div class="mt-5" style="display: flex;flex-direction: row;justify-content: center;">
+      <img src="../../../assets/img/pp-06.png" class=" img-fluid rounded-circle" style="height: 100px;" alt="">
+      
+    
+      <hr>
+    </div>
+    <div class="mt-3">
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./home"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange" > home</mat-icon>
+        home
       </a>
-      <a
-        style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;" mat-button
-        routerLink="./point" routerLinkActive="activebutton">
-        <mat-icon> place</mat-icon>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./point"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange"> place</mat-icon>
         Seyahatname Noktaları
       </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./lokasyon" routerLinkActive="activebutton">
-        <mat-icon>location_on</mat-icon>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button
+        routerLink="./lokasyon" routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">navigation</mat-icon>
         Lokasyon Düzenle
-    </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./seyyah" routerLinkActive="activebutton">
-        <mat-icon>person</mat-icon>
+      </a>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./seyyah"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">person</mat-icon>
         Seyyah Düzenle
-    </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./seyahatname" routerLinkActive="activebutton">
-        <mat-icon>person</mat-icon>
+      </a>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button
+        routerLink="./seyahatname" routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">person_pin_circle</mat-icon>
         Seyahatname Düzenle
-    </a>
+      </a>
 
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./saha" routerLinkActive="activebutton">
-        <mat-icon>person</mat-icon>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./saha"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">place</mat-icon>
         Proje Saha Noktaları
-    </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./arazicalismasi-list" routerLinkActive="activebutton">
-        <mat-icon>person</mat-icon>
+      </a>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button
+        routerLink="./arazicalismasi-list" routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">person</mat-icon>
         Arazi Çalışması
-    </a>
+      </a>
 
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./editor" routerLinkActive="activebutton">
-        <mat-icon>edit</mat-icon>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./editor"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">edit</mat-icon>
         Seyahatname Yapıları
-    </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./imagelist" routerLinkActive="activebutton">
-        <mat-icon>insert_drive_file</mat-icon>
+      </a>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button
+        routerLink="./imagelist" routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">cloud_upload</mat-icon>
         Dosya Yükle
-    </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./adım" routerLinkActive="activebutton">
-        <mat-icon>arrow_forward</mat-icon>
+      </a>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./adım"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">scatter_plot</mat-icon>
         Seyahat Adımları
-    </a>
-      <a style="color: white;width: 100%;display: flex;flex-direction: row;justify-content: start;"mat-button
-         routerLink="./makale" routerLinkActive="activebutton">
-        <mat-icon>arrow_forward</mat-icon>
+      </a>
+      <a style="color: white;display: flex;flex-direction: row;justify-content: start;" mat-button routerLink="./makale"
+        routerLinkActive="activebutton">
+        <mat-icon class="material-icons color_orange">book</mat-icon>
         Makale Editörü
-    </a>
-      </mat-nav-list>
-    </mat-sidenav>
+      </a>
+    </div>
+  </mat-drawer>
 
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+  <mat-drawer-content class="mt-5">
 
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div style="display: flex;flex-direction:row;">
+          <button mat-fab (click)="drawer.toggle()">
+            <mat-icon  *ngIf="drawer.opened">keyboard_arrow_left</mat-icon>
+            <mat-icon  *ngIf="!drawer.opened">keyboard_arrow_right</mat-icon>
+          </button>
+          <mat-slide-toggle class=" mt-3" style="margin-left: 2%;" [(ngModel)]="isChecked"
+            (change)="onToggleChange($event)">
+            Dark Mode
+          </mat-slide-toggle>
 
+        </div>
+      </mat-card-content>
+    </mat-card>
 
-<!-- Copyright 2024 Google LLC. All Rights Reserved.
-    Use of this source code is governed by an MIT-style license that
-    can be found in the LICENSE file at https://angular.io/license -->
+<div class="mt-3">
+    <router-outlet></router-outlet>
+  </div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -36,7 +36,6 @@ export class KutuphaneComponent {
     const jsonSeyyahlarveSeyahatnameleri = await QW.json("/makale");
 
     this.editItemListSeyyah = jsonSeyyahlarveSeyahatnameleri.makale;
-    console.log(this.editItemListSeyyah);
 
     this.filteredSeyahat = this.editItemListSeyyah
     this.seyyahsize = this.filteredSeyahat.length

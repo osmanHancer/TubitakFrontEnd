@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, Renderer2 } from '@angular/core';
 import { MySharedModules } from '../_com/myshared.module';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { ThemeService } from '../_lib/theme.service';
 @Component({
   selector: 'app-layoutadmin',
   standalone: true,
@@ -9,32 +10,35 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrl: './layoutadmin.component.scss'
 })
 export class LayoutAdminComponent {
+isChecked: any;
 
-  mobileQuery: MediaQueryList ;
 
-  private _mobileQueryListener: () => void;
 
-  constructor() {
-    const changeDetectorRef = inject(ChangeDetectorRef);
-    const media = inject(MediaMatcher);
 
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor( private themeService: ThemeService,
+    private renderer: Renderer2) {
+
+
   }
 
-  ngOnDestroy(): void {
-    this.mobileQuery.removeListener(this._mobileQueryListener);
+  onToggleChange(event: any): void {
+    if (event.checked) {
+      // Toggle açık (true)
+      this.switchToDark()
+    } else {
+      // Toggle kapalı (false)
+      this.switchToLight()
+    }
   }
-// onUpdateProfile() {
-//   // Güncelleme ekranına yönlendirin
-//   this.router.navigate(['/profile-update']);
-// }
 
-// onLogout() {
-//   // Çıkış yapma işlemi
-//   console.log('Çıkış yapıldı');
-//   // Örneğin, token temizlenebilir ve login sayfasına yönlendirme yapılabilir
-//   this.router.navigate(['/login']);
-// }
+
+
+  switchToLight() {
+    this.themeService.setLightTheme(this.renderer);
+  }
+
+  switchToDark() {
+    this.themeService.setDarkTheme(this.renderer);
+  }
+
 }

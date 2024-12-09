@@ -1,46 +1,47 @@
+
 @use '@angular/material' as mat;
 
-$theme: mat.define-theme((
+@include mat.core();
+
+ mat.$theme-ignore-duplication-warnings: true;
+// Define a dark theme
+$dark-theme: mat.define-theme((
   color: (
-    theme-type: light,
-    primary: mat.$azure-palette,
-    tertiary: mat.$blue-palette,
-  )
+    theme-type: dark,
+    primary: mat.$violet-palette,
+  ),
 ));
 
-
+// Define a light theme
+$light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$violet-palette,
+  ),
+));
 
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
-  padding: 0px;
+  padding: 0;
   height: 100%;
+  
+  @include mat.all-component-themes($light-theme);
 
-  @include mat.all-component-themes($theme);
 }
 
-html {
-  height: 100%;
+/* Temalar için stiller */
+body.light-theme {
+  @include mat.all-component-themes($light-theme);
 }
 
-@include mat.core();
-@include mat.color-variants-backwards-compatibility($theme);
+body.dark-theme {
+  @include mat.all-component-themes($dark-theme);
+}
 
 
 
 
-
-// .mat-mdc-dialog-surface .mdc-dialog__surface {
-//   width: 30% !important;
-//   background-color: red !important;
-//   border-radius: 15px !important;
-
-// }
-
-// .mat-dialog-container#mat-mdc-dialog-1 {
-//   width: 30% !important;
-// }
-// /* Add application styles & imports to this file! */
 
 
 .tema-1 {

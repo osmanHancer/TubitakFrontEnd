@@ -1,12 +1,7 @@
-<div style="margin-top: 1%;margin-left: 25px;margin-right: 25px;">
-    <div class="jumbotron ">
-        <div class="container-fluid">
-            <h2 class="taba">Lokasyon Verileri</h2>
+<div style="margin-top: 1%;">
             <mat-form-field appearance="fill" style="width: 250px">
                 <input [(ngModel)]="str" matInput placeholder="Search" (ngModelChange)="valuechange(str)" />
             </mat-form-field>
-        </div>
-    </div>
 
     <div style="width: 100%; overflow-x: auto">
         <mat-table [dataSource]="dataSource" matSort style="min-width: 800px">

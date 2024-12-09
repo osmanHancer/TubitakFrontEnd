@@ -14,18 +14,14 @@ import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
   styleUrl: './detayliarama.component.scss'
 })
 export class DetayliaramaComponent {
-  // onOptionSelected(arg0: any) {
-  //   console.log("girdi");
-  //   console.log(arg0);
-  //   this.selectedLokasyon = arg0;
-  // }
+
   editItemListYapi: any;
   editItemListSeyyahMakale: any;
   yapisize: any;
   seyyahsize: any;
   filteredYapi: any
   filteredMakale: any
-  selectedSeyyah: any = null;
+  selectedSeyyah: any[] = [];
   selectedLokasyon: any[] = [];
   selectedyapi: any[] = [];
   selectedyuzyil: any[] = [];
@@ -37,9 +33,8 @@ export class DetayliaramaComponent {
   filtertext_2 = "";
   state: any = "ve";
   mekanTipleri: string[] = ['KERVANSARAY / HAN', 'ÖZEL MÜLK', 'MİSAFİRHANE / OTEL / PANSİYON', 'AÇIK ALANDA KONAKLAMA', 'YERLEŞİM YERİ', 'TANIMLANMAYAN MEKAN', 'DİNİ YAPI', 'ASKERİ VE GÜVENLİĞE İLİŞKİNYAPILAR', 'DİĞER'];
-  constructor(private route: ActivatedRoute) {
 
-  }
+
 
   async ngOnInit() {
     let seyyah = await QW.json("/seyyahs");
@@ -52,9 +47,7 @@ export class DetayliaramaComponent {
     this.filteredYapi = this.editItemListYapi;
     this.yapisize = this.filteredYapi.length
     const jsonSeyyahlarveSeyahatnameleri = await QW.json("/makale");
-
     this.editItemListSeyyahMakale = jsonSeyyahlarveSeyahatnameleri.makale;
-
     this.filteredMakale = this.editItemListSeyyahMakale
     this.seyyahsize = this.filteredMakale.length
   }
@@ -68,16 +61,20 @@ export class DetayliaramaComponent {
     if (this.selectedSeyyah == null && this.selectedyuzyil.length == 0) {
       this.filteredMakale = this.editItemListSeyyahMakale
     }
-    if (this.selectedSeyyah != null && this.selectedyuzyil.length != 0) {
+    if (this.selectedSeyyah.length != 0 || this.selectedyuzyil.length != 0) {
       this.filteredMakale = this.editItemListSeyyahMakale.filter((item: any) =>
         this.selectedyuzyil.some((yuzyil: any) =>
           item.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())
-        ) || item.seyyah.toLowerCase().includes(this.selectedSeyyah.toLowerCase())
+        ) ||
+        this.selectedSeyyah.some((seyyah: string) =>
+          item.seyyah.toLowerCase().includes(seyyah.toLowerCase())
+        )
       );
+      
 
     }
 
-    if (this.filtertext_1.length > 0 && this.filtertext_2.length > 0) {
+    if (this.filtertext_1.length > 0 || this.filtertext_2.length > 0) {
       if (this.state == "ve") {
 
         this.filteredMakale = this.editItemListSeyyahMakale.filter((item: any) => item.metin.toLowerCase().includes(this.filtertext_1.toLowerCase()) &&
@@ -100,15 +97,15 @@ export class DetayliaramaComponent {
     if (this.selectedLokasyon.length == 0 && this.selectedyuzyil.length == 0) {
       this.filteredYapi = this.editItemListYapi
     }
-    else if (this.selectedLokasyon.length != 0 && this.selectedyuzyil.length != 0) {
+    else if (this.selectedLokasyon.length != 0 || this.selectedyuzyil.length != 0) {
       this.filteredYapi = this.editItemListYapi.filter((yapi: any) =>
-        this.selectedLokasyon.some((lokasyonId: any) => lokasyonId === yapi.lokasyonId) && this.selectedyuzyil.some((yuzyil: string) =>
+        this.selectedLokasyon.some((lokasyonId: any) => lokasyonId === yapi.lokasyonId) || this.selectedyuzyil.some((yuzyil: string) =>
           yapi.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())) && this.selectedyapi.some((selectyapi: string) =>
             yapi.yapituru.toLowerCase().includes(selectyapi.toLowerCase()))
       );
     }
 
-    if (this.filtertext_1.length > 0 && this.filtertext_2.length > 0) {
+    if (this.filtertext_1.length > 0 || this.filtertext_2.length > 0) {
       if (this.state == "ve") {
         this.filteredYapi = this.editItemListYapi.filter((item: any) => {
           // İlk filtre için text_1 kontrolü
@@ -152,9 +149,11 @@ export class DetayliaramaComponent {
 
   clear(){
     this.filteredMakale = this.editItemListSeyyahMakale
+    this.seyyahsize=this.filteredMakale.length
     this.selectedSeyyah=[];
     this.selectedyuzyil=[];
     this.filteredYapi = this.editItemListYapi
+    this.yapisize=this.filteredYapi.length
     this.selectedLokasyon=[];
     this.selectedyapi=[];
     this.filtertext_1="";

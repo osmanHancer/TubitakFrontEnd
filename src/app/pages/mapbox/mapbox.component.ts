@@ -1,9 +1,9 @@
-import { ChangeDetectorRef, Component, inject, Inject, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { Component, inject, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
-import allpoints from '../../../assets/19_james_morier_smooth_2.json';
+
 import { MySharedModules } from '../../_com/myshared.module';
 import { QW } from '../../_lib/qw.helper';
 import lgZoom from 'lightgallery/plugins/zoom';
@@ -27,13 +27,14 @@ export class MapboxComponent implements OnInit {
   }
 
   public dialog = inject(MatDialog);
+  allpoints: any;
   map!: mapboxgl.Map;
   imagesslide: img[] = [];
   clickseyyahkod: any
   panelOpenState = false;
   visible = true;
   point_info_dialog: any = [];
-  yuzyillar: any = [13, 14, 15, 16, 17, 18, 19];
+  yuzyillar: [number, number][] = [[13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0]];
   featureCollection: any = [];
   points: any[] = [];
   alintilar: any[] = [];
@@ -43,66 +44,33 @@ export class MapboxComponent implements OnInit {
   dialogImgs: any;
   private animationFrameId: number | null = null;
   gizle: any
-  dashArraySequence = [
-    [0, 4, 3],
-    [0.5, 4, 2.5],
-    [1, 4, 2],
-    [1.5, 4, 1.5],
-    [2, 4, 1],
-    [2.5, 4, 0.5],
-    [3, 4, 0],
-    [0, 0.5, 3, 3.5],
-    [0, 1, 3, 3],
-    [0, 1.5, 3, 2.5],
-    [0, 2, 3, 2],
-    [0, 2.5, 3, 1.5],
-    [0, 3, 3, 1],
-    [0, 3.5, 3, 0.5]
-  ];
-
   line_animation_kod: any
 
 
-
-
-  mapsDataFilter(event: any) {
-
-    this.maps_data = allpoints.filter((feature: any) =>
-      feature.name_tr.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-
-
-    this.yuzyillar = Array.from(
-      new Set(
-        this.maps_data
-          .map((feature: any) => feature.crs.properties.yuzyil)
-          .filter((yuzyil: any) => yuzyil !== undefined && yuzyil !== null)
-      )
-    ).sort((a: any, b: any) => a - b);
+  constructor(
+    private route: ActivatedRoute
+  ) {
 
   }
 
-  constructor(
-    private route: ActivatedRoute
-  ) { }
+
+
 
   async ngOnInit() {
 
+    const res = await fetch("/assets/json/19_james_morier_smooth_2.json")
+    this.allpoints = await res.json();
 
-    setTimeout(() => {
-      this.openDialogİnfo();
-    }, 5000);
-
-
-    this.maps_data = allpoints;
+    this.maps_data = this.allpoints;
     this.gizle = true;
+
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
       container: 'map',
       style: 'mapbox://styles/mapbox/outdoors-v12',
       zoom: 6,
 
-      center: [27.422222, 38.630554],
+      center: [33.422222, 38.630554],
     });
 
     this.map.on('load', async () => {
@@ -131,8 +99,10 @@ export class MapboxComponent implements OnInit {
           // Add the image to the map style.
           this.map.addImage('yerlesimyeri', image);
         });
+
       let enlem = this.route.snapshot.paramMap.get('enlem')
       let boylam = this.route.snapshot.paramMap.get('boylam')
+
       if (enlem != null && boylam != null) {
         this.map.flyTo({
           center: [+boylam + 0.4, +enlem],
@@ -149,8 +119,8 @@ export class MapboxComponent implements OnInit {
               "geometry": {
                 "type": "Point",
                 "coordinates": [
-                  +enlem!,
-                  +boylam!
+                  +boylam!,
+                  +enlem!
                 ]
               }
             }]
@@ -259,8 +229,43 @@ export class MapboxComponent implements OnInit {
 
   }
 
-  updateAllComplete(data: any) {
+  mapsDataFilter(event: any) {
 
+    this.maps_data = this.allpoints.filter((feature: any) =>
+      feature.name_tr.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+
+
+    this.yuzyillar = Array.from(
+      new Set(
+        this.maps_data
+          .map((feature: any) => feature.crs.properties.yuzyil)
+          .filter((yuzyil: any) => yuzyil !== undefined && yuzyil !== null)
+      )
+    )
+      .sort((a: any, b: any) => a - b)
+      .map((yuzyil) => [yuzyil as number, 0] as [number, number]); // Tür açıkça belirtiliyor
+
+
+
+  }
+  incrementSecondElementPlus(target: number): void {
+    const index = this.yuzyillar.findIndex(([first]) => first === target);
+
+    if (index !== -1) {
+      this.yuzyillar[index][1] += 1;
+    }
+  }
+  incrementSecondElementMinus(target: number): void {
+    const index = this.yuzyillar.findIndex(([first]) => first === target);
+
+    if (index !== -1) {
+      this.yuzyillar[index][1] -= 1;
+    }
+  }
+
+
+  updateAllComplete(data: any, yuzyil: number) {
 
 
 
@@ -269,14 +274,17 @@ export class MapboxComponent implements OnInit {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'visible');
       this.map.setLayoutProperty(data + 'atlama', 'visibility', 'visible');
+      this.incrementSecondElementPlus(yuzyil);
+
 
     } else {
       this.map.setLayoutProperty(data + 'deniz', 'visibility', 'none');
       this.map.setLayoutProperty(data + 'kara', 'visibility', 'none');
       this.map.setLayoutProperty(data + 'atlama', 'visibility', 'none');
       this.map.setLayoutProperty(data + 'heatmap', 'visibility', 'none');
+      this.incrementSecondElementMinus(yuzyil);
 
-      // this.map.setLayoutProperty(data+"dasharray", 'visibility', 'none');
+
       var location = [
         { point_type: 'YAPI', icon: 'yapi', size: 0.1 },
         { point_type: 'YERLEŞİM YERİ', icon: 'yerlesimyeri', size: 0.1 },
@@ -296,6 +304,7 @@ export class MapboxComponent implements OnInit {
   }
   Heatmap(id: any) {
 
+    //noktalrı sakla heatmap aç
 
     var location = [
       { point_type: 'YAPI', icon: 'yapi', size: 2 },
@@ -339,6 +348,8 @@ export class MapboxComponent implements OnInit {
   }
   async DrawPoint(SeyyahnameKod: string) {
     let seyyahallpoint = await QW.json('/noktalar/' + SeyyahnameKod);
+
+    //seyyahın tüm noktaları points arrayi içine at
     this.points.push(seyyahallpoint.data);
 
     this.pushFeatureCollectionPoint(this.featureCollection);
@@ -370,7 +381,7 @@ export class MapboxComponent implements OnInit {
         type: 'symbol',
         source: SeyyahnameKod + 'point',
         'layout': {
-          'icon-image': c.icon, // reference the image
+          'icon-image': c.icon,
           'icon-size': c.size,
           'text-field': [
             'format',
@@ -382,9 +393,9 @@ export class MapboxComponent implements OnInit {
           'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold']
         },
         'paint': {
-          'text-color': '#ff0000', // Metin rengini kırmızı yapar
-          'text-halo-color': '#ffffff', // Metin çevresindeki hale rengini beyaz yapar
-          'text-halo-width': 1.5 // Hale genişliği
+          'text-color': '#ff0000',
+          'text-halo-color': '#ffffff',
+          'text-halo-width': 1.5
         },
 
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
@@ -514,7 +525,7 @@ export class MapboxComponent implements OnInit {
     this.dialog.open(DialogAnimationsExampleDialogİnfo, {
       panelClass: ["custom-dialog-info"],
       width: '300px',
-      
+
     });
   }
 
@@ -581,8 +592,8 @@ export class MapboxComponent implements OnInit {
 
               this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
 
-            }
 
+            }
             this.point_info_dialog.alintilar = this.alintilar
 
             dialogRef.componentInstance.data = this.getDialogData()
@@ -645,17 +656,6 @@ export class MapboxComponent implements OnInit {
     });
   }
 
-  animateDashArray(timestamp: number): void {
-    const newStep = Math.floor((timestamp / 50) % this.dashArraySequence.length);
-
-    this.map.setPaintProperty(
-      this.line_animation_kod + "dasharray",
-      'line-dasharray',
-      this.dashArraySequence[newStep]
-    );
-
-    requestAnimationFrame(this.animateDashArray.bind(this));
-  }
   onClickHandler = async (e: any) => {
 
     this.imagesslide = [];
@@ -667,6 +667,7 @@ export class MapboxComponent implements OnInit {
     let clickPoint = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
     this.point_info_dialog = clickPoint.data[0]
     if (clickPoint.data[0]["yapi_envanter_kodu"] != "-") {
+
       this.point_info_dialog = await QW.json('/arazicalismasi/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.point_info_dialog.bolum_chapter_mektupnumarasi = clickPoint.data[0]['bolum_chapter_mektupnumarasi'];
       this.point_info_dialog.sayfa_numarasi = clickPoint.data[0]['sayfa_numarasi'];
@@ -696,17 +697,17 @@ export class MapboxComponent implements OnInit {
     alintilar.Id.forEach((element: any) => {
 
       if (element.alintilar != "")
-        this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
+        this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil, element.sayfa_numarasi]);
 
     });
 
     if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
       this.point_info_dialog = clickPoint.data[0];
-      console.log(this.point_info_dialog)
 
     }
     this.point_info_dialog.alintilar = this.alintilar
+    console.log(this.alintilar)
 
     this.openDialog();
 
@@ -794,7 +795,15 @@ export class MapboxComponent implements OnInit {
 
       window.cancelAnimationFrame(this.animationFrameId); // Cancel the animation
       this.animationFrameId = null; // Reset the ID
-      this.map.resetNorthPitch();
+      this.map.easeTo({
+        center: [33.422222, 38.630554],
+        bearing: 0,
+        pitch: 0,
+        zoom: 6,
+        duration: 1000
+      });
+
+
 
     }
   }
@@ -843,7 +852,6 @@ export class DialogContentExampleDialog {
   images: any;
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private cdr: ChangeDetectorRef
   ) { }
 
   onBeforeSlide = (detail: BeforeSlideDetail): void => {
@@ -856,9 +864,7 @@ export class DialogContentExampleDialog {
     plugins: [lgZoom],
   };
 
-  ngOnChanges() {
-    this.cdr.detectChanges();
-  }
+
 }
 @Component({
   selector: 'dialog-animations-example-dialog-info',
