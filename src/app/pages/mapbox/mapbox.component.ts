@@ -43,7 +43,7 @@ export class MapboxComponent implements OnInit {
   dialog_info_index: any;
   dialogImgs: any;
   private animationFrameId: number | null = null;
-  gizle: boolean=true;
+  gizle: boolean = true;
   line_animation_kod: any
 
 
@@ -586,7 +586,10 @@ export class MapboxComponent implements OnInit {
               if (element.alintilar != "")
                 this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
 
+
             });
+    this.alintilar.sort((a: any, b: any) => +a[3].split(".")[0] -  +b[3].split(".")[0])
+
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
               this.point_info_dialog = this.all_dialog_info[this.dialog_info_index];
@@ -635,7 +638,10 @@ export class MapboxComponent implements OnInit {
               if (element.alintilar != "")
                 this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
 
+
             });
+            this.alintilar.sort((a: any, b: any) => +a[3].split(".")[0] - +b[3].split(".")[0])
+
 
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
@@ -650,7 +656,6 @@ export class MapboxComponent implements OnInit {
           }
         }
       }
-      console.log(this.getDialogData());
 
     });
   }
@@ -699,6 +704,9 @@ export class MapboxComponent implements OnInit {
         this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil, element.sayfa_numarasi]);
 
     });
+    this.alintilar.sort((a: any, b: any) => +a[3].split(".")[0] - +b[3].split(".")[0])
+
+
 
     if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
@@ -706,7 +714,6 @@ export class MapboxComponent implements OnInit {
 
     }
     this.point_info_dialog.alintilar = this.alintilar
-    console.log(this.alintilar)
 
     this.openDialog();
 

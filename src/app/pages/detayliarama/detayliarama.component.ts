@@ -4,6 +4,7 @@ import { QW } from '../../_lib/qw.helper';
 import { MySharedModules } from '../../_com/myshared.module';
 import { CommonModule } from '@angular/common';
 import { NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
+import { ThemeService } from '../../_lib/theme.service';
 
 @Component({
   selector: 'app-detayliarama',
@@ -58,7 +59,7 @@ export class DetayliaramaComponent {
     this.filterYapi();
   }
   filterSeyahat() {
-    if (this.selectedSeyyah == null && this.selectedyuzyil.length == 0) {
+    if (this.selectedSeyyah.length == 0 && this.selectedyuzyil.length == 0) {
       this.filteredMakale = this.editItemListSeyyahMakale
     }
     if (this.selectedSeyyah.length != 0 || this.selectedyuzyil.length != 0) {
@@ -70,7 +71,7 @@ export class DetayliaramaComponent {
           item.seyyah.toLowerCase().includes(seyyah.toLowerCase())
         )
       );
-      
+
 
     }
 
@@ -94,13 +95,13 @@ export class DetayliaramaComponent {
 
   }
   filterYapi() {
-    if (this.selectedLokasyon.length == 0 && this.selectedyuzyil.length == 0) {
+    if (this.selectedLokasyon.length == 0 && this.selectedyuzyil.length == 0 && this.selectedyapi.length == 0) {
       this.filteredYapi = this.editItemListYapi
     }
-    else if (this.selectedLokasyon.length != 0 || this.selectedyuzyil.length != 0) {
+    else if (this.selectedLokasyon.length != 0 || this.selectedyuzyil.length != 0 || this.selectedyapi.length !=0) {
       this.filteredYapi = this.editItemListYapi.filter((yapi: any) =>
         this.selectedLokasyon.some((lokasyonId: any) => lokasyonId === yapi.lokasyonId) || this.selectedyuzyil.some((yuzyil: string) =>
-          yapi.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())) && this.selectedyapi.some((selectyapi: string) =>
+          yapi.yuzyil.toLowerCase().includes(yuzyil.toLowerCase())) || this.selectedyapi.some((selectyapi: string) =>
             yapi.yapituru.toLowerCase().includes(selectyapi.toLowerCase()))
       );
     }
@@ -147,17 +148,17 @@ export class DetayliaramaComponent {
     this.yapisize = this.filteredYapi.length
   }
 
-  clear(){
+  clear() {
     this.filteredMakale = this.editItemListSeyyahMakale
-    this.seyyahsize=this.filteredMakale.length
-    this.selectedSeyyah=[];
-    this.selectedyuzyil=[];
+    this.seyyahsize = this.filteredMakale.length
+    this.selectedSeyyah = [];
+    this.selectedyuzyil = [];
     this.filteredYapi = this.editItemListYapi
-    this.yapisize=this.filteredYapi.length
-    this.selectedLokasyon=[];
-    this.selectedyapi=[];
-    this.filtertext_1="";
-    this.filtertext_2="";
+    this.yapisize = this.filteredYapi.length
+    this.selectedLokasyon = [];
+    this.selectedyapi = [];
+    this.filtertext_1 = "";
+    this.filtertext_2 = "";
   }
 
 }
