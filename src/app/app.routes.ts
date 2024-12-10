@@ -35,6 +35,7 @@ import { ArazicalismasiListComponent } from './admin/arazicalismasi-duzenle/araz
 import { ArazicalismasiEditComponent } from './admin/arazicalismasi-duzenle/arazicalismasi-edit/arazicalismasi-edit.component';
 import { PageHomeComponent } from './pages/home/home.component';
 import { LayoutHome2Component } from './layouthome2/layouthome2.component';
+import { KaynakcaComponent } from './pages/kaynakca/kaynakca.component';
 
 export const routes: Routes = [
 
@@ -216,6 +217,10 @@ export const routes: Routes = [
               {
                 path: "mapbox/:enlem/:boylam",
                 component: MapboxComponent
+              },
+              {
+                path: "kaynakca",
+                component: KaynakcaComponent
               },
           
         ],

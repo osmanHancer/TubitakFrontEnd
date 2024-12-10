@@ -1,74 +1,74 @@
 <div style="position: absolute;z-index: 998;" class="col-xl-5">
   <div class="container-fluid">
-<mat-accordion  class="col-xl-6" [multi]="false">
-  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title> Seyahatnameler</mat-panel-title>
-      <mat-panel-description>
-
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <mat-accordion [multi]="false">
-
-      <mat-form-field class="col-6" >
-        <mat-label>Seyyah İsmi Girniz</mat-label>
-        <input matInput placeholder="Seyyah" (input)="mapsDataFilter($event)">
-      </mat-form-field>
-
-      @for (item of yuzyillar; track $index) {
-
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-accordion class="col-xl-6" [multi]="false">
+      <mat-expansion-panel [expanded]="panelOpenState"  (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
-          <mat-panel-title >
-            <div style="display: flex;flex-direction: row;justify-content: space-between;">
-            <span>{{item[0]}}. Yüzyıl </span>
-              <span matBadge={{item[1]}} matBadgeOverlap="false" class="mx-3 mt-1"  ></span>
-            </div>
-          </mat-panel-title>
+          <mat-panel-title> Seyahatnameler</mat-panel-title>
           <mat-panel-description>
-            <!-- Açıklama ekleyebilirsiniz -->
+
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <div id="fit_2">
-          <div *ngFor="let fet of maps_data ; let i = index">
-            <div  class="row" *ngIf="item[0]===fet.crs.properties.yuzyil">
-              <mat-checkbox [(ngModel)]="fet.crs.properties.checked" class="col-6 "
-                (change)="updateAllComplete(fet.name,item[0])">
-                <p class="mt-4" >{{fet.name_tr}}</p>
-              </mat-checkbox>
-              <div class="col-1 mt-4" style="height: 20px;width: 10px;border-radius: 3px;"
-                [ngStyle]="{'background-color': fet.features[0].properties.color}">
-              </div>
-              <div class="col-1 mt-3">
-                <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(fet.name)">
-                  <mat-icon>play_circle_filled</mat-icon>
-                </button>
-              </div>
-              <div class="col-1 mt-3">
-                <button mat-button style="color: rgb(198, 21, 21);" (click)="stopAnimation()">
-                  <mat-icon>stop</mat-icon>
-                </button>
-              </div>
-              <div class="col-1 mt-3">
-                <button mat-button style="color: rgb(198, 21, 21);" (click)="Heatmap(fet.name)">
-                  <mat-icon> layers</mat-icon>
-                </button>
-              </div>
-              <div class="col-1 mt-3">
-                <button mat-button style="color: rgb(198, 21, 21);" (click)="Clustermap(fet.name)">
-                  <mat-icon> category</mat-icon>
-                </button>
+        <mat-accordion [multi]="false">
+
+          <mat-form-field class="col-6">
+            <mat-label>Seyyah İsmi Girniz</mat-label>
+            <input matInput placeholder="Seyyah" (input)="mapsDataFilter($event)">
+          </mat-form-field>
+
+          @for (item of yuzyillar; track $index) {
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <div style="display: flex;flex-direction: row;justify-content: space-between;">
+                  <span>{{item[0]}}. Yüzyıl </span>
+                  <span matBadge={{item[1]}} matBadgeOverlap="false" class="mx-3 mt-1"></span>
+                </div>
+              </mat-panel-title>
+              <mat-panel-description>
+                <!-- Açıklama ekleyebilirsiniz -->
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div id="fit_2">
+              <div *ngFor="let fet of maps_data ; let i = index">
+                <div class="row" *ngIf="item[0]===fet.crs.properties.yuzyil">
+                  <mat-checkbox [(ngModel)]="fet.crs.properties.checked" class="col-6 "
+                    (change)="updateAllComplete(fet.name,item[0])">
+                    <p class="mt-4">{{fet.name_tr}}</p>
+                  </mat-checkbox>
+                  <div class="col-1 mt-4" style="height: 20px;width: 10px;border-radius: 3px;"
+                    [ngStyle]="{'background-color': fet.features[0].properties.color}">
+                  </div>
+                  <div class="col-1 mt-3">
+                    <button mat-button style="color: rgb(198, 21, 21);" (click)="WatchLine(fet.name)">
+                      <mat-icon>play_circle_filled</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-1 mt-3">
+                    <button mat-button style="color: rgb(198, 21, 21);" (click)="stopAnimation()">
+                      <mat-icon>stop</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-1 mt-3">
+                    <button mat-button style="color: rgb(198, 21, 21);" (click)="Heatmap(fet.name)">
+                      <mat-icon> layers</mat-icon>
+                    </button>
+                  </div>
+                  <div class="col-1 mt-3">
+                    <button mat-button style="color: rgb(198, 21, 21);" (click)="Clustermap(fet.name)">
+                      <mat-icon> category</mat-icon>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </mat-expansion-panel>
-      }
-    </mat-accordion>
+          </mat-expansion-panel>
+          }
+        </mat-accordion>
 
-  </mat-expansion-panel>
-</mat-accordion>
-</div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
 </div>
 <div class="map" id="map" class="match-parent"></div>
 
@@ -76,7 +76,8 @@
 
 <div [hidden]="gizle" style="position: absolute;top: 150px;z-index:999;" class="middle-modal">
   <div class="modal-close-button"><a (click)="CloseModal()"><mat-icon>close</mat-icon></a></div>
-  <div class="middle-modal-title">{{point_info_dialog.Yapi_Adi}} {{point_info_dialog.anlatida_gecen_mekan_adi}}  {{point_info_dialog.mekanin_gunumuzdeki_adi}}</div>
+  <div class="middle-modal-title">{{point_info_dialog.Yapi_Adi}} {{point_info_dialog.anlatida_gecen_mekan_adi}}
+    {{point_info_dialog.mekanin_gunumuzdeki_adi}}</div>
   <div class="middle-modal-body">
 
     <div style="text-align: -webkit-center">
@@ -215,7 +216,7 @@
                     <p> : {{item[0]}}</p>
                   </div>
                 </div>
-         
+
               </div>
             </div>
 

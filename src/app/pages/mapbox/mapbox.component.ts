@@ -31,7 +31,7 @@ export class MapboxComponent implements OnInit {
   map!: mapboxgl.Map;
   imagesslide: img[] = [];
   clickseyyahkod: any
-  panelOpenState = false;
+  panelOpenState = true;
   visible = true;
   point_info_dialog: any = [];
   yuzyillar: [number, number][] = [[13, 0], [14, 0], [15, 0], [16, 0], [17, 0], [18, 0], [19, 0]];
@@ -43,7 +43,7 @@ export class MapboxComponent implements OnInit {
   dialog_info_index: any;
   dialogImgs: any;
   private animationFrameId: number | null = null;
-  gizle: any
+  gizle: boolean=true;
   line_animation_kod: any
 
 
@@ -62,7 +62,6 @@ export class MapboxComponent implements OnInit {
     this.allpoints = await res.json();
 
     this.maps_data = this.allpoints;
-    this.gizle = true;
 
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
