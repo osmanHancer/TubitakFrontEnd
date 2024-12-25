@@ -29,9 +29,9 @@
     <div class="row">
 
         <div class="col-xl-8">
-            <ng-select [multiple]="false" [(ngModel)]="editItem.lokasyonId"
+            <ng-select [multiple]="false" [(ngModel)]="editItem.envanterNo"
                 [placeholder]="'Seçilecek lokasyonları belirtin...'" class="custom-ng-select">
-                <ng-option *ngFor="let lokasyon of dataSource" [value]="lokasyon.Id">
+                <ng-option *ngFor="let lokasyon of dataSource" [value]="lokasyon.Envanter_Kodu">
                     {{ lokasyon.Id }} -
                     <span class="mekan-label">Mekan Adı:</span> {{ lokasyon.mekan_adi }}
                     <span class="gunumuzdeki-label">Günümüzdeki Adı:</span> {{ lokasyon.Mekanin_Gunumuzdeki_Adi }}

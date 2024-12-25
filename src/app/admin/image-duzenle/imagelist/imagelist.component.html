@@ -12,11 +12,11 @@
     <div style="width: 100%; overflow-x: auto">
         <mat-table [dataSource]="dataSource" style="min-width: 800px">
             <ng-container matColumnDef="lokasyonId">
-                <mat-header-cell *matHeaderCellDef> Lokasyon ID</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Envanter Kodu</mat-header-cell>
                 <mat-cell *matCellDef="let row">
 
                     <ng-container>
-                        <input [(ngModel)]="row.lokasyonId" />
+                        <input [(ngModel)]="row.envanterNo" />
                     </ng-container>
                 </mat-cell>
             </ng-container>
@@ -50,7 +50,7 @@
                 
                 <mat-cell *matCellDef="let row; let i = index">
                   <!-- Edit butonu -->
-                  <button mat-mini-fab (click)="update(row.imgname, row.metin, row.lokasyonId)"
+                  <button mat-mini-fab (click)="update(row.imgname, row.metin, row.envanterNo)"
                     style="background-color: rgb(117, 107, 93); color: coral">
                     <mat-icon>edit</mat-icon>
                   </button>

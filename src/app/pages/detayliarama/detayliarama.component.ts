@@ -147,16 +147,16 @@ export class DetayliaramaComponent {
   }
 
   clear() {
-    // this.filteredMakale = this.editItemListSeyyahMakale
-    // this.seyyahsize = this.filteredMakale.length
-    // this.selectedSeyyah = [];
-    // this.selectedyuzyil = [];
-    // this.filteredYapi = this.editItemListYapi
-    // this.yapisize = this.filteredYapi.length
-    // this.selectedLokasyon = [];
-    // this.selectedyapi = [];
-    // this.filtertext_1 = "";
-    // this.filtertext_2 = "";
+    this.filteredMakale = this.editItemListSeyyahMakale
+    this.seyyahsize = this.filteredMakale.length
+    this.selectedSeyyah = [];
+    this.selectedyuzyil = [];
+    this.filteredYapi = this.editItemListYapi
+    this.yapisize = this.filteredYapi.length
+    this.selectedLokasyon = [];
+    this.selectedyapi = [];
+    this.filtertext_1 = "";
+    this.filtertext_2 = "";
   }
 
 

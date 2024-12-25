@@ -22,7 +22,7 @@ export class FileuploadComponent {
 
 
   public files: NgxFileDropEntry[] = [];
-  editItem: galeri = { metin: "", lokasyonId: NaN };
+  editItem: galeri = { metin: "", envanterNo:"" };
   imgname: string = "";
   public dropped(files: NgxFileDropEntry[]) {
       this.files = files;  
@@ -63,7 +63,7 @@ this.kaydet();
   const formData_2 = new URLSearchParams();
   formData_2.append('imgname', this.imgname)
   formData_2.append('metin', this.editItem.metin)
-  formData_2.append('lokasyonId', this.editItem.lokasyonId.toString())
+  formData_2.append('envanterNo', this.editItem.envanterNo)
   await QW.jsonPost("/galeri", formData_2);
 }
 
@@ -71,5 +71,5 @@ this.kaydet();
 type galeri = {
 
   metin: string
-  lokasyonId: number
+  envanterNo: string
 }

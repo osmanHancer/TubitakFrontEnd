@@ -35,12 +35,11 @@ export class ImagelistComponent {
   valuechange(searchValue: any): void {
     this.dataSource.filter = searchValue;
   }
-  async update(imagename: string, metin: string, lokasyonId: any) {
-    console.log(metin, lokasyonId);
+  async update(imagename: string, metin: string, envanterNo: any) {
     const fd = new URLSearchParams();
     fd.append('imgname', imagename);
     fd.append('metin', metin);
-    fd.append('lokasyonId', lokasyonId);
+    fd.append('envanterNo', envanterNo);
 
     await QW.jsonPost("/galeri", fd);
   }

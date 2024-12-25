@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from '../../../environments/environment';
-
 import { MySharedModules } from '../../_com/myshared.module';
 import { QW } from '../../_lib/qw.helper';
 import lgZoom from 'lightgallery/plugins/zoom';
@@ -53,9 +52,6 @@ export class MapboxComponent implements OnInit {
 
   }
 
-
-
-
   async ngOnInit() {
 
     const res = await fetch("/assets/json/19_james_morier_smooth_2.json")
@@ -66,7 +62,7 @@ export class MapboxComponent implements OnInit {
     this.map = new mapboxgl.Map({
       accessToken: environment.mapbox.accessToken,
       container: 'map',
-      style: 'mapbox://styles/mapbox/outdoors-v12',
+      style: 'mapbox://styles/mapbox/dark-v11',
       zoom: 6,
 
       center: [33.422222, 38.630554],
@@ -392,9 +388,9 @@ export class MapboxComponent implements OnInit {
           'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold']
         },
         'paint': {
-          'text-color': '#ff0000',
+          'text-color': '#eee',
           'text-halo-color': '#ffffff',
-          'text-halo-width': 1.5
+          'text-halo-width': 0.5
         },
 
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
@@ -564,8 +560,7 @@ export class MapboxComponent implements OnInit {
               this.point_info_dialog.bolum_chapter_mektupnumarasi = this.all_dialog_info[this.dialog_info_index].bolum_chapter_mektupnumarasi;
               this.point_info_dialog.sayfa_numarasi = this.all_dialog_info[this.dialog_info_index].sayfa_numarasi;
               this.point_info_dialog.seyahat_adimi = this.all_dialog_info[this.dialog_info_index].seyahat_adimi;
-              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              this.dialogImgs = await QW.json('/galeri/filter/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
               this.dialogImgs = this.dialogImgs.images;
               this.dialogImgs.forEach((element: any) => {
 
@@ -615,8 +610,7 @@ export class MapboxComponent implements OnInit {
               this.point_info_dialog.bolum_chapter_mektupnumarasi = this.all_dialog_info[this.dialog_info_index].bolum_chapter_mektupnumarasi;
               this.point_info_dialog.sayfa_numarasi = this.all_dialog_info[this.dialog_info_index].sayfa_numarasi;
               this.point_info_dialog.seyahat_adimi = this.all_dialog_info[this.dialog_info_index].seyahat_adimi;
-              let lokasyonId = await QW.json('/lokasyon/getId/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
-              this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+              this.dialogImgs = await QW.json('/galeri/filter/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
               this.dialogImgs = this.dialogImgs.images;
               this.dialogImgs.forEach((element: any) => {
 
@@ -676,8 +670,7 @@ export class MapboxComponent implements OnInit {
       this.point_info_dialog.bolum_chapter_mektupnumarasi = clickPoint.data[0]['bolum_chapter_mektupnumarasi'];
       this.point_info_dialog.sayfa_numarasi = clickPoint.data[0]['sayfa_numarasi'];
       this.point_info_dialog.seyahat_adimi = clickPoint.data[0]['seyahat_adimi'];
-      let lokasyonId = await QW.json('/lokasyon/getId/' + clickPoint.data[0]['yapi_envanter_kodu']);
-      this.dialogImgs = await QW.json('/galeri/filter/' + lokasyonId.Id);
+      this.dialogImgs = await QW.json('/galeri/filter/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.dialogImgs = this.dialogImgs.images;
       this.dialogImgs.forEach((element: any) => {
         const newImage: img = {
