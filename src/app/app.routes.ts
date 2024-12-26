@@ -36,6 +36,7 @@ import { ArazicalismasiEditComponent } from './admin/arazicalismasi-duzenle/araz
 import { PageHomeComponent } from './pages/home/home.component';
 import { LayoutHome2Component } from './layouthome2/layouthome2.component';
 import { KaynakcaComponent } from './pages/kaynakca/kaynakca.component';
+import { HomeEditorEditComponent } from './admin/homeEditor/home-editor-edit/home-editor-edit.component';
 
 export const routes: Routes = [
 
@@ -80,6 +81,11 @@ export const routes: Routes = [
             {
                 path: "seyahatname/:id",
                 component: SeyehatnameEditComponent
+
+            },
+            {
+                path: "homeEditor",
+                component: HomeEditorEditComponent
 
             },
             {

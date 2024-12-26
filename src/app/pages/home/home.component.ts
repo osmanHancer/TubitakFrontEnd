@@ -13,12 +13,16 @@ import { MySharedModules } from '../../_com/myshared.module';
 export class PageHomeComponent {
 
 listAllMonografi:any[]=[];
+homeTexts:any
 listSelectedsMonografi:any[]=[];
 randomnumber:any
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
  
   const jsonYapiMonografisis = await QW.json("/yapimonografisi");
+  const jsonhomeText = await QW.json("/editor");
+  this.homeTexts=jsonhomeText.editor[0];
+
 
   this.listAllMonografi = jsonYapiMonografisis.data;
 

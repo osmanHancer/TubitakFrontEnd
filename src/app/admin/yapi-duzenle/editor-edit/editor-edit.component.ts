@@ -5,7 +5,7 @@ import { MySharedModules } from '../../../_com/myshared.module';
 import { QW } from '../../../_lib/qw.helper';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NgLabelTemplateDirective, NgOptionTemplateDirective, NgSelectComponent, NgSelectConfig, NgSelectModule } from '@ng-select/ng-select';
+import {  NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
 @Component({
   selector: 'app-editor-edit',
   standalone: true,

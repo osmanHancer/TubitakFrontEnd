@@ -1,0 +1,35 @@
+<div style="display: flex;flex-direction: column;margin-top: 2%;">
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.hakkinda
+  " [config]="confighakkinda"></angular-editor>
+    </div>
+    <div style="color: black;" class="html">
+        {{ editItemList.hakkinda }}
+      </div>
+    <h5 style="color: black;" class="html-header">HTML Output</h5>
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.sahacalismalari
+  " [config]="configsahacalismalari"></angular-editor>
+    </div>
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.projeciktilari
+  " [config]="configprojecitilari"></angular-editor>
+    </div>
+
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.amaclar
+  " [config]="configamaclar"></angular-editor>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <button class="col-xl-2 m-2" mat-flat-button (click)="Save()">
+                Kaydet<mat-icon>save</mat-icon>
+            </button>
+
+
+        </div>
+    </div>
+</div>
