@@ -1,31 +1,48 @@
-
 @use '@angular/material' as mat;
 
 @include mat.core();
 
- mat.$theme-ignore-duplication-warnings: true;
+:root {
+  --ae-gap: 5px;
+  --ae-text-area-border: 1px solid #ddd;
+  --ae-text-area-border-radius: 0;
+  --ae-focus-outline-color: #afaeae auto 1px;
+  --ae-toolbar-padding: 1px;
+  --ae-toolbar-bg-color: #b3dca0;
+  --ae-toolbar-border-radius: 1px solid #ddd;
+  --ae-button-bg-color: #dadad7;
+  --ae-button-border: 3px solid #3fb74e;
+  --ae-button-radius: 5px;
+  --ae-button-hover-bg-color: #3fb74e;
+  --ae-button-active-bg-color: red;
+  --ae-button-active-hover-bg-color: blue;
+  --ae-button-disabled-bg-color: gray;
+  --ae-picker-label-color: rgb(78, 84, 155);
+  --ae-picker-icon-bg-color: rgb(34, 41, 122);
+  --ae-picker-option-bg-color: rgba(221, 221, 84, 0.76);
+  --ae-picker-option-active-bg-color: rgba(237, 237, 62, 0.9);
+  --ae-picker-option-focused-bg-color: rgb(255, 255, 0);
+}
+
+mat.$theme-ignore-duplication-warnings: true;
 // Define a dark theme
-$dark-theme: mat.define-theme((
-  color: (
-    theme-type: dark,
-    primary: mat.$violet-palette,
-  ),
-));
+$dark-theme: mat.define-theme((color: (theme-type: dark,
+        primary: mat.$violet-palette,
+      ),
+    ));
 
 // Define a light theme
-$light-theme: mat.define-theme((
-  color: (
-    theme-type: light,
-    primary: mat.$violet-palette,
-  ),
-));
+$light-theme: mat.define-theme((color: (theme-type: light,
+        primary: mat.$violet-palette,
+      ),
+    ));
 
 body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-family: 'Montserrat', sans-serif !important;
   height: 100%;
-  
+
   @include mat.all-component-themes($light-theme);
 
 }
@@ -46,38 +63,39 @@ body.dark-theme {
 
 .tema-1 {
   background-color: #7F99EB;
-	color:#000;
+  color: #000;
 }
+
 .tema-2 {
   background-color: #D48755;
-	color:#000;
+  color: #000;
 }
+
 .tema-3 {
   background-color: #FAEE64;
-	color:#000;
+  color: #000;
 }
+
 .tema-4 {
-	background-color: #ED69AC;
-	color:#000;
+  background-color: #ED69AC;
+  color: #000;
 }
+
 .tema-5 {
-	background-color: #76D67C;
-	color:#000;
+  background-color: #76D67C;
+  color: #000;
 }
 
 
 .redText {
-    color: Red;
-    font-size: 12px;
-    font-family: Arial;
+  color: Red;
+  font-size: 12px;
+  font-family: Arial;
 }
 
 h1.titleText {
-    color: #69a8cf;
-    text-align: left;
-    margin-top: 40px;
-    font-weight: normal;
+  color: #69a8cf;
+  text-align: left;
+  margin-top: 40px;
+  font-weight: normal;
 }
-
- 
-

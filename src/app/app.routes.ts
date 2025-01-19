@@ -37,6 +37,10 @@ import { PageHomeComponent } from './pages/home/home.component';
 import { LayoutHome2Component } from './layouthome2/layouthome2.component';
 import { KaynakcaComponent } from './pages/kaynakca/kaynakca.component';
 import { HomeEditorEditComponent } from './admin/homeEditor/home-editor-edit/home-editor-edit.component';
+import { SeyahatYapilariComponent } from './pages/seyahat-yapilari/seyahat-yapilari.component';
+import { SeyahatnamelerComponent } from './pages/seyahatnameler/seyahatnameler.component';
+import { EnglishSummaryComponent } from './pages/english-summary/english-summary.component';
+import { ProjeCiktilariComponent } from './pages/proje-ciktilari/proje-ciktilari.component';
 
 export const routes: Routes = [
 
@@ -208,6 +212,7 @@ export const routes: Routes = [
                 path: "proje-ekibi",
                 component: ProjectteamComponent
             },
+           
             {
                 path: "proje-hakkinda",
                 component: HakkindaComponent
@@ -228,6 +233,23 @@ export const routes: Routes = [
                 path: "kaynakca",
                 component: KaynakcaComponent
               },
+              {
+                path: "seyahat-yapilari",
+                component: SeyahatYapilariComponent
+              },
+              {
+                path: "seyahatname",
+                component: SeyahatnamelerComponent
+              },
+              {
+                path: "english-summary",
+                component: EnglishSummaryComponent
+              },
+              {
+                path: "proje-ciktilari",
+                component: ProjeCiktilariComponent
+              },
+          
           
         ],
 

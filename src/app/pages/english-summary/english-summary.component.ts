@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { QW } from '../../_lib/qw.helper';
 
 @Component({
-  selector: 'app-hakkinda',
+  selector: 'app-english-summary',
   standalone: true,
   imports: [],
-  templateUrl: './hakkinda.component.html',
-  styleUrl: './hakkinda.component.scss'
+  templateUrl: './english-summary.component.html',
+  styleUrl: './english-summary.component.scss'
 })
-export class HakkindaComponent {
+export class EnglishSummaryComponent {
 
   hakkindaText:string="";
   async ngOnInit(): Promise<void> {

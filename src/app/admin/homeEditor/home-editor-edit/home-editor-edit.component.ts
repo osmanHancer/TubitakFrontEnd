@@ -37,8 +37,11 @@ export class HomeEditorEditComponent {
   async ngOnInit() {
 
   
-
-
+    const jsoneditorhtml=await QW.json("/editor");
+    this.editItemList.amaclar=jsoneditorhtml.editor[0].amaclar
+    this.editItemList.hakkinda=jsoneditorhtml.editor[0].hakkinda
+    this.editItemList.sahacalismalari=jsoneditorhtml.editor[0].sahacalismalari
+    this.editItemList.projeciktilari=jsoneditorhtml.editor[0].projeciktilari
   }
 
 

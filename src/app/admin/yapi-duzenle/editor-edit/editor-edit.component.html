@@ -123,9 +123,23 @@
           <mat-option value="DİĞER">DİĞER</mat-option>
         </mat-select>
       </mat-form-field>
+      <mat-form-field class="col-xl-6">
+        <mat-label>Seyahatnamelerde Geçiyor</mat-label>
+        <mat-select [(ngModel)]="editItemList.seyahatnamede_gecen">
+          <mat-option value="Evet">Evet</mat-option>
+          <mat-option value="Hayır">Hayır</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="col-xl-6"></div>
 
-      <button class="col-xl-2 m-2" mat-flat-button  (click)="Save()">
+      <button class="col-xl-2 m-2" mat-flat-button (click)="Save()">
         Kaydet<mat-icon>save</mat-icon>
+      </button>
+      <button class="col-xl-2 m-2" mat-flat-button (click)="Delete(editItemList.yapi_ismi)">
+        Sil<mat-icon>delete</mat-icon>
+      </button>
+      <button class="col-xl-2 m-2" mat-flat-button routerLink="../">
+        İptal<mat-icon>cancel</mat-icon>
       </button>
 
 

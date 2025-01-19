@@ -31,7 +31,7 @@ export class ArazicalismasiEditComponent {
       fd.append('Bugunki_Kullanimi', this.editItem.Bugunki_Kullanimi);
       fd.append('Mimari_Ozellikler', this.editItem.Mimari_Ozellikler);
       fd.append('Yasama_Ve_Eski_Kullanima_Dair_Izler', this.editItem.Yasama_Ve_Eski_Kullanima_Dair_Izler);
-      fd.append('Yapim_Teknigi_Ve_Malzeme', this.editItem.Yapim_Teknigi_Ve_Malzeme);
+      fd.append('yapi_monografisi_var_yok', this.editItem.yapi_monografisi_var_yok);
       fd.append('notlar', this.editItem.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar);
       fd.append('Kaynakca', this.editItem.Kaynakca);
       fd.append('Arazi_Calismasi_Ekibi', this.editItem.Arazi_Calismasi_Ekibi);
@@ -48,7 +48,7 @@ export class ArazicalismasiEditComponent {
   }
   editItem: edititem = {
     Envanter_Kodu: '', Yapi_Adi: '', Guzergah: '', Alternatif_Adi: '', Donemi: '', Kitabesi: '', Banisi: '', Seyahatnamelerdeki_Anlatimi: '', Durumu: '',
-    enlem: 0.00000000, boylam: 0.000000000, Bugunki_Kullanimi: '', Mimari_Ozellikler: '', Yasama_Ve_Eski_Kullanima_Dair_Izler: '', Yapim_Teknigi_Ve_Malzeme: '',
+    enlem: 0.00000000, boylam: 0.000000000, Bugunki_Kullanimi: '', Mimari_Ozellikler: '', Yasama_Ve_Eski_Kullanima_Dair_Izler: '', yapi_monografisi_var_yok: '',
      Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: '', Kaynakca: '', Arazi_Calismasi_Ekibi: '', Arazi_Calismasi_Tarihi: '',
   };
   constructor(private route: ActivatedRoute, private router: Router) {
@@ -118,7 +118,7 @@ type edititem = {
   Yasama_Ve_Eski_Kullanima_Dair_Izler: string;
 
 
-  Yapim_Teknigi_Ve_Malzeme: string;
+  yapi_monografisi_var_yok: string;
 
 
   Literatur_Ve_Arsiv_Kaynaklarindan_Notlar: string;

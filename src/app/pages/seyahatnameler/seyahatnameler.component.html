@@ -1,0 +1,58 @@
+<section class="content-holder">
+    <div class="container">
+
+
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                <p>Bu çalışmada, seyahatnameler birer yazın / edebiyat türü olarak ele alınmış ve metinsel analizleri
+                    Yeni Eleştiri ekolü çerçevesinde gerçekleştirilmiştir. Seyahatnameler, tarih, sosyal-beşerî bilimler
+                    ve mimarlık gibi çeşitli alanlarda önemli birer kaynak niteliği taşımalarının yanı sıra, edebi bir
+                    anlatı türü olarak da değerlidir. Projenin bu aşamasında, seyahatnamelerde yer alan metinler,
+                    karakter, mekân, zaman, olay örgüsü, bakış açısı ve tema gibi edebi unsurlar doğrultusunda detaylı
+                    bir şekilde analiz edilmiştir. Çalışma, seyahatname türünü yalnızca bir belge ya da tarihsel kaynak
+                    olarak değil, aynı zamanda deneyim üzerinden yeri ve mimariyi okumak amaçlı bir yazın türü şeklinde
+                    ele alarak farklı bir bakış açısı sunmaktadır.
+                </p>
+            </div>
+            <div class="col-12 col-xl-6">
+                <div class="search-form my-5">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="filtertextSeyahat" autocomplete="off"
+                            (ngModelChange)="filterSeyahat(filtertextSeyahat)" class="form-control"
+                            id="kutuphane-search" aria-describedby="kutuphaneSearch"
+                            placeholder="Aramak istediğiniz terimi giriniz">
+                    </div>
+                    <button type="submit" class="flying"><i class="bi bi-search"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-xl-10">
+                <div class="accordion" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <button class="accordion-button " type="button" data-bs-toggle="collapse"
+                                data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="true"
+                                aria-controls="panelsStayOpen-collapseTwo">Seyahatnamelerin Tematik İncelemesi <span
+                                    class="number">({{seyyahsize}})</span></button>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                            aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li *ngFor="let item of filteredSeyahat"><a
+                                            [href]="'../home/makale/'+item.kodu">{{item.seyahatnameadi}}</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+</section>

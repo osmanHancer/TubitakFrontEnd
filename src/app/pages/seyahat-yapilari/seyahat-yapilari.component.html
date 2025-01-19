@@ -1,0 +1,79 @@
+<section class="content-holder">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-xl-10">
+        <p>Bu bölümde, modern öncesi seyahat yapıları detaylı bir şekilde ele alınmıştır. Seyahatnamelerde bahsi geçen
+          ve saha çalışmaları sırasında incelenen bu yapılar, dönemlerinin mimari, kültürel ve işlevsel özelliklerini
+          yansıtmaktadır. Ticaret yolları, dini ziyaretler veya göçler gibi farklı amaçlarla inşa edilen bu yapıların
+          monografileri, literatürden elde edilen verilerle zenginleştirilmiştir. Hanlar, kervansaraylar, konaklama
+          yerleri ve geçiş noktaları gibi seyahat yapıları, yalnızca dönemin mimari anlayışını değil, aynı zamanda
+          toplumsal ve ekonomik yapıyı da anlamamıza katkı sağlamaktadır. Bu incelemeler, tarihsel bağlamda seyahat
+          kültürünün izlerini ortaya koymaktadır.
+
+        </p>
+      </div>
+      <div class="col-12 col-xl-6">
+        <div class="search-form my-5">
+          <div class="form-group">
+            <input matInput type="text" [(ngModel)]="filtertextYapi" autocomplete="off"
+              (ngModelChange)="filterYapi(filtertextYapi)" class="form-control" id="kutuphane-search"
+              aria-describedby="kutuphaneSearch" placeholder="Aramak istediğiniz terimi giriniz">
+          </div>
+          <button type="submit" (click)="filterYapi(filtertextYapi)" class="flying"><i
+              class="bi bi-search"></i></button>
+        </div>
+      </div>
+      <div class="col-12 col-xl-10">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                aria-controls="panelsStayOpen-collapseOne"> Seyahat Yapıları <span
+                  class="number">({{yapisize}})</span></button>
+            </h2>
+            <div class="ps-3"><p>
+              <strong>Seyahatnamelerde Geçen Yapılar</strong>
+              
+            </p>
+          </div>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <ul>
+                  <li *ngFor="let item of filteredYapi">
+                    @if(item.seyahatnamede_gecen =="Evet"){
+                    <a
+                      [href]="'../home/monografi/'+item.yapi_ismi">{{item.baslik}}</a>
+                    }
+                    </li>
+
+                </ul>
+              </div>
+            </div>
+            <div class="ps-3"><p>
+              <strong>Saha Çalışmalarında İncelenen Diğer Yapılar</strong>
+              
+            </p>
+          </div>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+              aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <ul>
+                  <li *ngFor="let item of filteredYapi">
+                    @if(item.seyahatnamede_gecen =="Hayır"){
+                    <a
+                      [href]="'../home/monografi/'+item.yapi_ismi">{{item.baslik}}</a>
+                    }
+                    </li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

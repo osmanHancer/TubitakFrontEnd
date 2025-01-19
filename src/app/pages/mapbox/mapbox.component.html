@@ -10,17 +10,17 @@
         </mat-expansion-panel-header>
         <mat-accordion [multi]="false">
 
-          <mat-form-field class="col-6">
-            <mat-label>Seyyah İsmi Girniz</mat-label>
+          <mat-form-field class="col-6" style="height: 70px;">
+            <mat-label>Seyyah ismi giriniz</mat-label>
             <input matInput placeholder="Seyyah" (input)="mapsDataFilter($event)">
           </mat-form-field>
 
           @for (item of yuzyillar; track $index) {
 
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header style="height:40px;">
               <mat-panel-title>
-                <div style="display: flex;flex-direction: row;justify-content: space-between;">
+                <div style="display: flex;flex-direction: row;justify-content: space-between;font-size:smaller;">
                   <span>{{item[0]}}. Yüzyıl </span>
                   <span matBadge={{item[1]}} matBadgeOverlap="false" class="mx-3 mt-1"></span>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="row" *ngIf="item[0]===fet.crs.properties.yuzyil">
                   <mat-checkbox [(ngModel)]="fet.crs.properties.checked" class="col-6 "
                     (change)="updateAllComplete(fet.name,item[0])">
-                    <p class="mt-4">{{fet.name_tr}}</p>
+                    <p class="mt-4 h6" style="font-size:small;">{{fet.name_tr}}</p>
                   </mat-checkbox>
                   <div class="col-1 mt-4" style="height: 20px;width: 10px;border-radius: 3px;"
                     [ngStyle]="{'background-color': fet.features[0].properties.color}">
@@ -92,47 +92,40 @@
     <table class="table">
 
       <tbody [hidden]="this.point_info_dialog.Envanter_Kodu == undefined ? true :false">
-        <tr>
-          <th scope="row">Envanter Kodu</th>
-          <td>{{this.point_info_dialog.Envanter_Kodu}}</td>
-        </tr>
+       
         <tr>
           <th scope="row">Yapı Adı</th>
           <td>{{this.point_info_dialog.Yapi_Adi}}</td>
         </tr>
         <tr>
-          <th scope="row">Enlem</th>
+          <th scope="row">Konum</th>
 
           <td><mat-icon>
               location_pin
-            </mat-icon> {{this.point_info_dialog.enlem}}</td>
+            </mat-icon> {{this.point_info_dialog.enlem}}  ,  {{this.point_info_dialog.boylam}}</td>
         </tr>
+        
         <tr>
-          <th scope="row">Boylam</th>
-          <td><mat-icon>
-              location_pin
-            </mat-icon> {{this.point_info_dialog.boylam}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Güzergah
+          <th scope="row">Güzergâh
           <td>{{this.point_info_dialog.Guzergah}}</td>
         </tr>
-        <tr>
-          <th scope="row">Alternatif Adı</th>
+        <tr *ngIf="this.point_info_dialog.Alternatif_Adi != undefined">
+          <th scope="row"> Alternatif Adı</th>
           <td>{{this.point_info_dialog.Alternatif_Adi}}</td>
         </tr>
         <tr>
           <th scope="row">Dönemi</th>
           <td>{{this.point_info_dialog.Donemi}}</td>
         </tr>
-        <tr>
+        <tr *ngIf="this.point_info_dialog.Kitabesi != undefined">
           <th scope="row">Kitabesi</th>
           <td>{{this.point_info_dialog.Kitabesi}}</td>
         </tr>
         <tr>
-          <th scope="row">Banisi</th>
+          <th scope="row">Bânisi</th>
           <td>{{this.point_info_dialog.Banisi}}</td>
         </tr>
+        
         <tr>
           <th scope="row">Seyahatnamelerdeki Anlatımı</th>
           <td [innerHTML]="this.point_info_dialog.Seyahatnamelerdeki_Anlatimi"></td>
@@ -142,28 +135,33 @@
           <td>{{this.point_info_dialog.Durumu}}</td>
         </tr>
         <tr>
-          <th scope="row">Bugunki Kullanımı</th>
+          <th scope="row">Bugünkü Kullanımı</th>
           <td>{{this.point_info_dialog.Bugunki_Kullanimi}}</td>
         </tr>
         <tr>
-          <th scope="row">Yapım Tekniği</th>
-          <td>{{this.point_info_dialog.Yapim_Teknigi_Ve_Malzeme}}</td>
+          <th scope="row">Mimari Özellikler </th>
+          <td>{{this.point_info_dialog.Mimari_Ozellikler}}</td>
         </tr>
         <tr>
-          <th scope="row">Arşiv Kaynakları Notlar</th>
+          <th scope="row">Yaşama ve Eski Kullanıma Dair İzler</th>
+          <td>{{this.point_info_dialog.Yasama_Ve_Eski_Kullanima_Dair_Izler}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Litaratür ve Arşiv Kaynaklarından Notlar </th>
           <td>{{this.point_info_dialog.Literatur_Ve_Arsiv_Kaynaklarindan_Notlar}}</td>
         </tr>
+        
         <tr>
-          <th scope="row">Kaynakça</th>
-          <td [innerHTML]="this.point_info_dialog.Kaynakca"></td>
-        </tr>
-        <tr>
-          <th scope="row">Çalışma Tarihi</th>
+          <th scope="row">Arazi Çalışması Tarihi</th>
           <td>{{this.point_info_dialog.Arazi_Calismasi_Tarihi}}</td>
         </tr>
-        <tr>
+        <tr *ngIf="this.point_info_dialog.Arazi_Calismasi_Ekibi != undefined">
           <th scope="row">Arazi Ekibi</th>
           <td>{{this.point_info_dialog.Arazi_Calismasi_Ekibi}}</td>
+        </tr>
+        <tr >
+          <th scope="row">Link </th>
+          <td><a [href]="'home/monografi/'+point_info_dialog.Yapi_Adi">Yapı monografisine ulaşın</a></td>
         </tr>
 
 

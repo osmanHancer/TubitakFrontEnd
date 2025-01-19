@@ -3,7 +3,7 @@ import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor
 import { FormsModule } from '@angular/forms';
 import { MySharedModules } from '../../../_com/myshared.module';
 import { QW } from '../../../_lib/qw.helper';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import {  NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
 @Component({
@@ -16,10 +16,11 @@ import {  NgSelectComponent, NgSelectModule } from '@ng-select/ng-select';
 })
 export class EditorEditComponent {
 
-  constructor(private route: ActivatedRoute) {
-
-
-  }
+ 
+   constructor(private route: ActivatedRoute,private router: Router) {
+  
+  
+    }
   yapi_ismi:any
   editItemList: html = {
     yuzyil: '', yapi_ismi: '',yapituru:'', baslik: '', alt_baslik: '', enlem: '', boylam: '', yapi_html_1: '', lokasyonId: 1,
@@ -27,7 +28,8 @@ export class EditorEditComponent {
     yapi_html_3: '',
     yapi_html_4: '',
     yapi_html_5: '',
-    yapi_html_6: ''
+    yapi_html_6: '',
+    seyahatnamede_gecen: ''
   };
 
 
@@ -121,7 +123,15 @@ export class EditorEditComponent {
     fd.append('yapi_html_6', this.editItemList.yapi_html_6);
     fd.append('lokasyonId', this.editItemList.lokasyonId.toString());
     fd.append('yuzyil', this.editItemList.yuzyil);
+    fd.append('seyahatnamede_gecen', this.editItemList.seyahatnamede_gecen);
    await QW.jsonPost("/yapimonografisi", fd);
+   await this.router.navigate(['/admin/editor']);
+
+  }
+  async Delete(id:any) {
+
+   await QW.jsonPost("/yapimonografisi/delete/"+id);
+   await this.router.navigate(['/admin/editor']);
   }
 
 
@@ -157,6 +167,8 @@ type html = {
   yuzyil:string
 
   lokasyonId:number
+
+  seyahatnamede_gecen:string
 
 
 }

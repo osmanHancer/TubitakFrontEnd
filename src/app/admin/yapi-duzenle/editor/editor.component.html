@@ -22,6 +22,11 @@
                 <mat-header-cell *matHeaderCellDef> Enlem </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.enlem }} </mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="seyahatnamede_gecen">
+                <mat-header-cell *matHeaderCellDef> Seyahatnamelerde Geçiyor </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.seyahatnamede_gecen }} </mat-cell>
+            </ng-container>
     
     
       
@@ -39,10 +44,10 @@
                 </mat-cell>
             </ng-container>
     
-            <mat-header-row *matHeaderRowDef="['yapi_ismi', 'baslik','boylam','enlem','action']"></mat-header-row>
+            <mat-header-row *matHeaderRowDef="['yapi_ismi', 'baslik','boylam','enlem','seyahatnamede_gecen','action']"></mat-header-row>
             <mat-row *matRowDef="
               let row;
-              columns: ['yapi_ismi', 'baslik','boylam','enlem','action']
+              columns: ['yapi_ismi', 'baslik','boylam','enlem','seyahatnamede_gecen','action']
             "></mat-row>
         </mat-table>
     </div>

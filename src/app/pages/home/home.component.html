@@ -9,7 +9,7 @@
                             <div class="sy-card-title">PROJE HAKKINDA</div>
                             <div class="sy-card-body">
                                 <p>{{ truncateText(homeTexts?.hakkinda, 300) }}</p>
-                                <p class="text-center mt-4"><a class="btn sy-btn btn-olive" href="#">DAHA FAZLA
+                                <p class="text-center mt-4"><a class="btn sy-btn btn-olive" [routerLink]="['/home/proje-hakkinda']">DAHA FAZLA
                                         BİLGİ</a></p>
                             </div>
                         </div>
@@ -19,7 +19,7 @@
                             <div class="sy-card-title">PROJE ÇIKTILARI</div>
                             <div class="sy-card-body">
                                 <p>{{ truncateText(homeTexts?.projeciktilari, 300) }}</p>
-                                <p class="text-center mt-4"><a class="btn sy-btn btn-taba" href="#">DAHA FAZLA
+                                <p class="text-center mt-4"><a class="btn sy-btn btn-taba" [routerLink]="['/home/proje-ciktilari']">DAHA FAZLA
                                         BİLGİ</a></p>
                             </div>
                         </div>

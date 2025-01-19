@@ -54,19 +54,20 @@ export class MapboxComponent implements OnInit {
 
   async ngOnInit() {
 
-    const res = await fetch("/assets/json/19_james_morier_smooth_2.json")
-    this.allpoints = await res.json();
 
-    this.maps_data = this.allpoints;
 
     this.map = new mapboxgl.Map({
-      accessToken: environment.mapbox.accessToken,
+      accessToken: environment.mapboxToken,
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v11',
+      style: 'mapbox://styles/mapbox/standard',
       zoom: 6,
 
       center: [33.422222, 38.630554],
     });
+    const res = await fetch("/assets/json/19_james_morier_smooth_2.json")
+    this.allpoints = await res.json();
+
+    this.maps_data = this.allpoints;
 
     this.map.on('load', async () => {
 
@@ -142,17 +143,43 @@ export class MapboxComponent implements OnInit {
             isVisible ? 1 : 0
           );
 
-          counter++; // Her işlemde sayaç bir artırılır
+          counter++;
 
           if (counter >= 60) {
-            clearInterval(intervalId); // 20 işlem sonrası interval durdurulur
+            clearInterval(intervalId);
           }
 
-        }, 500); // Her 500ms'de bir yanıp sönsün
+        }, 500);
         let lokasyon = await QW.json('/lokasyon/getId/' + enlem + '/' + boylam);
         let info = await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
         if (info != null) {
           this.point_info_dialog = await QW.json('/arazicalismasi/' + lokasyon.result.Envanter_Kodu);
+          this.dialogImgs = await QW.json('/galeri/filter/' + lokasyon.result.Envanter_Kodu);
+          this.dialogImgs = this.dialogImgs.images;
+          this.dialogImgs.reverse();
+          this.dialogImgs.forEach((element: any) => {
+
+            const newImage: img = {
+              image: 'http://localhost:3000/file/' + element.imgname,
+              thumbImage: 'http://localhost:3000/file/' + element.imgname,
+              title: element.metin
+            };
+
+            this.imagesslide.push(newImage);
+
+          });
+          let alintilar = await QW.json('/noktalar/alinti/' + enlem + "/" + boylam)
+
+          alintilar.Id.forEach((element: any) => {
+
+            if (element.alintilar != "")
+              this.alintilar.push([element.alintilar, element.seyahatname_adi, element.yazar, element.yuzyil]);
+
+
+          });
+          this.alintilar.sort((a: any, b: any) => +a[3].split(".")[0] - +b[3].split(".")[0])
+          this.point_info_dialog.alintilar = this.alintilar
+
           this.gizle = false;
         }
       }
@@ -388,13 +415,12 @@ export class MapboxComponent implements OnInit {
           'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold']
         },
         'paint': {
-          'text-color': '#eee',
+          'text-color': '#000000',
           'text-halo-color': '#ffffff',
           'text-halo-width': 0.5
         },
 
         filter: ['==', ['get', 'tespit_edilen_konum_olcegi'], c.point_type],
-        minzoom: 6
       });
 
     });
@@ -560,8 +586,10 @@ export class MapboxComponent implements OnInit {
               this.point_info_dialog.bolum_chapter_mektupnumarasi = this.all_dialog_info[this.dialog_info_index].bolum_chapter_mektupnumarasi;
               this.point_info_dialog.sayfa_numarasi = this.all_dialog_info[this.dialog_info_index].sayfa_numarasi;
               this.point_info_dialog.seyahat_adimi = this.all_dialog_info[this.dialog_info_index].seyahat_adimi;
+              this.point_info_dialog.seyahatname_adi = this.all_dialog_info[this.dialog_info_index].seyahatname_adi;
               this.dialogImgs = await QW.json('/galeri/filter/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
               this.dialogImgs = this.dialogImgs.images;
+              this.dialogImgs.reverse();
               this.dialogImgs.forEach((element: any) => {
 
                 const newImage: img = {
@@ -583,7 +611,7 @@ export class MapboxComponent implements OnInit {
 
 
             });
-    this.alintilar.sort((a: any, b: any) => +a[3].split(".")[0] -  +b[3].split(".")[0])
+            this.alintilar.sort((a: any, b: any) => +a[3].split(".")[0] - +b[3].split(".")[0])
 
             if (this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu == "-") {
 
@@ -610,8 +638,11 @@ export class MapboxComponent implements OnInit {
               this.point_info_dialog.bolum_chapter_mektupnumarasi = this.all_dialog_info[this.dialog_info_index].bolum_chapter_mektupnumarasi;
               this.point_info_dialog.sayfa_numarasi = this.all_dialog_info[this.dialog_info_index].sayfa_numarasi;
               this.point_info_dialog.seyahat_adimi = this.all_dialog_info[this.dialog_info_index].seyahat_adimi;
+              this.point_info_dialog.seyahatname_adi = this.all_dialog_info[this.dialog_info_index].seyahatname_adi;
+
               this.dialogImgs = await QW.json('/galeri/filter/' + this.all_dialog_info[this.dialog_info_index].yapi_envanter_kodu);
               this.dialogImgs = this.dialogImgs.images;
+              this.dialogImgs.reverse();
               this.dialogImgs.forEach((element: any) => {
 
                 const newImage: img = {
@@ -665,13 +696,14 @@ export class MapboxComponent implements OnInit {
     let clickPoint = await QW.json('/noktalar/' + description.seyahname_kodu + '/' + id);
     this.point_info_dialog = clickPoint.data[0]
     if (clickPoint.data[0]["yapi_envanter_kodu"] != "-") {
-
       this.point_info_dialog = await QW.json('/arazicalismasi/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.point_info_dialog.bolum_chapter_mektupnumarasi = clickPoint.data[0]['bolum_chapter_mektupnumarasi'];
       this.point_info_dialog.sayfa_numarasi = clickPoint.data[0]['sayfa_numarasi'];
       this.point_info_dialog.seyahat_adimi = clickPoint.data[0]['seyahat_adimi'];
+      this.point_info_dialog.seyahatname_adi = clickPoint.data[0]['seyahatname_adi'];
       this.dialogImgs = await QW.json('/galeri/filter/' + clickPoint.data[0]['yapi_envanter_kodu']);
       this.dialogImgs = this.dialogImgs.images;
+      this.dialogImgs.reverse();
       this.dialogImgs.forEach((element: any) => {
         const newImage: img = {
           image: 'http://localhost:3000/file/' + element.imgname,

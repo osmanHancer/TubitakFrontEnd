@@ -11,16 +11,21 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ms-auto mb-0">
+					
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
 							aria-expanded="false">
-							KÜTÜPHANE
+							TEMATİK VERİTABANI
+
 						</a>
 						<ul class="dropdown-menu">
-							<li><a class="dropdown-item"[routerLink]="['/home/kütüphane']">SEYAHATNAMELER</a></li>
-							<li><a class="dropdown-item" [routerLink]="['/home/kütüphane']">MAKALELER</a></li>
-							<li><a class="dropdown-item" [routerLink]="['/home/kütüphane']">SAHA ÇALIŞMALARI</a></li>
+							<li><a class="dropdown-item"  [routerLink]="['/home/seyahatname']"  >SEYAHATNAMELER</a></li>
+
+							<li><a class="dropdown-item"[routerLink]="['/home/seyahat-yapilari']">SEYAHAT YAPILARI</a></li>
 						</ul>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link " [routerLink]="['/home/mapbox']" >COĞRAFİ VERİTABANI</a>
 					</li>
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -30,8 +35,8 @@
 						<ul class="dropdown-menu">
 							<li><a class="dropdown-item" [routerLink]="['/home/proje-ekibi']">PROJE EKİBİ</a></li>
 							<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">PROJE HAKKINDA</a></li>
-							<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">ENGLISH SUMMARY</a></li>
-							<li><a class="dropdown-item" [routerLink]="['/home/proje-hakkinda']">PROJE ÇIKTILARI</a></li>
+							<li><a class="dropdown-item" [routerLink]="['/home/english-summary']">ENGLISH SUMMARY</a></li>
+							<li><a class="dropdown-item" [routerLink]="['/home/proje-ciktilari']">PROJE ÇIKTILARI</a></li>
 						</ul>
 					</li>
 					<li class="nav-item">
@@ -40,9 +45,7 @@
 					<li class="nav-item">
 						<a class="nav-link" [routerLink]="['/home/detayli-arama']">DETAYLI ARAMA</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link " [routerLink]="['/home/mapbox']">HARİTA</a>
-					</li>
+					
 					<li class="nav-item">
 						<a class="nav-link" [routerLink]="['/home/iletisim']">İLETİŞİM</a>
 					</li>
@@ -63,22 +66,23 @@
 				</div>
 				<div class="col-xl-3 mb-3">
 					<ul class="foot-nav">
-						<li><a [routerLink]="['/home/kütüphane']">KÜTÜPHANE</a></li>
+						<li><a [routerLink]="['/home/seyahatname']">SEYAHATNAMELER</a></li>
+						<li><a [routerLink]="['/home/seyahat-yapilari']">SEYAHAT YAPILARI</a></li>
+						<li><a [routerLink]="['/home/mapbox']">COĞRAFİ VERİTABANI</a></li>
+					</ul>
+				</div>
+				<div class="col-xl-3 mb-3">
+					<ul class="foot-nav">
 						<li><a [routerLink]="['/home/kaynakca']">KAYNAKÇA</a></li>
 						<li><a [routerLink]="['/home/detayli-arama']">DETAYLI ARAMA</a></li>
 					</ul>
 				</div>
 				<div class="col-xl-3 mb-3">
 					<ul class="foot-nav">
-						<li><a [routerLink]="['/home/proje-hakkinda']">PROJE HAKKINDA</a></li>
+						<li><a [routerLink]="['/home/proje-hakkinda']" >PROJE HAKKINDA</a></li>
 						<li><a [routerLink]="['/home/proje-ekibi']">PROJE EKİBİ</a></li>
-						<li><a [routerLink]="['/home/proje-hakkinda']">ENGLISH SUMMARY</a></li>
-						<li><a [routerLink]="['/home/proje-hakkinda']">PROJE ÇIKTILARI</a></li>
-					</ul>
-				</div>
-				<div class="col-xl-3 mb-3">
-					<ul class="foot-nav">
-						<li><a [routerLink]="['/home/mapbox']" class="black">HARİTA</a></li>
+						<li><a [routerLink]="['/home/english-summary']">ENGLISH SUMMARY</a></li>
+						<li><a [routerLink]="['/home/proje-ciktilari']">PROJE ÇIKTILARI</a></li>
 						<li><a [routerLink]="['/home/iletisim']">İLETİŞİM</a></li>
 					</ul>
 				</div>

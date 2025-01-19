@@ -19,10 +19,7 @@
                 <mat-header-cell *matHeaderCellDef> Enlem </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.enlem }} </mat-cell>
             </ng-container>
-            <!-- <ng-container matColumnDef="color">
-                <mat-header-cell *matHeaderCellDef> Renk</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.color }} </mat-cell>
-            </ng-container> -->
+          
             <ng-container matColumnDef="boylam">
                 <mat-header-cell *matHeaderCellDef>Boylam</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.boylam }} </mat-cell>
@@ -36,10 +33,7 @@
                 <mat-header-cell *matHeaderCellDef> Dönemi</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.Donemi }} </mat-cell>
             </ng-container>
-            <!-- <ng-container matColumnDef="mekan_tipi">
-                <mat-header-cell *matHeaderCellDef> mekan_tipi </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.mekan_tipi }} </mat-cell>
-            </ng-container> -->
+           
             <ng-container matColumnDef="Kitabesi">
                 ">
                 <mat-header-cell *matHeaderCellDef>Kitabesi
@@ -47,23 +41,12 @@
                 <mat-cell *matCellDef="let row"> {{ row.Kitabesi
                     }} </mat-cell>
             </ng-container>
-            <!-- <ng-container matColumnDef="notlar">
-                <mat-header-cell *matHeaderCellDef> notlar </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.notlar }} </mat-cell>
-            </ng-container> -->
+           
             <ng-container matColumnDef="Banisi">
                 <mat-header-cell *matHeaderCellDef> Banisi</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.Banisi }} </mat-cell>
             </ng-container>
-            <!-- <ng-container matColumnDef="sayfa_numarasi">
-                <mat-header-cell *matHeaderCellDef> sayfa_numarasi </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.sayfa_numarasi }} </mat-cell>
-            </ng-container> -->
-
-            <!-- <ng-container matColumnDef="Seyahatnamelerdeki_Anlatimi">
-                <mat-header-cell *matHeaderCellDef> Seyahatnamelerdeki Anlatımı </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.Seyahatnamelerdeki_Anlatimi }} </mat-cell>
-            </ng-container> -->
+          
             <ng-container matColumnDef="Durumu">
                 <mat-header-cell *matHeaderCellDef> Durumu </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.Durumu }} </mat-cell>
@@ -72,13 +55,10 @@
                 <mat-header-cell *matHeaderCellDef> Bugünki Kullanımı </mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{ row.Bugunki_Kullanimi }} </mat-cell>
             </ng-container>
-            <!-- <ng-container matColumnDef="Mimari_Ozellikler">
-                <mat-header-cell *matHeaderCellDef> Mimari Özellikler </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.Mimari_Ozellikler }} </mat-cell>
-            </ng-container> -->
-            <ng-container matColumnDef="Yapim_Teknigi_Ve_Malzeme">
-                <mat-header-cell *matHeaderCellDef> Yapim ve Tekniği </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{ row.Yapim_Teknigi_Ve_Malzeme }} </mat-cell>
+           
+            <ng-container matColumnDef="yapi_monografisi_var_yok">
+                <mat-header-cell *matHeaderCellDef> Yapı Monografisi </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{ row.yapi_monografisi_var_yok }} </mat-cell>
             </ng-container>
          
 
@@ -98,11 +78,11 @@
                 </mat-cell>
             </ng-container>
             <mat-header-row
-                *matHeaderRowDef="[ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi','Durumu','Bugunki_Kullanimi','Yapim_Teknigi_Ve_Malzeme','action']">
+                *matHeaderRowDef="[ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi','Durumu','Bugunki_Kullanimi','yapi_monografisi_var_yok','action']">
             </mat-header-row>
             <mat-row style="height: 150px;" *matRowDef="
               let row;
-              columns: [ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi', 'Durumu','Bugunki_Kullanimi','Yapim_Teknigi_Ve_Malzeme','action']
+              columns: [ 'Envanter_Kodu', 'Yapi_Adi', 'enlem','boylam','Guzergah','Donemi','Kitabesi','Banisi', 'Durumu','Bugunki_Kullanimi','yapi_monografisi_var_yok','action']
             "></mat-row>
         </mat-table>
         <mat-paginator [pageSizeOptions]="[ 10, 20,30]" showFirstLastButtons
