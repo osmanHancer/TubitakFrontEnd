@@ -61,8 +61,8 @@ export class YapiComponent {
     this.galeriImgs.images.forEach((element: any) => {
 
       const newImage: img = {
-        image: 'http://localhost:3000/file/' + element.imgname,
-        thumbImage: 'http://localhost:3000/file/' + element.imgname,
+        image:'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
+        thumbImage:'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
         title: element.metin
       };
 

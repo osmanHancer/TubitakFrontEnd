@@ -160,8 +160,8 @@ export class MapboxComponent implements OnInit {
           this.dialogImgs.forEach((element: any) => {
 
             const newImage: img = {
-              image: 'http://localhost:3000/file/' + element.imgname,
-              thumbImage: 'http://localhost:3000/file/' + element.imgname,
+              image: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
+              thumbImage: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
               title: element.metin
             };
 
@@ -593,8 +593,8 @@ export class MapboxComponent implements OnInit {
               this.dialogImgs.forEach((element: any) => {
 
                 const newImage: img = {
-                  image: 'http://localhost:3000/file/' + element.imgname,
-                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
+                  image: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
+                  thumbImage: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
                   title: element.metin
                 };
 
@@ -646,8 +646,8 @@ export class MapboxComponent implements OnInit {
               this.dialogImgs.forEach((element: any) => {
 
                 const newImage: img = {
-                  image: 'http://localhost:3000/file/' + element.imgname,
-                  thumbImage: 'http://localhost:3000/file/' + element.imgname,
+                  image: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
+                  thumbImage: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
                   title: element.metin
                 };
 
@@ -706,8 +706,8 @@ export class MapboxComponent implements OnInit {
       this.dialogImgs.reverse();
       this.dialogImgs.forEach((element: any) => {
         const newImage: img = {
-          image: 'http://localhost:3000/file/' + element.imgname,
-          thumbImage: 'http://localhost:3000/file/' + element.imgname,
+          image: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
+          thumbImage: 'https://yolmekan.agu.edu.tr/api/file/' + element.imgname,
           title: element.metin
         };
         this.imagesslide.push(newImage);

@@ -33,7 +33,7 @@
             <ng-container matColumnDef="img">
                 <mat-header-cell *matHeaderCellDef> Görsel </mat-header-cell>
                 <mat-cell *matCellDef="let row">
-                    <img [src]="'http://localhost:3000/file/'+row.imgname" alt="{{ row.imgname }}"
+                    <img [src]="'https://yolmekan.agu.edu.tr/api/file/'+row.imgname" alt="{{ row.imgname }}"
                         style="width: 100px; height: auto;" />
                 </mat-cell>
             </ng-container>
