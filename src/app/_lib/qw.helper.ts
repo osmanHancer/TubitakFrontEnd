@@ -9,7 +9,7 @@ export class QW {
 
   public static port = window.location.port;
   public static basePath = '';
-  public static host = window.location.hostname;
+  public static host = "yolmekan.agu.edu.tr/api"
   public static protocol = window.location.protocol;
   public static isDev = this.port == '4200';
   public static token = "";
@@ -17,8 +17,7 @@ export class QW {
 
   public static req(url: string, data: any = null, method = 'POST') {
 
-    let apiUrl =
-    (this.isDev ? 'http://' + this.host + ':3000' : '') + this.basePath;
+    let apiUrl ="https://"+ this.host;
 
     return fetch(apiUrl + url, {
       method: method,
