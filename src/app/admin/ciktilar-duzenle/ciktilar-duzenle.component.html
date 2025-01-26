@@ -1,0 +1,28 @@
+<div style="display: flex;flex-direction: column;margin-top: 2%;">
+    <h1>Çıktılar</h1>
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.ciktilar
+  " [config]="config"></angular-editor>
+
+    </div>
+ 
+
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <button class="col-xl-2 m-2" mat-flat-button (click)="Save()">
+                Kaydet<mat-icon>save</mat-icon>
+            </button>
+
+            <button class="col-xl-2 m-2" mat-flat-button routerLink="../">
+                İptal<mat-icon>cancel</mat-icon>
+            </button>
+
+
+        </div>
+    </div>
+</div>

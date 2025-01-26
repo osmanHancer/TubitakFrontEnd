@@ -1,0 +1,43 @@
+<div style="display: flex;flex-direction: column;margin-top: 2%;">
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.Seyahatnameler
+  " [config]="config"></angular-editor>
+
+    </div>
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.Konaklama_ve_Seyahat_Kulturu"
+            [config]="config"></angular-editor>
+
+    </div>
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.Mimari_Sanat_ve_Tarih"
+            [config]="config"></angular-editor>
+
+
+    </div>
+    <div>
+        <angular-editor style="color: black;" [(ngModel)]="editItemList.Diger"
+            [config]="config"></angular-editor>
+
+
+    </div>
+
+
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <button class="col-xl-2 m-2" mat-flat-button (click)="Save()">
+                Kaydet<mat-icon>save</mat-icon>
+            </button>
+
+            <button class="col-xl-2 m-2" mat-flat-button routerLink="../">
+                İptal<mat-icon>cancel</mat-icon>
+            </button>
+
+
+        </div>
+    </div>
+</div>

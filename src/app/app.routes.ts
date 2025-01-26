@@ -41,6 +41,8 @@ import { SeyahatYapilariComponent } from './pages/seyahat-yapilari/seyahat-yapil
 import { SeyahatnamelerComponent } from './pages/seyahatnameler/seyahatnameler.component';
 import { EnglishSummaryComponent } from './pages/english-summary/english-summary.component';
 import { ProjeCiktilariComponent } from './pages/proje-ciktilari/proje-ciktilari.component';
+import { KaynakcaDuzenleComponent } from './admin/kaynakca-duzenle/kaynakca-duzenle.component';
+import { CiktilarDuzenleComponent } from './admin/ciktilar-duzenle/ciktilar-duzenle.component';
 
 export const routes: Routes = [
 
@@ -179,6 +181,14 @@ export const routes: Routes = [
                 component: DenemeComponent
 
             },
+            {
+                path: "kaynakca-duzenle",
+                component: KaynakcaDuzenleComponent
+              },
+            {
+                path: "ciktilar-duzenle",
+                component: CiktilarDuzenleComponent
+              },
 
         ]
     },
@@ -249,6 +259,7 @@ export const routes: Routes = [
                 path: "proje-ciktilari",
                 component: ProjeCiktilariComponent
               },
+            
           
           
         ],
